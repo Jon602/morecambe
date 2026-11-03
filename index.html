@@ -327,7 +327,7 @@
   <main class="pt-24 sm:pt-28">
 
     <!-- ================= HERO SECTION ================= -->
-    <section class="hero-section relative overflow-hidden py-12 lg:py-20 bg-gradient-to-b from-brand-brown-light/40 via-transparent to-brand-bg transition-colors duration-400">
+    <section class="hero-section relative overflow-hidden py-12 lg:py-20 bg-gradient-to-b from-brand-brown-light/40 via-transparent to-brand-bg">
       <div class="hero-blob-1 absolute top-10 left-10 w-72 h-72 bg-brand-orange/15 rounded-full filter blur-3xl -z-10 pointer-events-none transition-colors duration-400"></div>
       <div class="hero-blob-2 absolute bottom-10 right-10 w-96 h-96 bg-brand-brown/15 rounded-full filter blur-3xl -z-10 pointer-events-none transition-colors duration-400"></div>
 
@@ -378,7 +378,7 @@
           <!-- Hero Graphic swapped dynamically via Tublanc.jpg / tub.jpg -->
           <div class="lg:col-span-5 flex justify-center items-center">
             <div class="relative w-full max-w-md aspect-square flex items-center justify-center p-6">
-              <img id="hero-tub-img" src="tub.jpg" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs mix-blend-multiply transition-all duration-300" />
+              <img id="hero-tub-img" src="tub.jpg" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs" style="opacity:0;transition:opacity .25s ease" />
             </div>
           </div>
 
@@ -773,6 +773,58 @@
     }
 
     // Toggle Theme function between Morecambe and Lancaster
+    /* Knocks the flat cream/white background out of the tub JPG so it becomes a real
+       transparent image. This replaces mix-blend-multiply, which flickers between
+       "seamless" and "visible square" when the browser re-composites layers. */
+    function setHeroTub(src) {
+      const img = document.getElementById('hero-tub-img');
+      if (!img) return;
+      const show = () => { img.style.opacity = '1'; };
+      const fallback = () => { img.src = src; img.classList.add('mix-blend-multiply'); show(); };
+      const orig = new Image();
+      orig.onload = () => {
+        try {
+          const c = document.createElement('canvas');
+          c.width = orig.naturalWidth; c.height = orig.naturalHeight;
+          const ctx = c.getContext('2d', { willReadFrequently: true });
+          ctx.drawImage(orig, 0, 0);
+          const d = ctx.getImageData(0, 0, c.width, c.height);
+          const px = d.data, w = c.width, h = c.height;
+          // background colour = average of the four corner patches
+          let br = 0, bg = 0, bb = 0, n = 0;
+          const k = 6;
+          [[0,0],[w-k,0],[0,h-k],[w-k,h-k]].forEach(([x0,y0]) => {
+            for (let y = y0; y < y0+k; y++) for (let x = x0; x < x0+k; x++) {
+              const i = (y*w + x)*4; br += px[i]; bg += px[i+1]; bb += px[i+2]; n++;
+            }
+          });
+          br /= n; bg /= n; bb /= n;
+          const lo = 14, hi = 48; // colour distance: below lo = fully transparent, above hi = fully opaque
+          for (let i = 0; i < px.length; i += 4) {
+            const dr = px[i]-br, dg = px[i+1]-bg, db = px[i+2]-bb;
+            const dist = Math.sqrt(dr*dr + dg*dg + db*db);
+            let a = (dist - lo) / (hi - lo);
+            a = a <= 0 ? 0 : a >= 1 ? 1 : a*a*(3-2*a);
+            if (a > 0 && a < 1) { // un-mix the background from soft edge pixels to avoid a halo
+              px[i]   = Math.max(0, Math.min(255, (px[i]   - br*(1-a)) / a));
+              px[i+1] = Math.max(0, Math.min(255, (px[i+1] - bg*(1-a)) / a));
+              px[i+2] = Math.max(0, Math.min(255, (px[i+2] - bb*(1-a)) / a));
+            }
+            px[i+3] = Math.round(a * 255);
+          }
+          ctx.putImageData(d, 0, 0);
+          img.classList.remove('mix-blend-multiply');
+          img.src = c.toDataURL('image/png');
+          show();
+        } catch (e) { fallback(); } // e.g. opened from file:// (canvas is tainted)
+      };
+      orig.onerror = fallback;
+      orig.src = src;
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.jpg' : 'tub.jpg');
+    });
+
     function setTheme(loc) {
       const morecambeBtn = document.getElementById('loc-morecambe-btn');
       const lancasterBtn = document.getElementById('loc-lancaster-btn');
@@ -790,7 +842,7 @@
         document.body.classList.add('theme-lancaster');
 
         // Swap hero image and top-left logo for Lancaster with blended background container
-        if (heroTubImg) heroTubImg.src = 'Tublanc.jpg';
+        setHeroTub('Tublanc.jpg');
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-[#faf7fd] rounded-2xl px-3 py-1.5 border border-[#f49495]/30 shadow-sm transition-colors duration-300";
         }
@@ -820,7 +872,7 @@
         document.body.classList.remove('theme-lancaster');
 
         // Swap hero image and logos back for Morecambe with cream background container
-        if (heroTubImg) heroTubImg.src = 'tub.jpg';
+        setHeroTub('tub.jpg');
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
         }
