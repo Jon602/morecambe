@@ -258,15 +258,13 @@
     .flavour::before { content: ''; display: inline-block; width: .45rem; height: .45rem; border-radius: 9999px; background: #f39200; margin-right: .75rem; vertical-align: middle; transition: background-color 0.4s ease; }
     .price-dark, .price-light { display: flex; align-items: baseline; gap: .5rem; }
     .price-dark { font-size: 1.05rem; }
-    .price-light { padding: .55rem 0; border-bottom: 1px solid rgba(87,74,61,.08); transition: border-color 0.4s ease; }
-    body.theme-lancaster .price-light { border-bottom-color: rgba(127,120,184,.1); }
-    .price-light:last-child { border-bottom: 0; }
+    .price-light { flex-wrap: wrap; row-gap: 0; padding: .55rem 0; }
     .price-dark i, .price-light i { flex: 1; border-bottom: 2px dotted currentColor; opacity: .25; transform: translateY(-.25rem); min-width: 1rem; }
     .price-dark b { color: #f39200; font-weight: 600; transition: color 0.4s ease; }
     body.theme-lancaster .price-dark b { color: #f49495; }
     .price-light b { color: #b35f00; font-weight: 600; transition: color 0.4s ease; }
     body.theme-lancaster .price-light b { color: #7f78b8; }
-    .price-light small { display: block; font-size: .75rem; color: #7a6c5d; font-style: italic; margin-top: .1rem; transition: color 0.4s ease; }
+    .price-light small { display: block; flex-basis: 100%; font-size: .75rem; color: #7a6c5d; font-style: italic; margin-top: .1rem; transition: color 0.4s ease; }
     body.theme-lancaster .price-light small { color: #5c547a; }
     .pudding { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: 1rem 1.1rem; border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); transition: all 0.4s ease; }
     .pudding b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
@@ -298,15 +296,14 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
           <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu & Flavors</a>
-          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Opening Hours</a>
-          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Locations</a>
+          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Hours &amp; Locations</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
         </nav>
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="#locations" class="btn-primary hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
-            Visit Us
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions btn-primary hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Get Directions
           </a>
 
           <!-- Mobile menu toggle button -->
@@ -321,9 +318,9 @@
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden md:hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
       <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu & Flavors</a>
-      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Opening Hours</a>
-      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Locations & Hours</a>
+      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Hours &amp; Locations</a>
       <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Information</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center px-3 py-2.5 rounded-full text-base font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark"><i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Get Directions</a>
     </div>
   </header>
 
@@ -519,9 +516,9 @@
             <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Cold Drinks</h3>
           </div>
           <ul class="text-brand-text">
-            <li class="price-light"><span>Frappe<small>coffee, vanilla, chocolate</small></span><i></i><b>£5.50</b></li>
-            <li class="price-light"><span>Milkshake<small>choose two scoops of gelato</small></span><i></i><b>£6.50</b></li>
-            <li class="price-light"><span>Affogato<small>gelato, with espresso poured over</small></span><i></i><b>£6.00</b></li>
+            <li class="price-light"><span>Frappe</span><i></i><b>£5.50</b><small>coffee, vanilla, chocolate</small></li>
+            <li class="price-light"><span>Milkshake</span><i></i><b>£6.50</b><small>choose two scoops of gelato</small></li>
+            <li class="price-light"><span>Affogato</span><i></i><b>£6.00</b><small>gelato, with espresso poured over</small></li>
             <li class="price-light"><span>Mineral Water</span><i></i><b>£1.75</b></li>
             <li class="price-light"><span>Cans</span><i></i><b>£2.25</b></li>
             <li class="price-light"><span>Glass Bottles</span><i></i><b>£2.75</b></li>
@@ -635,8 +632,7 @@
           <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Navigation</h4>
           <ul class="space-y-2 text-xs text-gray-400">
             <li><a href="#menu" class="hover:text-brand-orange-text transition-colors">Gelato Menu</a></li>
-            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Opening Hours</a></li>
-            <li><a href="#locations" class="hover:text-brand-brown transition-colors">Store Locations</a></li>
+            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Hours &amp; Locations</a></li>
           </ul>
         </div>
 
@@ -798,8 +794,18 @@
       setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.jpg' : 'tub.jpg');
     });
 
+    // Points every "Get Directions" link at the selected shop
+    const DIRECTIONS = {
+      morecambe: 'https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX',
+      lancaster: 'https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%2026%20New%20Street%2C%20Lancaster%2C%20LA1%201EG'
+    };
+    function updateDirections(loc) {
+      document.querySelectorAll('.js-directions').forEach(a => { a.href = DIRECTIONS[loc] || DIRECTIONS.morecambe; });
+    }
+
     // Moves the sliding thumb in the location toggle
     function updateToggle(loc) {
+      updateDirections(loc);
       const thumb = document.getElementById('loc-toggle-thumb');
       const mBtn = document.getElementById('loc-morecambe-btn');
       const lBtn = document.getElementById('loc-lancaster-btn');
