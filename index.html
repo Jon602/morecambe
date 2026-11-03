@@ -84,7 +84,7 @@
       background: #3b312a;
     }
 
-    /* ================= LANCASTER PALETTE (EXTRACTED FROM MIOGELATO LOGO) ================= */
+    /* ================= LANCASTER PALETTE (EXTRACTED FROM MIOGELATO LOGO) ================= -->
     /* Purple: #7f78b8, Coral Pink: #f49495, Dark Purple: #3d375e, Dark Purple Nav: #362e52 */
     body.theme-lancaster {
       background-color: #faf7fd;
@@ -274,8 +274,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20 sm:h-24">
         
-        <!-- LOGO -->
-        <a href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1" aria-label="miogelato home">
+        <!-- LOGO CONTAINER -->
+        <a id="brand-logo-container" href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300" aria-label="miogelato home">
           <img id="brand-logo-img" src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105" />
         </a>
 
@@ -347,7 +347,7 @@
             </h1>
 
             <p class="hero-subtitle text-base sm:text-lg text-brand-muted max-w-2xl mx-auto lg:mx-0 font-light transition-colors duration-400">
-              Hand-made beside the seaside with organic local milk, slow-churned artisan techniques, and hand-selected natural ingredients.
+              Hand-made beside the seaside with local milk, slow-churned artisan techniques, and hand-selected natural ingredients.
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
@@ -365,7 +365,7 @@
                 <div class="stat-label text-xs text-brand-muted transition-colors duration-400">Natural Ingredients</div>
               </div>
               <div>
-                <div id="stat-flavours-count" class="stat-num-2 text-2xl font-bold text-brand-orange-text transition-colors duration-400">21</div>
+                <div id="stat-flavours-count" class="stat-num-2 text-2xl font-bold text-brand-orange-text transition-colors duration-400">25</div>
                 <div id="stat-flavours-label" class="stat-label text-xs text-brand-muted transition-colors duration-400">Flavours, 4 Vegan</div>
               </div>
               <div>
@@ -555,7 +555,7 @@
                 <i class="fa-solid fa-lemon text-xl"></i>
               </div>
               <div>
-                <h4 class="font-bold text-brand-text">Real Sun-Ripened Fruit</h4>
+                <h4 class="font-bold text-brand-text">Natural Sun-Ripened Fruit</h4>
                 <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Zero artificial syrups, food dyes, or artificial preservatives.</p>
               </div>
             </div>
@@ -565,8 +565,8 @@
                 <i class="fa-solid fa-snowflake text-xl"></i>
               </div>
               <div>
-                <h4 class="font-bold text-brand-text">Fresh Batch Daily</h4>
-                <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Small batches crafted every morning with organic local dairy.</p>
+                <h4 class="font-bold text-brand-text">Batch Crafted Daily</h4>
+                <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Small batches crafted every morning with local dairy.</p>
               </div>
             </div>
           </div>
@@ -715,7 +715,7 @@
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // Location Data Configuration
+    // Location Data Configuration (including 4 unlisted guest flavours added to totals: 17 + 4 = 21 gelato base + 4 vegan = 25 total)
     const locationData = {
       morecambe: {
         gelato: [
@@ -723,7 +723,8 @@
           'Lotus Biscoff', 'Banoffee', 'Raspberry Ripple', 'Mint Chocolate Chip',
           'Salted Caramel', 'Oreo', 'Tiramisu', 'Pistachio', 'Seaside Sherbet',
           'Kinder Bueno', 'Chocolate Honeycomb', 'Cherry & Amaretti Biscuit',
-          'Fig & Mascarpone', 'White Chocolate Chip'
+          'Fig & Mascarpone', 'White Chocolate Chip',
+          'Guest Flavour 1', 'Guest Flavour 2', 'Guest Flavour 3', 'Guest Flavour 4'
         ],
         vegan: [
           'Strawberry Sorbet', 'Mixed Berry Sorbet',
@@ -736,7 +737,8 @@
           'Lotus Biscoff', 'Raspberry Ripple', 'Mint Chocolate Chip',
           'Salted Caramel', 'Oreo', 'Tiramisu', 'Pistachio',
           'Kinder Bueno', 'Chocolate Honeycomb', 'Cherry & Amaretti Biscuit',
-          'Fig & Mascarpone', 'White Chocolate Chip'
+          'Fig & Mascarpone', 'White Chocolate Chip',
+          'Guest Flavour 1', 'Guest Flavour 2', 'Guest Flavour 3', 'Guest Flavour 4'
         ],
         vegan: [
           'Vegan Oreo', 'Vegan Biscoff', 'Mixed Berry Sorbet',
@@ -798,6 +800,7 @@
       const cardMorecambe = document.getElementById('loc-card-morecambe');
       const cardLancaster = document.getElementById('loc-card-lancaster');
       const heroTubImg = document.getElementById('hero-tub-img');
+      const brandLogoContainer = document.getElementById('brand-logo-container');
       const brandLogoImg = document.getElementById('brand-logo-img');
       const footerLogoImg = document.getElementById('footer-logo-img');
 
@@ -806,8 +809,11 @@
       if (loc === 'lancaster') {
         document.body.classList.add('theme-lancaster');
 
-        // Swap hero image and top-left logo for Lancaster
+        // Swap hero image and top-left logo for Lancaster with blended background container
         if (heroTubImg) heroTubImg.src = 'Tublanc.jpg';
+        if (brandLogoContainer) {
+          brandLogoContainer.className = "flex items-center group bg-[#faf7fd] rounded-2xl px-3 py-1.5 border border-[#f49495]/30 shadow-sm transition-colors duration-300";
+        }
         if (brandLogoImg) {
           brandLogoImg.src = 'miogelatolanc.jpg';
           brandLogoImg.className = "h-8 sm:h-10 w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105";
@@ -833,11 +839,14 @@
       } else {
         document.body.classList.remove('theme-lancaster');
 
-        // Swap hero image and logos back for Morecambe
+        // Swap hero image and logos back for Morecambe with cream background container
         if (heroTubImg) heroTubImg.src = 'tub.jpg';
+        if (brandLogoContainer) {
+          brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
+        }
         if (brandLogoImg) {
           brandLogoImg.src = 'miogelato.jpg';
-          brandLogoImg.className = "h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-transform duration-300 group-hover:scale-105";
+          brandLogoImg.className = "h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105";
         }
         if (footerLogoImg) {
           footerLogoImg.src = 'miogelato.jpg';
