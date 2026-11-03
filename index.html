@@ -285,13 +285,13 @@
         </a>
 
         <!-- LOCATION TOGGLE SLIDER AT TOP -->
-        <div class="flex items-center bg-black/25 p-1 rounded-full border border-white/20 shadow-inner">
-          <span class="sr-only">Choose Location</span>
-          <button id="loc-morecambe-btn" type="button" onclick="setTheme('morecambe')" class="px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-brand-orange text-white shadow-md">
-            <i class="fa-solid fa-umbrella-beach mr-1 text-xs"></i>Morecambe
+        <div id="loc-toggle" role="group" aria-label="Choose location" class="relative grid grid-cols-2 p-0.5 rounded-full bg-black/30 border border-white/20 shadow-inner">
+          <span id="loc-toggle-thumb" aria-hidden="true" class="absolute top-0.5 bottom-0.5 left-0.5 w-[calc(50%-0.125rem)] rounded-full shadow-md transition-all duration-300 ease-out" style="background-color:#f39200"></span>
+          <button id="loc-morecambe-btn" type="button" aria-pressed="true" onclick="setTheme('morecambe')" class="relative z-10 px-3 py-1 rounded-full text-xs font-semibold text-white whitespace-nowrap transition-colors duration-300">
+            Morecambe
           </button>
-          <button id="loc-lancaster-btn" type="button" onclick="setTheme('lancaster')" class="px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-white/80 hover:text-white">
-            <i class="fa-solid fa-castle mr-1 text-xs"></i>Lancaster
+          <button id="loc-lancaster-btn" type="button" aria-pressed="false" onclick="setTheme('lancaster')" class="relative z-10 px-3 py-1 rounded-full text-xs font-semibold text-white/70 whitespace-nowrap transition-colors duration-300">
+            Lancaster
           </button>
         </div>
 
@@ -299,7 +299,6 @@
         <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
           <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu & Flavors</a>
           <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Opening Hours</a>
-          <a href="#craft" class="text-white/90 hover:text-brand-orange transition-colors">Our Craft</a>
           <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Locations</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
         </nav>
@@ -323,7 +322,6 @@
     <div id="mobile-menu" class="hidden md:hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
       <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu & Flavors</a>
       <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Opening Hours</a>
-      <a href="#craft" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Our Craft</a>
       <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Locations & Hours</a>
       <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Information</a>
     </div>
@@ -356,6 +354,9 @@
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
+              <a href="#locations" class="menu-open-badge w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-center whitespace-nowrap bg-brand-brown-light text-brand-brown hover:opacity-80 transition-all duration-400">
+                <i class="fa-regular fa-clock"></i>Open 7 Days
+              </a>
               <a href="#menu" class="btn-primary w-full sm:w-auto px-8 py-4 rounded-full text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-md hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:-translate-y-0.5">
                 Explore Flavors
               </a>
@@ -365,18 +366,18 @@
             </div>
 
             <div class="stats-border pt-8 border-t border-brand-orange/20 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center transition-colors duration-400">
-              <div>
-                <div class="stat-num-1 text-2xl font-bold text-brand-brown transition-colors duration-400">100%</div>
-                <div class="stat-label text-xs text-brand-muted transition-colors duration-400">Natural Ingredients</div>
-              </div>
-              <div>
-                <div id="stat-flavours-count" class="stat-num-2 text-2xl font-bold text-brand-orange-text transition-colors duration-400">25</div>
-                <div id="stat-flavours-label" class="stat-label text-xs text-brand-muted transition-colors duration-400">Flavours, 4 Vegan</div>
-              </div>
-              <div>
-                <div class="stat-num-3 text-2xl font-bold text-brand-brown transition-colors duration-400">Since</div>
-                <div class="stat-label text-xs text-brand-muted transition-colors duration-400">2016 in Morecambe</div>
-              </div>
+              <a href="#gelato" class="block hover:opacity-70 transition-opacity">
+                <div class="stat-num-1 text-2xl font-bold text-brand-brown transition-colors duration-400">Gelato</div>
+                <div id="stat-flavours-label" class="stat-label text-xs text-brand-muted transition-colors duration-400">25 Flavours, 4 Vegan</div>
+              </a>
+              <a href="#puddings" class="block hover:opacity-70 transition-opacity">
+                <div class="stat-num-1 text-2xl font-bold text-brand-brown transition-colors duration-400">Puddings</div>
+                <div class="stat-label text-xs text-brand-muted transition-colors duration-400">Hot puddings with a scoop of gelato</div>
+              </a>
+              <a href="#hot-drinks" class="block hover:opacity-70 transition-opacity">
+                <div class="stat-num-1 text-2xl font-bold text-brand-brown transition-colors duration-400">Drinks</div>
+                <div class="stat-label text-xs text-brand-muted transition-colors duration-400">Barista coffee, milkshakes &amp; more</div>
+              </a>
             </div>
           </div>
 
@@ -395,8 +396,7 @@
     <!-- ================= FLAVORS & MENU SHOWCASE ================= -->
     <section id="menu" class="pt-0 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10 lg:mb-14">
-        <span class="menu-open-badge inline-block px-8 py-3 rounded-full text-2xl sm:text-4xl font-serif font-semibold bg-brand-brown-light text-brand-brown transition-colors duration-400">Open 7 Days</span>
-        <h2 class="mt-8 text-3xl sm:text-4xl font-serif text-brand-text">Our Menu</h2>
+        <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Our Menu</h2>
         <p class="hero-subtitle mt-3 text-brand-muted font-light transition-colors duration-400">Handmade in Morecambe since 2016</p>
 
         <!-- Menu quick links -->
@@ -439,7 +439,7 @@
             <i class="fa-solid fa-star text-brand-orange-text mt-1 transition-colors duration-400"></i>
             <div>
               <h4 class="text-xl font-serif text-brand-text">Guest Flavours</h4>
-              <p class="hero-subtitle text-sm text-brand-muted mt-1 transition-colors duration-400">Ask in the shop &ndash; our guest flavours change regularly.</p>
+              <p class="hero-subtitle text-sm text-brand-muted mt-1 transition-colors duration-400">See in shop for our current guest flavours</p>
             </div>
           </div>
         </div>
@@ -528,36 +528,6 @@
             <li class="price-light"><span>Cartons</span><i></i><b>£1.25</b></li>
           </ul>
         </div>
-      </div>
-    </section>
-
-
-    <!-- ================= CRAFT & QUALITY SECTION ================= -->
-    <section id="craft" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-12 space-y-6 max-w-3xl mx-auto w-full">
-          <span class="stat-num-2 text-xs font-bold text-brand-orange-text uppercase tracking-widest transition-colors duration-400">Handmade • Fresh • Delicious</span>
-          <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Created in Morecambe, Since 2016</h2>
-          <p class="hero-subtitle text-brand-muted leading-relaxed transition-colors duration-400">
-            All of our award-winning gelato is made by hand in Morecambe beside the seaside. Served from our shops in Morecambe and Lancaster, including several dairy-free and vegan-suitable choices.
-          </p>
-
-          <div class="space-y-4 pt-2">
-            <div class="flex items-start space-x-4">
-              <div class="card-icon-purple p-3 rounded-2xl bg-brand-brown-light text-brand-brown transition-colors duration-400">
-                <i class="fa-solid fa-mug-hot text-xl"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-brand-text">Award-Winning Coffee</h4>
-                <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Sourced proudly from Exchange Coffee Company, Clitheroe.</p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
     </section>
 
@@ -666,7 +636,6 @@
           <ul class="space-y-2 text-xs text-gray-400">
             <li><a href="#menu" class="hover:text-brand-orange-text transition-colors">Gelato Menu</a></li>
             <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Opening Hours</a></li>
-            <li><a href="#craft" class="hover:text-brand-orange-text transition-colors">Our Craft & Coffee</a></li>
             <li><a href="#locations" class="hover:text-brand-brown transition-colors">Store Locations</a></li>
           </ul>
         </div>
@@ -700,7 +669,10 @@
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // Location Data Configuration (including 4 unlisted guest flavours added to totals: 17 + 4 = 21 gelato base + 4 vegan = 25 total)
+    // Guest flavours aren't listed individually, but are included in the flavour count shown in the stats bar
+    const GUEST_FLAVOUR_COUNT = 4;
+
+    // Location Data Configuration
     const locationData = {
       morecambe: {
         gelato: [
@@ -708,8 +680,7 @@
           'Lotus Biscoff', 'Banoffee', 'Raspberry Ripple', 'Mint Chocolate Chip',
           'Salted Caramel', 'Oreo', 'Tiramisu', 'Pistachio', 'Seaside Sherbet',
           'Kinder Bueno', 'Chocolate Honeycomb', 'Cherry & Amaretti Biscuit',
-          'Fig & Mascarpone', 'White Chocolate Chip',
-          'Guest Flavour 1', 'Guest Flavour 2', 'Guest Flavour 3', 'Guest Flavour 4'
+          'Fig & Mascarpone', 'White Chocolate Chip'
         ],
         vegan: [
           'Strawberry Sorbet', 'Mixed Berry Sorbet',
@@ -722,8 +693,7 @@
           'Lotus Biscoff', 'Raspberry Ripple', 'Mint Chocolate Chip',
           'Salted Caramel', 'Oreo', 'Tiramisu', 'Pistachio',
           'Kinder Bueno', 'Chocolate Honeycomb', 'Cherry & Amaretti Biscuit',
-          'Fig & Mascarpone', 'White Chocolate Chip',
-          'Guest Flavour 1', 'Guest Flavour 2', 'Guest Flavour 3', 'Guest Flavour 4'
+          'Fig & Mascarpone', 'White Chocolate Chip'
         ],
         vegan: [
           'Vegan Oreo', 'Vegan Biscoff', 'Mixed Berry Sorbet',
@@ -758,7 +728,6 @@
     function renderFlavours(loc) {
       const gelatoContainer = document.getElementById('gelato-flavours-list');
       const veganContainer = document.getElementById('vegan-flavours-list');
-      const statCount = document.getElementById('stat-flavours-count');
       const statLabel = document.getElementById('stat-flavours-label');
 
       const data = locationData[loc];
@@ -772,9 +741,8 @@
         veganContainer.innerHTML = data.vegan.map(f => `<div class="flavour border-green-700/15">${f}</div>`).join('');
       }
 
-      const totalCount = data.gelato.length + data.vegan.length;
-      if (statCount) statCount.innerText = totalCount;
-      if (statLabel) statLabel.innerText = `Flavours, ${data.vegan.length} Vegan`;
+      const totalCount = data.gelato.length + GUEST_FLAVOUR_COUNT + data.vegan.length;
+      if (statLabel) statLabel.innerText = `${totalCount} Flavours, ${data.vegan.length} Vegan`;
     }
 
     // Toggle Theme function between Morecambe and Lancaster
@@ -830,6 +798,20 @@
       setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.jpg' : 'tub.jpg');
     });
 
+    // Moves the sliding thumb in the location toggle
+    function updateToggle(loc) {
+      const thumb = document.getElementById('loc-toggle-thumb');
+      const mBtn = document.getElementById('loc-morecambe-btn');
+      const lBtn = document.getElementById('loc-lancaster-btn');
+      const isLanc = loc === 'lancaster';
+      if (thumb) {
+        thumb.style.transform = isLanc ? 'translateX(100%)' : 'translateX(0)';
+        thumb.style.backgroundColor = isLanc ? '#f49495' : '#f39200';
+      }
+      if (mBtn) { mBtn.classList.toggle('text-white', !isLanc); mBtn.classList.toggle('text-white/70', isLanc); mBtn.setAttribute('aria-pressed', String(!isLanc)); }
+      if (lBtn) { lBtn.classList.toggle('text-white', isLanc); lBtn.classList.toggle('text-white/70', !isLanc); lBtn.setAttribute('aria-pressed', String(isLanc)); }
+    }
+
     function setTheme(loc) {
       const morecambeBtn = document.getElementById('loc-morecambe-btn');
       const lancasterBtn = document.getElementById('loc-lancaster-btn');
@@ -860,11 +842,7 @@
           footerLogoImg.className = "h-8 sm:h-10 w-auto mix-blend-multiply transition-all duration-300";
         }
 
-        // Toggle slider styling
-        if (lancasterBtn && morecambeBtn) {
-          lancasterBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-[#f49495] text-white shadow-md";
-          morecambeBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-white/80 hover:text-white";
-        }
+        updateToggle('lancaster');
 
         if (heroLabel) heroLabel.innerText = 'Lancaster Gelateria';
 
@@ -890,11 +868,7 @@
           footerLogoImg.className = "h-14 w-auto mix-blend-multiply transition-all duration-300";
         }
 
-        // Toggle slider styling
-        if (morecambeBtn && lancasterBtn) {
-          morecambeBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-brand-orange text-white shadow-md";
-          lancasterBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-white/80 hover:text-white";
-        }
+        updateToggle('morecambe');
 
         if (heroLabel) heroLabel.innerText = 'Morecambe Gelateria';
 
