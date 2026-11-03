@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>miogelato Morecambe</title>
+  <title>miogelato - Handcrafted Artisanal Gelato</title>
   <link rel="icon" type="image/jpeg" href="tub.jpg">
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -43,11 +43,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Courier+Prime&display=swap" rel="stylesheet">
 
   <style>
+    /* Baseline standard transitions */
     body {
       font-family: 'Inter', sans-serif;
       background-color: #fdf8ee;
       color: #3b312a;
       overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     .font-brand-sub {
@@ -62,8 +64,9 @@
     }
 
     .glass-nav {
-      background: rgba(251, 243, 226, 0.92);
+      background: rgba(72, 54, 41, 0.96);
       backdrop-filter: blur(16px);
+      transition: background-color 0.4s ease, border-color 0.4s ease;
     }
 
     /* Custom scrollbar */
@@ -80,22 +83,188 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #3b312a;
     }
+
+    /* ================= LANCASTER PALETTE (EXTRACTED FROM MIOGELATO LOGO) ================= */
+    /* Purple: #7f78b8, Coral Pink: #f49495, Dark Purple: #3d375e, Dark Purple Nav: #362e52 */
+    body.theme-lancaster {
+      background-color: #faf7fd;
+      color: #2b2545;
+    }
+    body.theme-lancaster ::-webkit-scrollbar-track {
+      background: #faf7fd;
+    }
+    body.theme-lancaster ::-webkit-scrollbar-thumb {
+      background: #7f78b8;
+    }
+    body.theme-lancaster ::-webkit-scrollbar-thumb:hover {
+      background: #5e5696;
+    }
+
+    body.theme-lancaster .glass-nav {
+      background: rgba(54, 46, 82, 0.96);
+      border-color: rgba(244, 148, 149, 0.3);
+    }
+
+    /* Hero section gradient background */
+    body.theme-lancaster .hero-section {
+      background: linear-gradient(to bottom, rgba(244, 148, 149, 0.15), transparent, #faf7fd);
+    }
+    body.theme-lancaster .hero-blob-1 {
+      background-color: rgba(244, 148, 149, 0.25);
+    }
+    body.theme-lancaster .hero-blob-2 {
+      background-color: rgba(127, 120, 184, 0.25);
+    }
+    body.theme-lancaster .hero-tag {
+      background-color: #ffffff;
+      border-color: rgba(127, 120, 184, 0.3);
+    }
+    body.theme-lancaster .hero-tag-dot {
+      background-color: #f49495;
+    }
+    body.theme-lancaster .hero-tag-text {
+      color: #7f78b8;
+    }
+    body.theme-lancaster .hero-title-gradient {
+      background-image: linear-gradient(to right, #7f78b8, #e57375, #f49495);
+    }
+    body.theme-lancaster .hero-subtitle {
+      color: #5c547a;
+    }
+    body.theme-lancaster .btn-primary {
+      background-color: #f49495;
+      color: #ffffff;
+    }
+    body.theme-lancaster .btn-primary:hover {
+      background-color: #e27b7c;
+    }
+    body.theme-lancaster .btn-secondary {
+      background-color: #ffffff;
+      color: #7f78b8;
+      border-color: rgba(127, 120, 184, 0.3);
+    }
+    body.theme-lancaster .btn-secondary:hover {
+      background-color: #f3f0fa;
+    }
+
+    /* Stats border & text */
+    body.theme-lancaster .stats-border {
+      border-color: rgba(127, 120, 184, 0.2);
+    }
+    body.theme-lancaster .stat-num-1, body.theme-lancaster .stat-num-3 {
+      color: #7f78b8;
+    }
+    body.theme-lancaster .stat-num-2 {
+      color: #f49495;
+    }
+    body.theme-lancaster .stat-label {
+      color: #5c547a;
+    }
+
+    /* Menu Badges & Cards */
+    body.theme-lancaster .menu-open-badge {
+      background-color: #eef0f8;
+      color: #7f78b8;
+    }
+    body.theme-lancaster .menu-quick-link {
+      background-color: #ffffff;
+      border-color: rgba(127, 120, 184, 0.3);
+      color: #7f78b8;
+    }
+    body.theme-lancaster .menu-quick-link:hover {
+      background-color: #f0edfa;
+    }
+    body.theme-lancaster .menu-quick-link i {
+      color: #f49495;
+    }
+
+    body.theme-lancaster .card-surface {
+      background-color: #ffffff;
+      border-color: rgba(127, 120, 184, 0.2);
+    }
+    body.theme-lancaster .card-icon-pink {
+      background-color: #fdeaea;
+      color: #f49495;
+    }
+    body.theme-lancaster .card-icon-purple {
+      background-color: #f0edfa;
+      color: #7f78b8;
+    }
+    body.theme-lancaster .price-card-bg {
+      background-color: #3d375e;
+      color: #ffffff;
+    }
+
+    body.theme-lancaster .flavour-item::before {
+      background-color: #f49495;
+    }
+    body.theme-lancaster .guest-box {
+      background-color: rgba(253, 234, 234, 0.7);
+      border-color: rgba(244, 148, 149, 0.3);
+    }
+    body.theme-lancaster .guest-box i {
+      color: #f49495;
+    }
+
+    body.theme-lancaster .pudding-card {
+      background-color: #fdeaea;
+      border-color: rgba(244, 148, 149, 0.3);
+    }
+    body.theme-lancaster .pudding-card b {
+      color: #d66b6c;
+    }
+
+    body.theme-lancaster .drinks-info-box {
+      background-color: rgba(240, 237, 250, 0.7);
+      border-color: rgba(127, 120, 184, 0.3);
+    }
+    body.theme-lancaster .drinks-info-box i {
+      color: #7f78b8;
+    }
+
+    /* Locations Section */
+    body.theme-lancaster .locations-section {
+      background-color: rgba(240, 237, 250, 0.5);
+      border-color: rgba(127, 120, 184, 0.15);
+    }
   </style>
+
+  <script>document.documentElement.classList.add("js");</script>
   <style>
-    #menu-viewer.open { display: flex; }
-    #menu-viewer-img { max-width: none; width: 100vw; height: auto; }
-    @media (orientation: portrait) {
-      #menu-viewer-img { width: min(100dvh, 212vw); transform: rotate(90deg); }
+    /* Collapsible menu cards (mobile only) */
+    .collapse-body { display: contents; }
+    .collapse-chevron { display: none; }
+    @media (max-width: 767px) {
+      .js [data-collapsible] .collapse-head { position: relative; cursor: pointer; padding-right: 3rem; -webkit-tap-highlight-color: transparent; }
+      .js [data-collapsible] .collapse-head:focus-visible { outline: 2px solid #f39200; outline-offset: 4px; border-radius: 1rem; }
+      body.theme-lancaster .js [data-collapsible] .collapse-head:focus-visible { outline-color: #f49495; }
+      .js [data-collapsible] .collapse-body { display: none; }
+      .js [data-collapsible].open .collapse-body { display: block; }
+      .js [data-collapsible]:not(.open) .collapse-head { margin-bottom: 0; }
+      .js [data-collapsible] .collapse-chevron { display: flex; position: absolute; right: 0; top: .5rem; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(243,146,0,.15); color: #b35f00; transition: transform .25s ease; }
+      body.theme-lancaster .js [data-collapsible] .collapse-chevron { background: rgba(244,148,149,.2); color: #f49495; }
+      .js [data-collapsible].open .collapse-chevron { transform: rotate(180deg); }
+      .js [data-collapsible].price-card .collapse-chevron { background: rgba(255,255,255,.12); color: #f39200; }
+      body.theme-lancaster .js [data-collapsible].price-card .collapse-chevron { color: #f49495; }
     }
-    @media (orientation: landscape) {
-      #menu-viewer-img { width: auto; max-width: 100vw; max-height: 100dvh; }
-    }
-    /* Desktop: fit-to-screen, click again to zoom to full size and scroll */
-    @media (min-width: 768px) {
-      #menu-viewer { overflow: auto !important; }
-      #menu-viewer-img { margin: auto; width: 100vw; max-width: 100vw; max-height: none; cursor: zoom-in; transform: none; }
-      #menu-viewer-img.zoomed { width: 2000px; max-width: none; cursor: zoom-out; }
-    }
+    /* Menu styling */
+    .flavour { padding: .6rem 0; border-bottom: 1px dashed rgba(87,74,61,.18); font-size: 1rem; transition: border-color 0.4s ease; }
+    body.theme-lancaster .flavour { border-bottom-color: rgba(127,120,184,.2); }
+    .flavour::before { content: ''; display: inline-block; width: .45rem; height: .45rem; border-radius: 9999px; background: #f39200; margin-right: .75rem; vertical-align: middle; transition: background-color 0.4s ease; }
+    .price-dark, .price-light { display: flex; align-items: baseline; gap: .5rem; }
+    .price-dark { font-size: 1.05rem; }
+    .price-light { padding: .55rem 0; border-bottom: 1px solid rgba(87,74,61,.08); transition: border-color 0.4s ease; }
+    body.theme-lancaster .price-light { border-bottom-color: rgba(127,120,184,.1); }
+    .price-light:last-child { border-bottom: 0; }
+    .price-dark i, .price-light i { flex: 1; border-bottom: 2px dotted currentColor; opacity: .25; transform: translateY(-.25rem); min-width: 1rem; }
+    .price-dark b { color: #f39200; font-weight: 600; transition: color 0.4s ease; }
+    body.theme-lancaster .price-dark b { color: #f49495; }
+    .price-light b { color: #b35f00; font-weight: 600; transition: color 0.4s ease; }
+    body.theme-lancaster .price-light b { color: #7f78b8; }
+    .price-light small { display: block; font-size: .75rem; color: #7a6c5d; font-style: italic; margin-top: .1rem; transition: color 0.4s ease; }
+    body.theme-lancaster .price-light small { color: #5c547a; }
+    .pudding { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: 1rem 1.1rem; border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); transition: all 0.4s ease; }
+    .pudding b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
   </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
@@ -106,25 +275,38 @@
       <div class="flex items-center justify-between h-20 sm:h-24">
         
         <!-- LOGO -->
-        <a href="#" class="flex items-center group" aria-label="miogelato home">
-          <img src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-transform duration-300 group-hover:scale-105" />
+        <a href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1" aria-label="miogelato home">
+          <img id="brand-logo-img" src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105" />
         </a>
 
+        <!-- LOCATION TOGGLE SLIDER AT TOP -->
+        <div class="flex items-center bg-black/25 p-1 rounded-full border border-white/20 shadow-inner">
+          <span class="sr-only">Choose Location</span>
+          <button id="loc-morecambe-btn" type="button" onclick="setTheme('morecambe')" class="px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-brand-orange text-white shadow-md">
+            <i class="fa-solid fa-umbrella-beach mr-1 text-xs"></i>Morecambe
+          </button>
+          <button id="loc-lancaster-btn" type="button" onclick="setTheme('lancaster')" class="px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-white/80 hover:text-white">
+            <i class="fa-solid fa-castle mr-1 text-xs"></i>Lancaster
+          </button>
+        </div>
+
         <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-          <a href="#menu" class="text-brand-text hover:text-brand-orange-text transition-colors">Menu & Flavors</a>
-          <a href="#craft" class="text-brand-text hover:text-brand-brown transition-colors">Our Craft</a>
-          <a href="#locations" class="text-brand-text hover:text-brand-orange-text transition-colors">Locations</a>
+        <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
+          <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu & Flavors</a>
+          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Opening Hours</a>
+          <a href="#craft" class="text-white/90 hover:text-brand-orange transition-colors">Our Craft</a>
+          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Locations</a>
+          <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
         </nav>
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="#locations" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+          <a href="#locations" class="btn-primary hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
             Visit Us
           </a>
 
           <!-- Mobile menu toggle button -->
-          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-brand-text hover:bg-brand-brown-light focus:outline-none">
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none">
             <i class="fa-solid fa-bars text-xl"></i>
           </button>
         </div>
@@ -133,67 +315,71 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-orange/10 bg-brand-cream/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
-      <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-brand-text hover:bg-brand-orange-light hover:text-brand-orange-text">Menu & Flavors</a>
-      <a href="#craft" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-brand-text hover:bg-brand-orange-light hover:text-brand-orange-text">Our Craft</a>
-      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-brand-text hover:bg-brand-brown-light hover:text-brand-brown">Locations & Hours</a>
+    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+      <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu & Flavors</a>
+      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Opening Hours</a>
+      <a href="#craft" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Our Craft</a>
+      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Locations & Hours</a>
+      <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Information</a>
     </div>
   </header>
 
   <main class="pt-24 sm:pt-28">
 
     <!-- ================= HERO SECTION ================= -->
-    <section class="relative overflow-hidden py-12 lg:py-20 bg-gradient-to-b from-brand-brown-light/40 via-transparent to-brand-bg">
-      <div class="absolute top-10 left-10 w-72 h-72 bg-brand-orange/15 rounded-full filter blur-3xl -z-10 pointer-events-none"></div>
-      <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-brown/15 rounded-full filter blur-3xl -z-10 pointer-events-none"></div>
+    <section class="hero-section relative overflow-hidden py-12 lg:py-20 bg-gradient-to-b from-brand-brown-light/40 via-transparent to-brand-bg transition-colors duration-400">
+      <div class="hero-blob-1 absolute top-10 left-10 w-72 h-72 bg-brand-orange/15 rounded-full filter blur-3xl -z-10 pointer-events-none transition-colors duration-400"></div>
+      <div class="hero-blob-2 absolute bottom-10 right-10 w-96 h-96 bg-brand-brown/15 rounded-full filter blur-3xl -z-10 pointer-events-none transition-colors duration-400"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div class="lg:col-span-7 text-center lg:text-left space-y-6">
-            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white border border-brand-orange/30 shadow-sm">
-              <span class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse"></span>
-              <span class="text-xs font-semibold text-brand-brown uppercase tracking-wider">Handcrafted Artisanal Gelato</span>
+            <div class="hero-tag inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white border border-brand-orange/30 shadow-sm transition-colors duration-400">
+              <span class="hero-tag-dot w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse transition-colors duration-400"></span>
+              <span class="hero-tag-text text-xs font-semibold text-brand-brown uppercase tracking-wider transition-colors duration-400">
+                <span id="location-hero-label">Morecambe Gelateria</span> • Handcrafted Artisanal Gelato
+              </span>
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-brand-text leading-tight">
-              Award-winning gelato, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-brown via-brand-orange-text to-brand-orange-dark italic">Handmade, since 2016</span>.
+              Award-winning gelato, <span class="hero-title-gradient text-transparent bg-clip-text bg-gradient-to-r from-brand-brown via-brand-orange-text to-brand-orange-dark italic">Handmade, since 2016</span>.
             </h1>
 
-            <p class="text-base sm:text-lg text-brand-muted max-w-2xl mx-auto lg:mx-0 font-light">
+            <p class="hero-subtitle text-base sm:text-lg text-brand-muted max-w-2xl mx-auto lg:mx-0 font-light transition-colors duration-400">
               Hand-made beside the seaside with organic local milk, slow-churned artisan techniques, and hand-selected natural ingredients.
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
-              <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-full text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-md hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:-translate-y-0.5">
+              <a href="#menu" class="btn-primary w-full sm:w-auto px-8 py-4 rounded-full text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-md hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:-translate-y-0.5">
                 Explore Flavors
               </a>
-              <a href="#locations" class="w-full sm:w-auto px-8 py-4 rounded-full text-brand-brown bg-white hover:bg-brand-brown-light border border-brand-brown/20 transition-all duration-300 font-medium text-center">
+              <a href="#locations" class="btn-secondary w-full sm:w-auto px-8 py-4 rounded-full text-brand-brown bg-white hover:bg-brand-brown-light border border-brand-brown/20 transition-all duration-300 font-medium text-center">
                 Visit Our Shops
               </a>
             </div>
 
-            <div class="pt-8 border-t border-brand-orange/20 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center">
+            <div class="stats-border pt-8 border-t border-brand-orange/20 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center transition-colors duration-400">
               <div>
-                <div class="text-2xl font-bold text-brand-brown">100%</div>
-                <div class="text-xs text-brand-muted">Natural Ingredients</div>
+                <div class="stat-num-1 text-2xl font-bold text-brand-brown transition-colors duration-400">100%</div>
+                <div class="stat-label text-xs text-brand-muted transition-colors duration-400">Natural Ingredients</div>
               </div>
               <div>
-                <div class="text-2xl font-bold text-brand-orange-text">25</div>
-                <div class="text-xs text-brand-muted">Flavours, 5 Vegan</div>
+                <div id="stat-flavours-count" class="stat-num-2 text-2xl font-bold text-brand-orange-text transition-colors duration-400">21</div>
+                <div id="stat-flavours-label" class="stat-label text-xs text-brand-muted transition-colors duration-400">Flavours, 4 Vegan</div>
               </div>
               <div>
-                <div class="text-2xl font-bold text-brand-brown">Since</div>
-                <div class="text-xs text-brand-muted">2016 in Morecambe</div>
+                <div class="stat-num-3 text-2xl font-bold text-brand-brown transition-colors duration-400">Since</div>
+                <div class="stat-label text-xs text-brand-muted transition-colors duration-400">2016 in Morecambe</div>
               </div>
             </div>
           </div>
 
-          <!-- Hero Graphic replaced with tub.jpg -->
+          <!-- Hero Graphic swapped dynamically via Tublanc.jpg / tub.jpg -->
           <div class="lg:col-span-5 flex justify-center items-center">
             <div class="relative w-full max-w-md aspect-square flex items-center justify-center p-6">
-              <div class="absolute inset-4 rounded-full bg-gradient-to-tr from-brand-orange/20 to-brand-brown/20 animate-pulse"></div>
-              <img src="tub.jpg" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs mix-blend-multiply" />
+              <div class="hero-blob-1 absolute inset-4 rounded-full bg-gradient-to-tr from-brand-orange/20 to-brand-brown/20 animate-pulse transition-colors duration-400"></div>
+              <img id="hero-tub-img" src="tub.jpg" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs mix-blend-multiply transition-all duration-300" />
             </div>
           </div>
 
@@ -204,12 +390,141 @@
 
     <!-- ================= FLAVORS & MENU SHOWCASE ================= -->
     <section id="menu" class="pt-0 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 lg:mb-20">
-        <span class="inline-block px-8 py-3 rounded-full text-2xl sm:text-4xl font-serif font-semibold bg-brand-brown-light text-brand-brown">Open 7 Days</span>
+      <div class="text-center mb-10 lg:mb-14">
+        <span class="menu-open-badge inline-block px-8 py-3 rounded-full text-2xl sm:text-4xl font-serif font-semibold bg-brand-brown-light text-brand-brown transition-colors duration-400">Open 7 Days</span>
+        <h2 class="mt-8 text-3xl sm:text-4xl font-serif text-brand-text">Our Menu</h2>
+        <p class="hero-subtitle mt-3 text-brand-muted font-light transition-colors duration-400">Handmade in Morecambe since 2016</p>
+
+        <!-- Menu quick links -->
+        <div class="mt-6 flex flex-wrap justify-center gap-2 text-sm font-medium">
+          <a href="#gelato" class="menu-quick-link px-4 py-2 rounded-full bg-white border border-brand-orange/30 text-brand-brown hover:bg-brand-orange-light transition-colors"><i class="fa-solid fa-ice-cream mr-1.5 text-brand-orange-text"></i>Gelato</a>
+          <a href="#puddings" class="menu-quick-link px-4 py-2 rounded-full bg-white border border-brand-orange/30 text-brand-brown hover:bg-brand-orange-light transition-colors"><i class="fa-solid fa-cookie-bite mr-1.5 text-brand-orange-text"></i>Hot Puddings</a>
+          <a href="#hot-drinks" class="menu-quick-link px-4 py-2 rounded-full bg-white border border-brand-orange/30 text-brand-brown hover:bg-brand-orange-light transition-colors"><i class="fa-solid fa-mug-hot mr-1.5 text-brand-orange-text"></i>Hot Drinks</a>
+          <a href="#cold-drinks" class="menu-quick-link px-4 py-2 rounded-full bg-white border border-brand-orange/30 text-brand-brown hover:bg-brand-orange-light transition-colors"><i class="fa-solid fa-glass-water mr-1.5 text-brand-orange-text"></i>Cold Drinks</a>
+          <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="menu-quick-link px-4 py-2 rounded-full bg-white border border-brand-orange/30 text-brand-brown hover:bg-brand-orange-light transition-colors"><i class="fa-solid fa-triangle-exclamation mr-1.5 text-brand-orange-text"></i>Allergy Information</a>
+        </div>
       </div>
 
-      <img id="menu-img" src="menu.jpg" alt="Mio Gelato menu: handmade gelato, hot drinks, cold drinks, hot puddings and sharing boards" class="w-full h-auto rounded-3xl shadow-sm border border-brand-brown/10 cursor-zoom-in" />
-      <p class="text-center text-xs text-brand-muted mt-3"><i class="fa-solid fa-expand mr-1"></i> <span class="md:hidden">Tap</span><span class="hidden md:inline">Click</span> the menu to enlarge</p>
+      <!-- ===== GELATO ===== -->
+      <div id="gelato" class="scroll-mt-32 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+
+        <!-- Flavours -->
+        <div data-collapsible class="card-surface lg:col-span-8 lg:order-2 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-ice-cream text-xl"></i></div>
+            <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Handmade Gelato</h3>
+          </div>
+
+          <ul id="gelato-flavours-list" class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 text-brand-text">
+            <!-- Dynamic Gelato Flavours loaded here via JavaScript -->
+          </ul>
+
+          <!-- Vegan -->
+          <div class="mt-8 rounded-2xl bg-green-50 border border-green-700/15 p-5 sm:p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <i class="fa-solid fa-leaf text-green-700"></i>
+              <h4 class="text-xl font-serif text-green-900">Vegan Gelato</h4>
+            </div>
+            <div id="vegan-flavours-list" class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 text-brand-text">
+              <!-- Dynamic Vegan Flavours loaded here via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Guest -->
+          <div class="guest-box mt-6 rounded-2xl bg-brand-orange-light/70 border border-brand-orange/25 p-5 sm:p-6 flex items-start gap-4 transition-colors duration-400">
+            <i class="fa-solid fa-star text-brand-orange-text mt-1 transition-colors duration-400"></i>
+            <div>
+              <h4 class="text-xl font-serif text-brand-text">Guest Flavours</h4>
+              <p class="hero-subtitle text-sm text-brand-muted mt-1 transition-colors duration-400">Ask in the shop &ndash; our guest flavours change regularly.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prices -->
+        <div data-collapsible class="price-card price-card-bg order-first lg:col-span-4 lg:order-1 bg-[#483629] text-white rounded-3xl shadow-sm p-6 sm:p-8 flex flex-col transition-colors duration-400">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-3 rounded-2xl bg-white/10 text-brand-orange"><i class="fa-solid fa-bowl-food text-xl"></i></div>
+            <h3 class="text-2xl font-serif">Scoops &amp; Prices</h3>
+          </div>
+
+          <p class="-mt-2 mb-5 inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90"><i class="fa-solid fa-ice-cream text-brand-orange"></i>Same price in a cone or a tub</p>
+          <ul class="space-y-3">
+            <li class="price-dark"><span>Single</span><i></i><b>£3.75</b></li>
+            <li class="price-dark"><span>Double</span><i></i><b>£5.75</b></li>
+            <li class="price-dark"><span>Triple</span><i></i><b>£7.00</b></li>
+          </ul>
+          <div class="my-6 border-t border-white/15"></div>
+          <ul class="space-y-3">
+            <li class="price-dark"><span>Soft Serve</span><i></i><b>£3.25</b></li>
+            <li class="price-dark"><span>Large Soft Serve</span><i></i><b>£5.75</b></li>
+            <li class="price-dark"><span>Flake</span><i></i><b>£0.50</b></li>
+          </ul>
+
+          <p class="mt-auto pt-8 text-xs text-white/80 font-brand-sub">hand made . fresh . delicious</p>
+        </div>
+      </div>
+
+      <!-- ===== PUDDINGS ===== -->
+      <div data-collapsible id="puddings" class="card-surface scroll-mt-32 mt-6 lg:mt-8 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-1 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-cookie-bite text-xl"></i></div>
+            <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Puddings</h3>
+          </div>
+          <p class="hero-subtitle text-sm text-brand-muted italic transition-colors duration-400">with a scoop of your favourite gelato</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="pudding pudding-card"><span>Apple Crumble</span><b>£7.00</b></div>
+          <div class="pudding pudding-card"><span>Vegan Apple Crumble <i class="fa-solid fa-leaf text-green-700 text-xs ml-1" title="Vegan"></i></span><b>£7.00</b></div>
+          <div class="pudding pudding-card"><span>Gluten Free Sticky Toffee Pudding</span><b>£7.00</b></div>
+          <div class="pudding pudding-card"><span>Cherry Bakewell</span><b>£7.00</b></div>
+        </div>
+      </div>
+
+      <!-- ===== DRINKS ===== -->
+      <div class="mt-6 lg:mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+        <div data-collapsible id="hot-drinks" class="card-surface scroll-mt-32 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="card-icon-purple p-3 rounded-2xl bg-brand-brown-light text-brand-brown transition-colors duration-400"><i class="fa-solid fa-mug-hot text-xl"></i></div>
+            <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Drinks</h3>
+          </div>
+          <ul class="text-brand-text">
+            <li class="price-light"><span>Americano</span><i></i><b>£3.30</b></li>
+            <li class="price-light"><span>Latte</span><i></i><b>£3.75</b></li>
+            <li class="price-light"><span>Cappuccino</span><i></i><b>£3.75</b></li>
+            <li class="price-light"><span>Flat White</span><i></i><b>£3.50</b></li>
+            <li class="price-light"><span>Espresso</span><i></i><b>£2.70</b></li>
+            <li class="price-light"><span>Macchiato</span><i></i><b>£2.90</b></li>
+            <li class="price-light"><span>Mocha</span><i></i><b>£4.50</b></li>
+            <li class="price-light"><span>Hot Chocolate</span><i></i><b>£4.00</b></li>
+            <li class="price-light"><span>White Chocolate</span><i></i><b>£4.30</b></li>
+            <li class="price-light"><span>Matcha Latte</span><i></i><b>£3.80</b></li>
+            <li class="price-light"><span>Chai Latte</span><i></i><b>£3.80</b></li>
+            <li class="price-light"><span>Breakfast Tea</span><i></i><b>£2.70</b></li>
+          </ul>
+          <div class="drinks-info-box mt-6 rounded-2xl bg-brand-orange-light/70 border border-brand-orange/25 px-5 py-4 text-sm text-brand-text space-y-1 transition-colors duration-400">
+            <p><i class="fa-solid fa-plus text-brand-orange-text w-5 transition-colors duration-400"></i>Decaf, syrup, go large <b>50p</b></p>
+            <p><i class="fa-solid fa-recycle text-brand-orange-text w-5 transition-colors duration-400"></i>Bring your own cup <b>20p off</b></p>
+          </div>
+        </div>
+
+        <div data-collapsible id="cold-drinks" class="card-surface scroll-mt-32 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="card-icon-purple p-3 rounded-2xl bg-brand-brown-light text-brand-brown transition-colors duration-400"><i class="fa-solid fa-glass-water text-xl"></i></div>
+            <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Cold Drinks</h3>
+          </div>
+          <ul class="text-brand-text">
+            <li class="price-light"><span>Frappe<small>coffee, vanilla, chocolate</small></span><i></i><b>£5.50</b></li>
+            <li class="price-light"><span>Milkshake<small>choose two scoops of gelato</small></span><i></i><b>£6.50</b></li>
+            <li class="price-light"><span>Affogato<small>gelato, with espresso poured over</small></span><i></i><b>£6.00</b></li>
+            <li class="price-light"><span>Mineral Water</span><i></i><b>£1.75</b></li>
+            <li class="price-light"><span>Cans</span><i></i><b>£2.25</b></li>
+            <li class="price-light"><span>Glass Bottles</span><i></i><b>£2.75</b></li>
+            <li class="price-light"><span>Cartons</span><i></i><b>£1.25</b></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
 
@@ -218,40 +533,40 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-12 space-y-6 max-w-3xl mx-auto w-full">
-          <span class="text-xs font-bold text-brand-orange-text uppercase tracking-widest">Handmade • Fresh • Delicious</span>
+          <span class="stat-num-2 text-xs font-bold text-brand-orange-text uppercase tracking-widest transition-colors duration-400">Handmade • Fresh • Delicious</span>
           <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Created in Morecambe, Since 2016</h2>
-          <p class="text-brand-muted leading-relaxed">
+          <p class="hero-subtitle text-brand-muted leading-relaxed transition-colors duration-400">
             All of our award-winning gelato is made by hand in Morecambe beside the seaside. Served from our shops in Morecambe and Lancaster, including several dairy-free and vegan-suitable choices.
           </p>
 
           <div class="space-y-4 pt-2">
             <div class="flex items-start space-x-4">
-              <div class="p-3 rounded-2xl bg-brand-brown-light text-brand-brown">
+              <div class="card-icon-purple p-3 rounded-2xl bg-brand-brown-light text-brand-brown transition-colors duration-400">
                 <i class="fa-solid fa-mug-hot text-xl"></i>
               </div>
               <div>
                 <h4 class="font-bold text-brand-text">Award-Winning Coffee</h4>
-                <p class="text-xs sm:text-sm text-brand-muted">Sourced proudly from Exchange Coffee Company, Clitheroe.</p>
+                <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Sourced proudly from Exchange Coffee Company, Clitheroe.</p>
               </div>
             </div>
 
             <div class="flex items-start space-x-4">
-              <div class="p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text">
+              <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400">
                 <i class="fa-solid fa-lemon text-xl"></i>
               </div>
               <div>
                 <h4 class="font-bold text-brand-text">Real Sun-Ripened Fruit</h4>
-                <p class="text-xs sm:text-sm text-brand-muted">Zero artificial syrups, food dyes, or artificial preservatives.</p>
+                <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Zero artificial syrups, food dyes, or artificial preservatives.</p>
               </div>
             </div>
 
             <div class="flex items-start space-x-4">
-              <div class="p-3 rounded-2xl bg-brand-brown-light text-brand-brown">
+              <div class="card-icon-purple p-3 rounded-2xl bg-brand-brown-light text-brand-brown transition-colors duration-400">
                 <i class="fa-solid fa-snowflake text-xl"></i>
               </div>
               <div>
                 <h4 class="font-bold text-brand-text">Fresh Batch Daily</h4>
-                <p class="text-xs sm:text-sm text-brand-muted">Small batches crafted every morning with organic local dairy.</p>
+                <p class="hero-subtitle text-xs sm:text-sm text-brand-muted transition-colors duration-400">Small batches crafted every morning with organic local dairy.</p>
               </div>
             </div>
           </div>
@@ -263,75 +578,79 @@
 
 
     <!-- ================= LOCATIONS & HOURS ================= -->
-    <section id="locations" class="py-16 sm:py-24 bg-brand-brown-light/30 border-t border-brand-brown/10">
+    <section id="locations" class="locations-section py-16 sm:py-24 bg-brand-brown-light/30 border-t border-brand-brown/10 transition-colors duration-400">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-bold text-brand-brown uppercase tracking-widest block mb-2">Visit Our Gelaterias</span>
+          <span class="stat-num-1 text-xs font-bold text-brand-brown uppercase tracking-widest block mb-2 transition-colors duration-400">Visit Our Gelaterias</span>
           <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Locations & Opening Hours</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           <!-- Morecambe Shop -->
-          <div class="bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col justify-between">
+          <div id="loc-card-morecambe" class="card-surface bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col justify-between transition-all duration-400">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
-                  <span class="text-xs font-semibold text-brand-orange-text uppercase tracking-wider">Morecambe Shop</span>
+                  <span class="stat-num-2 text-xs font-semibold text-brand-orange-text uppercase tracking-wider transition-colors duration-400">Morecambe Shop</span>
                   <h3 class="text-2xl font-serif text-brand-text">Marine Road Central</h3>
                 </div>
-                <span class="px-3 py-1 rounded-full text-xs font-medium bg-brand-brown-light text-brand-brown">Open 7 Days</span>
+                <span class="menu-open-badge px-3 py-1 rounded-full text-xs font-medium bg-brand-brown-light text-brand-brown transition-colors duration-400">Open 7 Days</span>
               </div>
               
-              <p class="text-sm text-brand-muted mb-4"><a href="https://www.google.com/maps/search/?api=1&query=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="hover:text-brand-brown hover:underline transition-colors"><i class="fa-solid fa-location-dot text-brand-brown mr-2"></i>272 Marine Road Central, Morecambe, LA4 5BX</a></p>
+              <p class="hero-subtitle text-sm text-brand-muted mb-4 transition-colors duration-400"><a href="https://www.google.com/maps/search/?api=1&query=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="hover:text-brand-brown hover:underline transition-colors"><i class="fa-solid fa-location-dot text-brand-brown mr-2 stat-num-1"></i>272 Marine Road Central, Morecambe, LA4 5BX</a></p>
 
-              <div class="space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4">
+              <div class="stats-border space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4 transition-colors duration-400">
                 <div class="flex justify-between">
-                  <span class="text-brand-muted">Monday - Friday:</span>
-                  <span class="font-medium">12:00 PM – 5:00 PM</span>
+                  <span class="hero-subtitle text-brand-muted transition-colors duration-400">Monday - Friday:</span>
+                  <span class="font-medium">12:00 PM – 4:30 PM</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-brand-muted">Saturday - Sunday:</span>
+                  <span class="hero-subtitle text-brand-muted transition-colors duration-400">Saturday - Sunday:</span>
                   <span class="font-medium">11:00 AM – 5:00 PM</span>
                 </div>
               </div>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-brand-brown/10 flex items-center justify-between">
-              <span class="text-xs text-brand-muted"><i class="fa-solid fa-phone text-brand-orange-text mr-1"></i> 01524 419606</span>
-              <a href="https://morecambe.miogelato.co.uk" target="_blank" rel="noopener" class="text-xs font-bold text-brand-brown hover:underline">morecambe.miogelato.co.uk →</a>
+            <div class="stats-border mt-6 pt-4 border-t border-brand-brown/10 flex items-center justify-between transition-colors duration-400">
+              <span class="hero-subtitle text-xs text-brand-muted transition-colors duration-400"><i class="fa-solid fa-phone text-brand-orange-text mr-1 stat-num-2 transition-colors duration-400"></i> 01524 419606</span>
+              <a href="https://morecambe.miogelato.co.uk" target="_blank" rel="noopener" class="stat-num-1 text-xs font-bold text-brand-brown hover:underline transition-colors duration-400">morecambe.miogelato.co.uk →</a>
             </div>
           </div>
 
           <!-- Lancaster Shop -->
-          <div class="bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col justify-between">
+          <div id="loc-card-lancaster" class="card-surface bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col justify-between transition-all duration-400">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
-                  <span class="text-xs font-semibold text-brand-brown uppercase tracking-wider">Lancaster Shop</span>
+                  <span class="stat-num-1 text-xs font-semibold text-brand-brown uppercase tracking-wider transition-colors duration-400">Lancaster Shop</span>
                   <h3 class="text-2xl font-serif text-brand-text">New Street</h3>
                 </div>
-                <span class="px-3 py-1 rounded-full text-xs font-medium bg-brand-brown-light text-brand-brown">Open 7 Days</span>
+                <span class="menu-open-badge px-3 py-1 rounded-full text-xs font-medium bg-brand-brown-light text-brand-brown transition-colors duration-400">Open 7 Days</span>
               </div>
               
-              <p class="text-sm text-brand-muted mb-4"><a href="https://www.google.com/maps/search/?api=1&query=Mio%20Gelato%2C%2026%20New%20Street%2C%20Lancaster%2C%20LA1%201EG" target="_blank" rel="noopener" class="hover:text-brand-brown hover:underline transition-colors"><i class="fa-solid fa-location-dot text-brand-brown mr-2"></i>26 New Street, Lancaster, LA1 1EG</a></p>
+              <p class="hero-subtitle text-sm text-brand-muted mb-4 transition-colors duration-400"><a href="https://www.google.com/maps/search/?api=1&query=Mio%20Gelato%2C%2026%20New%20Street%2C%20Lancaster%2C%20LA1%201EG" target="_blank" rel="noopener" class="hover:text-brand-brown hover:underline transition-colors"><i class="fa-solid fa-location-dot text-brand-brown mr-2 stat-num-1"></i>26 New Street, Lancaster, LA1 1EG</a></p>
 
-              <div class="space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4">
+              <div class="stats-border space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4 transition-colors duration-400">
                 <div class="flex justify-between">
-                  <span class="text-brand-muted">Monday - Saturday:</span>
+                  <span class="hero-subtitle text-brand-muted transition-colors duration-400">Monday - Friday:</span>
+                  <span class="font-medium">11:30 AM – 4:30 PM</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="hero-subtitle text-brand-muted transition-colors duration-400">Saturday:</span>
                   <span class="font-medium">11:30 AM – 5:00 PM</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-brand-muted">Sunday:</span>
+                  <span class="hero-subtitle text-brand-muted transition-colors duration-400">Sunday:</span>
                   <span class="font-medium">11:00 AM – 4:30 PM</span>
                 </div>
               </div>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-brand-brown/10 flex items-center justify-between">
-              <span class="text-xs text-brand-muted"><i class="fa-solid fa-phone text-brand-orange-text mr-1"></i> 01524 956682</span>
-              <a href="https://lancaster.miogelato.co.uk" target="_blank" rel="noopener" class="text-xs font-bold text-brand-brown hover:underline">lancaster.miogelato.co.uk →</a>
+            <div class="stats-border mt-6 pt-4 border-t border-brand-brown/10 flex items-center justify-between transition-colors duration-400">
+              <span class="hero-subtitle text-xs text-brand-muted transition-colors duration-400"><i class="fa-solid fa-phone text-brand-orange-text mr-1 stat-num-2 transition-colors duration-400"></i> 01524 956682</span>
+              <a href="https://lancaster.miogelato.co.uk" target="_blank" rel="noopener" class="stat-num-1 text-xs font-bold text-brand-brown hover:underline transition-colors duration-400">lancaster.miogelato.co.uk →</a>
             </div>
           </div>
 
@@ -350,7 +669,7 @@
         
         <div class="md:col-span-2 space-y-4">
           <a href="#" class="inline-block bg-brand-cream rounded-2xl px-4 py-2">
-            <img src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 w-auto mix-blend-multiply" />
+            <img id="footer-logo-img" src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 w-auto mix-blend-multiply transition-all duration-300" />
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
@@ -361,6 +680,7 @@
           <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Navigation</h4>
           <ul class="space-y-2 text-xs text-gray-400">
             <li><a href="#menu" class="hover:text-brand-orange-text transition-colors">Gelato Menu</a></li>
+            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Opening Hours</a></li>
             <li><a href="#craft" class="hover:text-brand-orange-text transition-colors">Our Craft & Coffee</a></li>
             <li><a href="#locations" class="hover:text-brand-brown transition-colors">Store Locations</a></li>
           </ul>
@@ -394,77 +714,40 @@
 
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
-  <!-- Fullscreen menu viewer (mobile) -->
-  <div id="menu-viewer" class="hidden fixed inset-0 z-[100] bg-black items-center justify-center overflow-hidden" role="dialog" aria-modal="true" aria-label="Menu full screen">
-    <button id="menu-viewer-close" type="button" aria-label="Close menu" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/90 text-brand-text text-xl flex items-center justify-center shadow-lg">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <img id="menu-viewer-img" src="menu.jpg" alt="Mio Gelato menu" />
-  </div>
-
   <script>
-    const GELATO_FLAVORS = [
-      { id: 'crema', name: 'Crema (Vanilla)', type: 'regular', color: '#fef3c7' },
-      { id: 'belgian-chocolate', name: 'Belgian Milk Chocolate', type: 'regular', color: '#5d4037' },
-      { id: 'raspberry-ripple', name: 'Raspberry Ripple', type: 'regular', color: '#f39200' },
-      { id: 'mint-chip', name: 'Mint Chocolate Chip', type: 'regular', color: '#a7f3d0' },
-      { id: 'cherry-amaretti', name: 'Cherry & Amaretti Biscuit', type: 'regular', color: '#f472b6' },
-      { id: 'pistachio', name: 'Pistachio', type: 'premium', tag: '£1 extra', color: '#a3be8c' },
-      { id: 'kinder-bueno', name: 'Kinder Bueno', type: 'regular', color: '#fde68a' },
-      { id: 'chocolate-honeycomb', name: 'Chocolate Honeycomb', type: 'regular', color: '#d97706' },
-      { id: 'fig-mascarpone', name: 'Fig & Mascarpone', type: 'regular', color: '#cbd5e1' },
-      { id: 'oreo', name: 'Oreo', type: 'regular', color: '#475569' },
-      { id: 'lemon-ginger', name: 'Lemon & Ginger Biscuit', type: 'regular', color: '#fef08a' },
-      { id: 'lotus-biscoff', name: 'Lotus Biscoff', type: 'regular', color: '#b45309' },
-      { id: 'salted-caramel', name: 'Salted Caramel', type: 'regular', color: '#f59e0b' },
-      { id: 'tiramisu', name: 'Tiramisu', type: 'regular', color: '#78350f' },
-      { id: 'white-choc-chip', name: 'White Chocolate Chip', type: 'regular', color: '#fef3c7' },
-      { id: 'vegan-oreo', name: 'Vegan Oreo', type: 'vegan', isVegan: true, color: '#334155' },
-      { id: 'vegan-biscoff', name: 'Vegan Biscoff', type: 'vegan', isVegan: true, color: '#92400e' },
-      { id: 'berry-sorbet', name: 'Mixed Berry Sorbet', type: 'vegan', isVegan: true, color: '#e11d48' },
-      { id: 'dark-choc-sorbet', name: 'Dark Chocolate Sorbet', type: 'vegan', isVegan: true, color: '#3f2e27' },
-      { id: 'mango-sorbet', name: 'Mango Sorbet', type: 'vegan', isVegan: true, color: '#fbbf24' },
-      { id: 'guest-flavours', name: 'Guest Flavours', type: 'special', tag: 'Rotated Weekly', color: '#574a3d' }
-    ];
-
-    const HOT_DRINKS = [
-      { name: 'Americano', price: '£3.30' },
-      { name: 'Latte', price: '£3.75' },
-      { name: 'Cappuccino', price: '£3.75' },
-      { name: 'Flat White', price: '£3.50' },
-      { name: 'Espresso', price: '£2.70' },
-      { name: 'Macchiato', price: '£2.90' },
-      { name: 'Mocha', price: '£4.50' },
-      { name: 'Hot Chocolate', price: '£4.00' },
-      { name: 'White Chocolate', price: '£4.30' },
-      { name: 'Chai Latte', price: '£3.80' },
-      { name: 'Matcha Latte', price: '£3.80' },
-      { name: 'Breakfast Tea', price: '£2.70' }
-    ];
-
-    const COLD_DRINKS = [
-      { name: 'Frappe', price: '£5.50', desc: 'coffee, vanilla, chocolate' },
-      { name: 'Milkshake', price: '£6.50', desc: 'choose two scoops of gelato' },
-      { name: 'Affogato', price: '£6.00', desc: 'scoop of gelato, with espresso poured over' },
-      { name: 'Mineral Water', price: '£1.75' },
-      { name: 'Cans', price: '£2.25' },
-      { name: 'Glass Bottles', price: '£2.75' },
-      { name: 'Cartons', price: '£1.25' }
-    ];
-
-    const HOT_PUDDINGS = [
-      { name: 'Apple Crumble', price: '£7.00', note: 'vegan option available' },
-      { name: 'Sticky Toffee', price: '£7.00', note: 'gluten free' },
-      { name: 'Cherry Bakewell', price: '£7.00', note: 'served warm with gelato' }
-    ];
-
-    const SHARING_BOARDS = [
-      { name: 'Sharing Board for Two', price: '£20.00', desc: 'Six flavours of gelato, plus toppings and sauce' },
-      { name: 'Sharing Board for Four', price: '£40.00', desc: 'Six flavours of gelato, plus extra toppings and sauce' }
-    ];
+    // Location Data Configuration
+    const locationData = {
+      morecambe: {
+        gelato: [
+          'Crema (Vanilla)', 'Lemon & Ginger Biscuit', 'Belgian Milk Chocolate',
+          'Lotus Biscoff', 'Banoffee', 'Raspberry Ripple', 'Mint Chocolate Chip',
+          'Salted Caramel', 'Oreo', 'Tiramisu', 'Pistachio', 'Seaside Sherbet',
+          'Kinder Bueno', 'Chocolate Honeycomb', 'Cherry & Amaretti Biscuit',
+          'Fig & Mascarpone', 'White Chocolate Chip'
+        ],
+        vegan: [
+          'Strawberry Sorbet', 'Mixed Berry Sorbet',
+          'Dark Chocolate Sorbet', 'Mango Sorbet'
+        ]
+      },
+      lancaster: {
+        gelato: [
+          'Crema (Vanilla)', 'Lemon & Ginger Biscuit', 'Belgian Milk Chocolate',
+          'Lotus Biscoff', 'Raspberry Ripple', 'Mint Chocolate Chip',
+          'Salted Caramel', 'Oreo', 'Tiramisu', 'Pistachio',
+          'Kinder Bueno', 'Chocolate Honeycomb', 'Cherry & Amaretti Biscuit',
+          'Fig & Mascarpone', 'White Chocolate Chip'
+        ],
+        vegan: [
+          'Vegan Oreo', 'Vegan Biscoff', 'Mixed Berry Sorbet',
+          'Dark Chocolate Sorbet', 'Mango Sorbet'
+        ]
+      }
+    };
 
     document.addEventListener('DOMContentLoaded', () => {
       setupMobileMenu();
+      renderFlavours('morecambe');
     });
 
     function setupMobileMenu() {
@@ -472,32 +755,151 @@
       const menu = document.getElementById('mobile-menu');
       const links = document.querySelectorAll('.mobile-link');
 
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-      });
-
-      links.forEach(l => {
-        l.addEventListener('click', () => {
-          menu.classList.add('hidden');
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
         });
-      });
+
+        links.forEach(l => {
+          l.addEventListener('click', () => {
+            menu.classList.add('hidden');
+          });
+        });
+      }
     }
 
-    // Menu full screen on mobile
+    function renderFlavours(loc) {
+      const gelatoContainer = document.getElementById('gelato-flavours-list');
+      const veganContainer = document.getElementById('vegan-flavours-list');
+      const statCount = document.getElementById('stat-flavours-count');
+      const statLabel = document.getElementById('stat-flavours-label');
+
+      const data = locationData[loc];
+      if (!data) return;
+
+      if (gelatoContainer) {
+        gelatoContainer.innerHTML = data.gelato.map(f => `<li class="flavour flavour-item">${f}</li>`).join('');
+      }
+
+      if (veganContainer) {
+        veganContainer.innerHTML = data.vegan.map(f => `<div class="flavour border-green-700/15">${f}</div>`).join('');
+      }
+
+      const totalCount = data.gelato.length + data.vegan.length;
+      if (statCount) statCount.innerText = totalCount;
+      if (statLabel) statLabel.innerText = `Flavours, ${data.vegan.length} Vegan`;
+    }
+
+    // Toggle Theme function between Morecambe and Lancaster
+    function setTheme(loc) {
+      const morecambeBtn = document.getElementById('loc-morecambe-btn');
+      const lancasterBtn = document.getElementById('loc-lancaster-btn');
+      const heroLabel = document.getElementById('location-hero-label');
+      const cardMorecambe = document.getElementById('loc-card-morecambe');
+      const cardLancaster = document.getElementById('loc-card-lancaster');
+      const heroTubImg = document.getElementById('hero-tub-img');
+      const brandLogoImg = document.getElementById('brand-logo-img');
+      const footerLogoImg = document.getElementById('footer-logo-img');
+
+      renderFlavours(loc);
+
+      if (loc === 'lancaster') {
+        document.body.classList.add('theme-lancaster');
+
+        // Swap hero image and top-left logo for Lancaster
+        if (heroTubImg) heroTubImg.src = 'Tublanc.jpg';
+        if (brandLogoImg) {
+          brandLogoImg.src = 'miogelatolanc.jpg';
+          brandLogoImg.className = "h-8 sm:h-10 w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105";
+        }
+        if (footerLogoImg) {
+          footerLogoImg.src = 'miogelatolanc.jpg';
+          footerLogoImg.className = "h-8 sm:h-10 w-auto mix-blend-multiply transition-all duration-300";
+        }
+
+        // Toggle slider styling
+        if (lancasterBtn && morecambeBtn) {
+          lancasterBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-[#f49495] text-white shadow-md";
+          morecambeBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-white/80 hover:text-white";
+        }
+
+        if (heroLabel) heroLabel.innerText = 'Lancaster Gelateria';
+
+        // Highlight active shop card
+        if (cardLancaster && cardMorecambe) {
+          cardLancaster.classList.add('ring-2', 'ring-[#f49495]');
+          cardMorecambe.classList.remove('ring-2', 'ring-brand-orange');
+        }
+      } else {
+        document.body.classList.remove('theme-lancaster');
+
+        // Swap hero image and logos back for Morecambe
+        if (heroTubImg) heroTubImg.src = 'tub.jpg';
+        if (brandLogoImg) {
+          brandLogoImg.src = 'miogelato.jpg';
+          brandLogoImg.className = "h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-transform duration-300 group-hover:scale-105";
+        }
+        if (footerLogoImg) {
+          footerLogoImg.src = 'miogelato.jpg';
+          footerLogoImg.className = "h-14 w-auto mix-blend-multiply transition-all duration-300";
+        }
+
+        // Toggle slider styling
+        if (morecambeBtn && lancasterBtn) {
+          morecambeBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-brand-orange text-white shadow-md";
+          lancasterBtn.className = "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-white/80 hover:text-white";
+        }
+
+        if (heroLabel) heroLabel.innerText = 'Morecambe Gelateria';
+
+        // Highlight active shop card
+        if (cardLancaster && cardMorecambe) {
+          cardMorecambe.classList.add('ring-2', 'ring-brand-orange');
+          cardLancaster.classList.remove('ring-2', 'ring-[#f49495]');
+        }
+      }
+    }
+
+    // Collapsible menu cards on mobile (collapsed on load)
     (function () {
-      const img = document.getElementById('menu-img');
-      const viewer = document.getElementById('menu-viewer');
-      const closeBtn = document.getElementById('menu-viewer-close');
-      if (!img || !viewer) return;
+      const cards = document.querySelectorAll('[data-collapsible]');
       const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
-      function open() { viewer.classList.add('open'); viewer.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
-      function close() { big.classList.remove('zoomed'); viewer.classList.remove('open'); viewer.classList.add('hidden'); document.body.style.overflow = ''; }
-      const big = document.getElementById('menu-viewer-img');
-      img.addEventListener('click', open);
-      big.addEventListener('click', (e) => { if (!isMobile()) { e.stopPropagation(); big.classList.toggle('zoomed'); } });
-      viewer.addEventListener('click', close);
-      closeBtn.addEventListener('click', (e) => { e.stopPropagation(); close(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      cards.forEach(card => {
+        const head = card.firstElementChild;
+        if (!head) return;
+        head.classList.add('collapse-head');
+        const body = document.createElement('div');
+        body.className = 'collapse-body';
+        while (head.nextSibling) body.appendChild(head.nextSibling);
+        card.appendChild(body);
+        const chev = document.createElement('span');
+        chev.className = 'collapse-chevron';
+        chev.setAttribute('aria-hidden', 'true');
+        chev.innerHTML = '<i class="fa-solid fa-chevron-down text-xs"></i>';
+        head.appendChild(chev);
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', 'false');
+        const set = open => {
+          card.classList.toggle('open', open);
+          head.setAttribute('aria-expanded', String(open));
+        };
+        card._set = set;
+        const toggle = () => { if (isMobile()) set(!card.classList.contains('open')); };
+        head.addEventListener('click', toggle);
+        head.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+      // Menu quick links open the card(s) they point to
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          const t = document.querySelector(a.getAttribute('href'));
+          if (!t || !isMobile()) return;
+          const targets = t.matches('[data-collapsible]') ? [t] : t.querySelectorAll('[data-collapsible]');
+          targets.forEach(c => c._set && c._set(true));
+        });
+      });
     })();
   </script>
 </body>
