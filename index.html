@@ -353,7 +353,7 @@
         
         <!-- LOGO CONTAINER -->
         <a id="brand-logo-container" href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300" aria-label="miogelato home">
-          <span id="brand-logo-img" class="wordmark block text-3xl sm:text-4xl px-1 py-1 group-hover:scale-105">miogelato</span>
+          <img id="brand-logo-img" src="miomore.jpg" alt="miogelato Morecambe" class="block h-9 sm:h-12 w-auto px-1 py-0.5 transition-transform duration-300 group-hover:scale-105">
         </a>
 
         <!-- LOCATION TOGGLE SLIDER AT TOP -->
@@ -692,8 +692,8 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         
         <div class="md:col-span-2 space-y-4">
-          <a href="#" class="inline-block bg-brand-cream rounded-2xl px-4 py-2">
-            <span id="footer-logo-img" class="wordmark block text-3xl sm:text-4xl">miogelato</span>
+          <a id="footer-logo-container" href="#" class="inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300">
+            <img id="footer-logo-img" src="miomore.jpg" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
@@ -910,6 +910,7 @@
       const brandLogoContainer = document.getElementById('brand-logo-container');
       const brandLogoImg = document.getElementById('brand-logo-img');
       const footerLogoImg = document.getElementById('footer-logo-img');
+      const footerLogoContainer = document.getElementById('footer-logo-container');
 
       renderFlavours(loc);
 
@@ -918,6 +919,9 @@
 
         // Swap hero image and top-left logo for Lancaster with blended background container
         setHeroTub('Tublanc.jpg');
+        if (brandLogoImg) { brandLogoImg.src = 'miolanc.jpg'; brandLogoImg.alt = 'miogelato Lancaster'; }
+        if (footerLogoImg) { footerLogoImg.src = 'miolanc.jpg'; footerLogoImg.alt = 'miogelato Lancaster'; }
+        if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-[#faf7fd] rounded-2xl px-4 py-2 border border-[#f49495]/30 shadow-sm transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-[#faf7fd] rounded-2xl px-3 py-1.5 border border-[#f49495]/30 shadow-sm transition-colors duration-300";
         }
@@ -936,6 +940,9 @@
 
         // Swap hero image and logos back for Morecambe with cream background container
         setHeroTub('tub.jpg');
+        if (brandLogoImg) { brandLogoImg.src = 'miomore.jpg'; brandLogoImg.alt = 'miogelato Morecambe'; }
+        if (footerLogoImg) { footerLogoImg.src = 'miomore.jpg'; footerLogoImg.alt = 'miogelato Morecambe'; }
+        if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
         }
