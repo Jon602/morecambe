@@ -527,6 +527,54 @@
       #mobile-menu a.js-directions.mobile-link { display: none !important; }
     }
   </style>
+  <style>
+    @media (max-width: 767px) {
+      .gelato-prices { padding: .7rem .85rem !important; margin-bottom: .6rem !important; border-radius: .85rem !important; }
+      .gelato-prices h4 { font-size: .95rem !important; }
+      .gelato-prices .space-y-2 > * + * { margin-top: .3rem !important; }
+      .gelato-prices > .grid { row-gap: .3rem !important; }
+    }
+  </style>
+  <style>
+    @media (max-width: 767px) {
+      .gelato-flavours-heading { font-size: 1rem !important; margin-bottom: .25rem !important; }
+    }
+  </style>
+  <style>
+    /* Extra-charge flavours note (changes with the selected shop) */
+    .extra-note b { color: #f39200; font-weight: 600; transition: color 0.4s ease; }
+    body.theme-lancaster .extra-note b { color: #f49495; }
+    .extra-l { display: none; }
+    body.theme-lancaster .extra-m { display: none; }
+    body.theme-lancaster .extra-l { display: block; }
+    @media (max-width: 767px) {
+      .gelato-prices .extra-note { margin-top: .5rem !important; padding-top: .5rem !important; font-size: .75rem !important; }
+    }
+  </style>
+  <style>
+    /* Slightly larger text inside the mobile drop-downs */
+    @media (max-width: 767px) {
+      #menu .flavour { font-size: 1rem !important; padding: .35rem 0 !important; }
+      #menu .price-dark { font-size: 1rem !important; }
+      #menu .price-light { font-size: 1rem !important; padding: .32rem 0 !important; }
+      #menu .price-light small { font-size: .78rem !important; }
+      #menu .pudding { font-size: .95rem !important; padding: .55rem .8rem !important; }
+      #puddings .pudding-note { font-size: .9rem !important; }
+      #menu .guest-box p { font-size: .85rem !important; }
+      #menu .guest-box h4, #menu .bg-green-50 h4, .gelato-flavours-heading { font-size: 1.1rem !important; }
+      .gelato-prices .extra-note { font-size: .85rem !important; }
+      #menu .drinks-info-box { font-size: .85rem !important; }
+      #locations .loc-body, #locations .collapse-body { font-size: .95rem !important; }
+      #loc-card-morecambe .text-sm, #loc-card-lancaster .text-sm { font-size: .9rem !important; }
+    }
+  </style>
+  <style>
+    /* Mobile: wrapped flavour text lines up under the text, not under the bullet */
+    @media (max-width: 767px) {
+      #menu .flavour { position: relative; padding: .35rem 0 .35rem .9rem !important; line-height: 1.25 !important; }
+      #menu .flavour::before { position: absolute; left: 0; top: calc(.35rem + .625em - .175rem); margin-right: 0 !important; vertical-align: baseline; }
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -705,6 +753,26 @@
             <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Handmade Gelato</h3>
           </div>
 
+          <!-- Scoops & Prices: inside this card below 1024px (standalone card takes over at lg) -->
+          <div class="gelato-prices price-card-bg lg:hidden mb-6 rounded-2xl bg-[#483629] text-white p-4 sm:p-5 transition-colors duration-400">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+              <ul class="space-y-2">
+                <li class="price-dark"><span>Single</span><i></i><b>£3.75</b></li>
+                <li class="price-dark"><span>Double</span><i></i><b>£5.75</b></li>
+                <li class="price-dark"><span>Triple</span><i></i><b>£7.00</b></li>
+              </ul>
+              <ul class="space-y-2">
+                <li class="price-dark"><span>Soft Serve</span><i></i><b>£3.25</b></li>
+                <li class="price-dark"><span>Large Soft Serve</span><i></i><b>£5.75</b></li>
+                <li class="price-dark"><span>Flake</span><i></i><b>£0.50</b></li>
+              </ul>
+            </div>
+            <p class="extra-note extra-m mt-3 pt-3 border-t border-white/15 text-xs sm:text-sm text-white/85">Pistachio is <b>£1 extra</b></p>
+            <p class="extra-note extra-l mt-3 pt-3 border-t border-white/15 text-xs sm:text-sm text-white/85">Pistachio, Vegan Oreo &amp; Vegan Biscoff are <b>£1 extra</b></p>
+          </div>
+
+          <h4 class="gelato-flavours-heading lg:hidden text-xl font-serif text-brand-text mb-2">Flavours</h4>
+
           <ul id="gelato-flavours-list" class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 text-brand-text">
             <!-- Dynamic Gelato Flavours loaded here via JavaScript -->
           </ul>
@@ -730,27 +798,20 @@
           </div>
         </div>
 
-        <!-- Prices -->
-        <div data-collapsible class="price-card price-card-bg order-first lg:col-span-4 lg:order-1 bg-[#483629] text-white rounded-3xl shadow-sm p-6 sm:p-8 flex flex-col transition-colors duration-400">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="p-3 rounded-2xl bg-white/10 text-brand-orange"><i class="fa-solid fa-bowl-food text-xl"></i></div>
-            <h3 class="text-2xl font-serif">Scoops &amp; Prices</h3>
-          </div>
-
-          <p class="-mt-2 mb-5 inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90"><i class="fa-solid fa-ice-cream text-brand-orange"></i>Same price in a cone or a tub</p>
+        <!-- Prices (standalone card, left column from 1024px): same content as the in-card prices on smaller screens -->
+        <div class="price-card price-card-bg lg:col-span-4 lg:order-1 bg-[#483629] text-white rounded-3xl shadow-sm p-6 sm:p-8 hidden lg:flex flex-col gap-3 self-start transition-colors duration-400">
           <ul class="space-y-3">
             <li class="price-dark"><span>Single</span><i></i><b>£3.75</b></li>
             <li class="price-dark"><span>Double</span><i></i><b>£5.75</b></li>
             <li class="price-dark"><span>Triple</span><i></i><b>£7.00</b></li>
           </ul>
-          <div class="my-6 border-t border-white/15"></div>
           <ul class="space-y-3">
             <li class="price-dark"><span>Soft Serve</span><i></i><b>£3.25</b></li>
             <li class="price-dark"><span>Large Soft Serve</span><i></i><b>£5.75</b></li>
             <li class="price-dark"><span>Flake</span><i></i><b>£0.50</b></li>
           </ul>
-
-          <p class="mt-auto pt-8 text-xs text-white/80 font-brand-sub">hand made . fresh . delicious</p>
+          <p class="extra-note extra-m pt-3 border-t border-white/15 text-sm text-white/85">Pistachio is <b>£1 extra</b></p>
+          <p class="extra-note extra-l pt-3 border-t border-white/15 text-sm text-white/85">Pistachio, Vegan Oreo &amp; Vegan Biscoff are <b>£1 extra</b></p>
         </div>
       </div>
 
