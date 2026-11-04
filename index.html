@@ -283,8 +283,54 @@
     .pudding { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: 1rem 1.1rem; border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); transition: all 0.4s ease; }
     .pudding b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
   </style>
+  <style>
+    /* Shop picker pop-up */
+    .shop-choice {
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: .35rem;
+      width: 100%; padding: 1.5rem 1rem 1.25rem; border-radius: 1.5rem;
+      background: #ffffff; border: 2px solid transparent; box-shadow: 0 1px 3px rgba(59,49,42,.12);
+      cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .shop-choice:hover, .shop-choice:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(59,49,42,.16); outline: none; }
+    .shop-choice-m:hover, .shop-choice-m:focus-visible { border-color: #f39200; }
+    .shop-choice-l:hover, .shop-choice-l:focus-visible { border-color: #f49495; }
+    .shop-choice-icon { width: 3.5rem; height: 3.5rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: .35rem; }
+    @media (prefers-reduced-motion: reduce) { .shop-choice, #shop-picker, #shop-picker-panel { transition: none; } }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
+
+  <!-- ================= SHOP PICKER POP-UP ================= -->
+  <div id="shop-picker" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 bg-brand-brown-dark/70 backdrop-blur-sm opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="shop-picker-title">
+    <div id="shop-picker-panel" class="w-full max-w-lg max-h-full overflow-y-auto rounded-3xl bg-brand-bg shadow-2xl p-6 sm:p-8 text-center scale-95 transition-transform duration-300">
+
+      <div class="inline-block bg-brand-cream rounded-2xl px-3 py-1.5 mb-5">
+        <img src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 w-auto mix-blend-multiply" />
+      </div>
+
+      <h2 id="shop-picker-title" class="text-2xl sm:text-3xl font-serif text-brand-text">Which shop are you visiting?</h2>
+      <p class="mt-2 text-sm sm:text-base text-brand-muted font-light">Choose your gelateria to see its flavours, menu and opening hours.</p>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <button type="button" id="shop-picker-first" onclick="chooseShop('morecambe')" class="shop-choice shop-choice-m">
+          <span class="shop-choice-icon" style="background:#fdf0d8;color:#f39200"><i class="fa-solid fa-umbrella-beach"></i></span>
+          <span class="font-serif text-2xl text-brand-text">Morecambe</span>
+          <span class="text-sm text-brand-muted">272 Marine Road Central</span>
+          <span class="mt-1 text-sm font-semibold" style="color:#b35f00">View Morecambe <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></span>
+        </button>
+
+        <button type="button" onclick="chooseShop('lancaster')" class="shop-choice shop-choice-l">
+          <span class="shop-choice-icon" style="background:#f0edfa;color:#7f78b8"><i class="fa-solid fa-chess-rook"></i></span>
+          <span class="font-serif text-2xl text-brand-text">Lancaster</span>
+          <span class="text-sm text-brand-muted">26 New Street</span>
+          <span class="mt-1 text-sm font-semibold" style="color:#7f78b8">View Lancaster <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></span>
+        </button>
+      </div>
+
+      <button type="button" onclick="chooseShop('morecambe')" class="mt-5 text-xs text-brand-muted hover:text-brand-text underline underline-offset-2 transition-colors">Skip for now</button>
+    </div>
+  </div>
+
 
   <!-- ================= HEADER & NAVIGATION ================= -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-brand-orange/15 transition-all duration-300">
@@ -950,6 +996,50 @@
           targets.forEach(c => c._set && c._set(true));
         });
       });
+    })();
+
+    // ===== Shop picker pop-up (shown on every page load) =====
+    (function () {
+      const picker = document.getElementById('shop-picker');
+      const panel = document.getElementById('shop-picker-panel');
+      if (!picker || !panel) return;
+
+      function open() {
+        picker.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+          picker.classList.remove('opacity-0');
+          panel.classList.remove('scale-95');
+          const first = document.getElementById('shop-picker-first');
+          if (first) first.focus();
+        });
+        document.addEventListener('keydown', onKey);
+      }
+
+      function close() {
+        picker.classList.add('opacity-0');
+        panel.classList.add('scale-95');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKey);
+        setTimeout(() => picker.classList.add('hidden'), 300);
+      }
+
+      // Escape = skip (stays on Morecambe); Tab stays inside the pop-up
+      function onKey(e) {
+        if (e.key === 'Escape') { close(); return; }
+        if (e.key !== 'Tab') return;
+        const items = panel.querySelectorAll('button');
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+
+      window.chooseShop = function (loc) {
+        setTheme(loc);
+        close();
+      };
+
+      document.addEventListener('DOMContentLoaded', open);
     })();
   </script>
 </body>
