@@ -199,8 +199,22 @@
       background-color: #3d375e;
       color: #ffffff;
     }
+    /* Icons inside the dark price card (bowl, ice cream, chevron) */
+    body.theme-lancaster .price-card-bg i {
+      color: #f49495;
+    }
 
-    body.theme-lancaster .flavour-item::before {
+    /* Footer social icons: hover colour */
+    body.theme-lancaster .social-link:hover {
+      background-color: #f49495;
+    }
+
+    /* Toast tick icon */
+    body.theme-lancaster #toast-icon {
+      color: #f49495;
+    }
+
+    body.theme-lancaster .flavour::before {
       background-color: #f49495;
     }
     body.theme-lancaster .guest-box {
@@ -639,9 +653,9 @@
         <div>
           <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Contact & Follow</h4>
           <div class="flex space-x-4 mb-4">
-            <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-tiktok"></i></a>
           </div>
           <p class="text-xs text-gray-400">info@miogelato.co.uk</p>
         </div>
