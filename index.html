@@ -748,7 +748,17 @@
       }
 
       if (veganContainer) {
-        veganContainer.innerHTML = data.vegan.map(f => `<div class="flavour border-green-700/15">${f}</div>`).join('');
+        const veganItem = f => `<div class="flavour border-green-700/15">${f}</div>`;
+        const sorbets = data.vegan.filter(f => /sorbet/i.test(f));
+        const otherVegan = data.vegan.filter(f => !/sorbet/i.test(f));
+        if (otherVegan.length) {
+          // Sorbets in the left column, vegan gelato flavours in the right column
+          veganContainer.innerHTML =
+            `<div>${sorbets.map(veganItem).join('')}</div>` +
+            `<div>${otherVegan.map(veganItem).join('')}</div>`;
+        } else {
+          veganContainer.innerHTML = data.vegan.map(veganItem).join('');
+        }
       }
 
       const totalCount = data.gelato.length + GUEST_FLAVOUR_COUNT + data.vegan.length;
