@@ -311,6 +311,222 @@
     .shop-choice-icon { width: 3.5rem; height: 3.5rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: .35rem; }
     @media (prefers-reduced-motion: reduce) { .shop-choice, #shop-picker, #shop-picker-panel { transition: none; } }
   </style>
+  <style>
+    /* =====================================================================
+       COMPACT MOBILE LAYOUT  (phones only, desktop/tablet untouched)
+       Root font-size drops 16px -> 14px so every rem-based size shrinks,
+       then spacing, headings and cards are tightened further below.
+       ===================================================================== */
+    @media (max-width: 767px) {
+      html { font-size: 14px; -webkit-text-size-adjust: 100%; }
+      ::-webkit-scrollbar { width: 6px; }
+
+      /* ---------- Header ---------- */
+      header .h-20 { height: 3rem !important; }
+      header .max-w-7xl { padding-left: .75rem; padding-right: .75rem; }
+      #brand-logo-container { padding: .15rem .4rem !important; border-radius: .75rem !important; }
+      #brand-logo-img { height: 1.5rem !important; padding: 0 !important; }
+      #loc-toggle button { padding: .2rem .6rem !important; font-size: .7rem !important; }
+      #mobile-menu-btn { padding: .35rem .5rem !important; }
+      #mobile-menu-btn i { font-size: 1.05rem !important; }
+      #mobile-menu { padding: .25rem .75rem .75rem !important; }
+      #mobile-menu > * { margin-top: .2rem !important; }
+      #mobile-menu .mobile-link { padding: .4rem .75rem !important; font-size: .9rem !important; }
+
+      main { padding-top: 3rem !important; }
+      .scroll-mt-32 { scroll-margin-top: 3.5rem !important; }
+
+      /* ---------- Hero ---------- */
+      .hero-section { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+      .hero-section .grid { gap: .5rem !important; }
+      .hero-section .space-y-6 > * + * { margin-top: .6rem !important; }
+      .hero-section .hero-tag { padding: .3rem .7rem !important; }
+      .hero-section .hero-tag-text { font-size: .62rem !important; letter-spacing: .03em !important; }
+      .hero-section h1 { font-size: 1.65rem !important; line-height: 1.15 !important; }
+      .hero-section .hero-subtitle { font-size: .85rem !important; line-height: 1.4 !important; }
+      .hero-section .pt-4 { padding-top: .25rem !important; }
+      .hero-section .pt-4 > a { padding: .55rem 1rem !important; font-size: .85rem !important; }
+      .hero-section .pt-4.space-y-3 > * + * { margin-top: .4rem !important; }
+      .hero-section .stats-border { padding-top: .6rem !important; gap: .5rem !important; }
+      .hero-section .stat-num-1 { font-size: 1rem !important; }
+      .hero-section .stat-label { font-size: .62rem !important; line-height: 1.2 !important; }
+      .hero-section .aspect-square { aspect-ratio: auto !important; padding: 0 !important; max-width: 10rem !important; }
+      .hero-section #hero-tub-img { max-width: 10rem !important; }
+      .hero-blob-1, .hero-blob-2 { width: 10rem !important; height: 10rem !important; }
+
+      /* ---------- Menu section ---------- */
+      #menu { padding-bottom: 1.5rem !important; padding-left: .75rem !important; padding-right: .75rem !important; }
+      #menu > .text-center { margin-bottom: .75rem !important; }
+      #menu h2 { font-size: 1.4rem !important; }
+      #menu .mt-6.flex { margin-top: .5rem !important; gap: .35rem !important; font-size: .75rem !important; }
+      .menu-quick-link { padding: .3rem .7rem !important; }
+      .menu-quick-link i { margin-right: .25rem !important; }
+
+      /* gaps between cards */
+      #gelato { gap: .6rem !important; }
+      #puddings { margin-top: .6rem !important; }
+      #menu .mt-6.grid { margin-top: .6rem !important; gap: .6rem !important; }
+
+      /* cards */
+      #menu [data-collapsible] { padding: .75rem .9rem !important; border-radius: 1rem !important; }
+      #menu [data-collapsible] > .collapse-head,
+      #menu [data-collapsible] .collapse-head { margin-bottom: .5rem !important; padding-right: 2.25rem !important; gap: .5rem !important; }
+      #menu [data-collapsible]:not(.open) .collapse-head { margin-bottom: 0 !important; }
+      #menu [data-collapsible] .collapse-head > div:first-child,
+      #menu .collapse-head .flex.items-center { gap: .5rem !important; }
+      #menu .collapse-head h3 { font-size: 1.1rem !important; line-height: 1.2 !important; }
+      #menu .collapse-head .p-3 { padding: .45rem !important; border-radius: .75rem !important; }
+      #menu .collapse-head .p-3 i { font-size: .9rem !important; }
+      #menu .collapse-head > p { font-size: .75rem !important; }
+      #menu [data-collapsible] .collapse-chevron { width: 1.6rem !important; height: 1.6rem !important; top: 50% !important; margin-top: -.8rem !important; }
+      #menu [data-collapsible] .collapse-chevron i { font-size: .65rem !important; }
+
+      /* flavour lists: two compact columns */
+      #gelato-flavours-list, #vegan-flavours-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        column-gap: .75rem !important;
+      }
+      .flavour { padding: .3rem 0 !important; font-size: .85rem !important; line-height: 1.25 !important; }
+      .flavour::before { width: .35rem !important; height: .35rem !important; margin-right: .45rem !important; }
+
+      /* vegan + guest boxes */
+      #menu .mt-8 { margin-top: .7rem !important; }
+      #menu .mt-6 { margin-top: .6rem !important; }
+      #menu .bg-green-50 { padding: .6rem .75rem !important; border-radius: .85rem !important; }
+      #menu .bg-green-50 h4, .guest-box h4 { font-size: 1rem !important; }
+      #menu .bg-green-50 .mb-3 { margin-bottom: .2rem !important; }
+      .guest-box { padding: .6rem .75rem !important; gap: .6rem !important; border-radius: .85rem !important; }
+      .guest-box p { font-size: .75rem !important; margin-top: 0 !important; }
+
+      /* scoops & prices card */
+      .price-card p.inline-flex { margin-bottom: .6rem !important; padding: .25rem .7rem !important; font-size: .75rem !important; }
+      .price-card .space-y-3 > * + * { margin-top: .35rem !important; }
+      .price-card .my-6 { margin: .6rem 0 !important; }
+      .price-card .pt-8 { padding-top: .6rem !important; }
+      .price-dark { font-size: .9rem !important; }
+
+      /* light price lists (drinks) */
+      .price-light { padding: .28rem 0 !important; font-size: .9rem !important; }
+      .price-light small { font-size: .68rem !important; }
+
+      /* puddings */
+      #puddings .grid { gap: .4rem !important; }
+      .pudding { padding: .5rem .75rem !important; border-radius: .75rem !important; font-size: .85rem !important; }
+
+      /* drinks info box */
+      .drinks-info-box { margin-top: .6rem !important; padding: .5rem .75rem !important; font-size: .75rem !important; border-radius: .75rem !important; }
+
+      /* ---------- Locations ---------- */
+      .locations-section { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+      .locations-section .max-w-7xl { padding-left: .75rem !important; padding-right: .75rem !important; }
+      .locations-section .mb-12 { margin-bottom: .75rem !important; }
+      .locations-section h2 { font-size: 1.4rem !important; }
+      .locations-section .grid { gap: .6rem !important; }
+      #loc-card-morecambe, #loc-card-lancaster { padding: .85rem 1rem !important; border-radius: 1rem !important; }
+      #loc-card-morecambe .mb-4, #loc-card-lancaster .mb-4 { margin-bottom: .4rem !important; }
+      #loc-card-morecambe h3, #loc-card-lancaster h3 { font-size: 1.1rem !important; }
+      #loc-card-morecambe .pt-4, #loc-card-lancaster .pt-4 { padding-top: .5rem !important; }
+      #loc-card-morecambe .space-y-2 > * + *, #loc-card-lancaster .space-y-2 > * + * { margin-top: .2rem !important; }
+      #loc-card-morecambe .mt-6, #loc-card-lancaster .mt-6 { margin-top: .6rem !important; }
+      #loc-card-morecambe .text-sm, #loc-card-lancaster .text-sm { font-size: .8rem !important; }
+      .menu-open-badge { font-size: .7rem; }
+
+      /* ---------- Footer ---------- */
+      footer { padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
+      footer .max-w-7xl { padding-left: .75rem !important; padding-right: .75rem !important; }
+      footer .grid { gap: .75rem !important; margin-bottom: .75rem !important; }
+      footer .space-y-4 > * + * { margin-top: .5rem !important; }
+      footer h4 { margin-bottom: .4rem !important; }
+      footer ul.space-y-2 > * + * { margin-top: .2rem !important; }
+      footer .mb-4 { margin-bottom: .4rem !important; }
+      footer .pt-8 { padding-top: .75rem !important; }
+      #footer-logo-container { padding: .2rem .6rem !important; border-radius: .75rem !important; }
+      #footer-logo-img { height: 1.9rem !important; }
+      footer .text-xs { font-size: .7rem !important; }
+
+      /* ---------- Shop picker pop-up ---------- */
+      #shop-picker { padding: .75rem !important; }
+      #shop-picker-panel { padding: 1rem !important; border-radius: 1.25rem !important; }
+      #shop-picker-panel .mb-5 { margin-bottom: .6rem !important; }
+      #shop-picker-panel img { height: 2.25rem !important; }
+      #shop-picker-title { font-size: 1.2rem !important; }
+      #shop-picker-panel > p { font-size: .8rem !important; margin-top: .25rem !important; }
+      #shop-picker-panel .mt-6 { margin-top: .75rem !important; gap: .5rem !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .shop-choice { padding: .75rem .4rem .65rem !important; border-radius: 1rem !important; gap: .15rem !important; }
+      .shop-choice-icon { width: 2.4rem !important; height: 2.4rem !important; font-size: 1.05rem !important; border-radius: .7rem !important; margin-bottom: .1rem !important; }
+      .shop-choice .text-2xl { font-size: 1.1rem !important; }
+      .shop-choice .text-sm { font-size: .7rem !important; line-height: 1.2 !important; }
+      #shop-picker-panel .mt-5 { margin-top: .6rem !important; }
+
+      /* ---------- Toast ---------- */
+      #notification-toast { bottom: .75rem !important; right: .75rem !important; padding: .5rem .8rem !important; border-radius: 1rem !important; }
+    }
+  </style>
+  <style>
+    /* ===== TABLET / SMALL LAPTOP (768-1023px): de-clutter the header & cards ===== */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      header .h-20, header .sm\:h-24 { height: 4rem !important; }
+      header .max-w-7xl { padding-left: 1rem; padding-right: 1rem; }
+      main { padding-top: 5rem !important; }
+      .scroll-mt-32 { scroll-margin-top: 5.5rem !important; }
+
+      #brand-logo-container { padding: .2rem .5rem !important; }
+      #brand-logo-img { height: 2rem !important; }
+
+      #loc-toggle button { padding: .25rem .7rem !important; font-size: .72rem !important; }
+
+      header nav { gap: 1rem !important; font-size: .8rem !important; white-space: nowrap; }
+      header nav > a { margin-left: 0 !important; }
+      header nav.space-x-6 > * + * { margin-left: 0 !important; }
+
+      /* cards & footer breathing room */
+      #loc-card-morecambe, #loc-card-lancaster { padding: 1.25rem !important; }
+      #loc-card-morecambe .justify-between:last-child, #loc-card-lancaster .justify-between:last-child { flex-wrap: wrap; gap: .4rem .75rem; }
+      footer .grid { gap: 1.5rem !important; }
+    }
+  </style>
+  <style>
+    /* Get Directions: slim pill from 600px up to 1023px (hidden below 600, it lives in the burger menu) */
+    @media (min-width: 600px) and (max-width: 1023px) {
+      .dir-btn { display: inline-flex !important; padding: .3rem .8rem !important; font-size: .75rem !important; line-height: 1.2 !important; border-radius: 9999px; white-space: nowrap; }
+      .dir-btn i { margin-right: .35rem !important; font-size: .7rem !important; }
+    }
+  </style>
+  <style>
+    /* Location toggle: smaller size from 840px and below */
+    @media (max-width: 840px) {
+      #loc-toggle button { padding: .2rem .6rem !important; font-size: .7rem !important; }
+    }
+  </style>
+  <style>
+    /* Burger menu: Get Directions is a normal-sized pill, not full width */
+    #mobile-menu a.js-directions { display: inline-flex !important; width: auto !important; padding: .22rem .55rem !important; font-size: .85rem !important; margin-top: .5rem !important; }
+  </style>
+  <style>
+    /* Location cards: collapsible on phones, headed "Morecambe Shop" / "Lancaster Shop" + Open 7 Days badge */
+    @media (max-width: 767px) {
+      #locations .loc-label { font-family: Georgia, serif; font-size: 1.1rem !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0 !important; line-height: 1.2; color: #3b312a !important; }
+      body.theme-lancaster #locations .loc-label { color: #2b2545 !important; }
+      #locations .loc-street { display: none; }
+      #locations [data-collapsible] .collapse-head { margin-bottom: .6rem !important; padding-right: 2.25rem !important; align-items: center !important; }
+      #locations [data-collapsible]:not(.open) .collapse-head { margin-bottom: 0 !important; }
+      #locations [data-collapsible] .collapse-chevron { width: 1.6rem !important; height: 1.6rem !important; top: 50% !important; margin-top: -.8rem !important; }
+      #locations [data-collapsible] .collapse-chevron i { font-size: .65rem !important; }
+      #locations .loc-hours { margin-bottom: .6rem !important; }
+      #locations [data-collapsible] .collapse-body { margin-top: 0; }
+    }
+  </style>
+  <style>
+    @media (max-width: 767px) {
+      #puddings .pudding-note { font-size: .8rem !important; margin-bottom: .6rem !important; }
+    }
+  </style>
+  <style>
+    /* Header pill is visible from 600px, so drop the duplicate inside the burger menu */
+    @media (min-width: 600px) {
+      #mobile-menu a.js-directions.mobile-link { display: none !important; }
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -376,8 +592,8 @@
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions btn-primary hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
-            <i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Get Directions
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Get Directions" class="js-directions dir-btn btn-primary hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-location-arrow mr-2 text-xs"></i><span class="dir-label">Get Directions</span>
           </a>
 
           <!-- Mobile menu toggle button -->
@@ -540,13 +756,11 @@
 
       <!-- ===== PUDDINGS ===== -->
       <div data-collapsible id="puddings" class="card-surface scroll-mt-32 mt-6 lg:mt-8 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-1 mb-6">
-          <div class="flex items-center gap-3">
-            <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-cookie-bite text-xl"></i></div>
-            <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Puddings</h3>
-          </div>
-          <p class="hero-subtitle text-sm text-brand-muted italic transition-colors duration-400">with a scoop of your favourite gelato</p>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-cookie-bite text-xl"></i></div>
+          <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Puddings</h3>
         </div>
+        <p class="pudding-note hero-subtitle text-sm text-brand-muted italic mb-6 transition-colors duration-400">with a scoop of your favourite gelato</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div class="pudding pudding-card"><span>Apple Crumble</span><b>£7.00</b></div>
           <div class="pudding pudding-card"><span>Vegan Apple Crumble <i class="fa-solid fa-leaf text-green-700 text-xs ml-1" title="Vegan"></i></span><b>£7.00</b></div>
@@ -613,19 +827,18 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           <!-- Morecambe Shop -->
-          <div id="loc-card-morecambe" class="card-surface bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col justify-between transition-all duration-400">
-            <div>
-              <div class="flex justify-between items-start mb-4">
+          <div data-collapsible id="loc-card-morecambe" class="card-surface bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col transition-all duration-400">
+                          <div class="flex justify-between items-start mb-4">
                 <div>
-                  <span class="stat-num-2 text-xs font-semibold text-brand-orange-text uppercase tracking-wider transition-colors duration-400">Morecambe Shop</span>
-                  <h3 class="text-2xl font-serif text-brand-text">Marine Road Central</h3>
+                  <span class="loc-label stat-num-2 text-xs font-semibold text-brand-orange-text uppercase tracking-wider transition-colors duration-400">Morecambe Shop</span>
+                  <h3 class="loc-street text-2xl font-serif text-brand-text">Marine Road Central</h3>
                 </div>
                 <span class="menu-open-badge px-3 py-1 rounded-full text-xs font-medium bg-brand-brown-light text-brand-brown transition-colors duration-400">Open 7 Days</span>
               </div>
               
               <p class="hero-subtitle text-sm text-brand-muted mb-4 transition-colors duration-400"><a href="https://www.google.com/maps/search/?api=1&query=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="hover:text-brand-brown hover:underline transition-colors"><i class="fa-solid fa-location-dot text-brand-brown mr-2 stat-num-1"></i>272 Marine Road Central, Morecambe, LA4 5BX</a></p>
 
-              <div class="stats-border space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4 transition-colors duration-400">
+              <div class="loc-hours stats-border space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4 mb-6 transition-colors duration-400">
                 <div class="flex justify-between">
                   <span class="hero-subtitle text-brand-muted transition-colors duration-400">Monday - Friday:</span>
                   <span class="font-medium">12:00 PM – 4:30 PM</span>
@@ -635,28 +848,26 @@
                   <span class="font-medium">11:00 AM – 4:30 PM</span>
                 </div>
               </div>
-            </div>
 
-            <div class="stats-border mt-6 pt-4 border-t border-brand-brown/10 flex items-center justify-between transition-colors duration-400">
+            <div class="stats-border mt-auto pt-4 border-t border-brand-brown/10 flex items-center justify-between transition-colors duration-400">
               <span class="hero-subtitle text-xs text-brand-muted transition-colors duration-400"><i class="fa-solid fa-phone text-brand-orange-text mr-1 stat-num-2 transition-colors duration-400"></i> 01524 419606</span>
               <a href="mailto:info@miogelato.co.uk" class="stat-num-1 text-xs font-bold text-brand-brown hover:underline transition-colors duration-400"><i class="fa-regular fa-envelope mr-1"></i>info@miogelato.co.uk</a>
             </div>
           </div>
 
           <!-- Lancaster Shop -->
-          <div id="loc-card-lancaster" class="card-surface bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col justify-between transition-all duration-400">
-            <div>
-              <div class="flex justify-between items-start mb-4">
+          <div data-collapsible id="loc-card-lancaster" class="card-surface bg-brand-surface p-8 rounded-3xl shadow-sm border border-brand-brown/10 flex flex-col transition-all duration-400">
+                          <div class="flex justify-between items-start mb-4">
                 <div>
-                  <span class="stat-num-1 text-xs font-semibold text-brand-brown uppercase tracking-wider transition-colors duration-400">Lancaster Shop</span>
-                  <h3 class="text-2xl font-serif text-brand-text">New Street</h3>
+                  <span class="loc-label stat-num-1 text-xs font-semibold text-brand-brown uppercase tracking-wider transition-colors duration-400">Lancaster Shop</span>
+                  <h3 class="loc-street text-2xl font-serif text-brand-text">New Street</h3>
                 </div>
                 <span class="menu-open-badge px-3 py-1 rounded-full text-xs font-medium bg-brand-brown-light text-brand-brown transition-colors duration-400">Open 7 Days</span>
               </div>
               
               <p class="hero-subtitle text-sm text-brand-muted mb-4 transition-colors duration-400"><a href="https://www.google.com/maps/search/?api=1&query=Mio%20Gelato%2C%2026%20New%20Street%2C%20Lancaster%2C%20LA1%201EG" target="_blank" rel="noopener" class="hover:text-brand-brown hover:underline transition-colors"><i class="fa-solid fa-location-dot text-brand-brown mr-2 stat-num-1"></i>26 New Street, Lancaster, LA1 1EG</a></p>
 
-              <div class="stats-border space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4 transition-colors duration-400">
+              <div class="loc-hours stats-border space-y-2 text-sm text-brand-text border-t border-brand-brown/10 pt-4 mb-6 transition-colors duration-400">
                 <div class="flex justify-between">
                   <span class="hero-subtitle text-brand-muted transition-colors duration-400">Sunday - Friday:</span>
                   <span class="font-medium">11:30 AM – 4:30 PM</span>
@@ -666,9 +877,8 @@
                   <span class="font-medium">10:30 AM – 5:00 PM</span>
                 </div>
               </div>
-            </div>
 
-            <div class="stats-border mt-6 pt-4 border-t border-brand-brown/10 flex items-center justify-between transition-colors duration-400">
+            <div class="stats-border mt-auto pt-4 border-t border-brand-brown/10 flex items-center justify-between transition-colors duration-400">
               <span class="hero-subtitle text-xs text-brand-muted transition-colors duration-400"><i class="fa-solid fa-phone text-brand-orange-text mr-1 stat-num-2 transition-colors duration-400"></i> 01524 956682</span>
               <a href="mailto:info@miogelato.co.uk" class="stat-num-1 text-xs font-bold text-brand-brown hover:underline transition-colors duration-400"><i class="fa-regular fa-envelope mr-1"></i>info@miogelato.co.uk</a>
             </div>
