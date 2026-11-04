@@ -57,6 +57,20 @@
       font-weight: 500;
     }
 
+    .wordmark {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      text-transform: none;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: #f39200;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    body.theme-lancaster .wordmark {
+      color: #f49495;
+    }
+
     .font-brand-sub {
       font-family: 'Courier Prime', monospace;
     }
@@ -305,7 +319,7 @@
     <div id="shop-picker-panel" class="w-full max-w-lg max-h-full overflow-y-auto rounded-3xl bg-brand-bg shadow-2xl p-6 sm:p-8 text-center scale-95 transition-transform duration-300">
 
       <div class="inline-block bg-brand-cream rounded-2xl px-3 py-1.5 mb-5">
-        <img src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 w-auto mix-blend-multiply" />
+        <span class="wordmark block text-4xl sm:text-5xl px-1 py-1">miogelato</span>
       </div>
 
       <h2 id="shop-picker-title" class="text-2xl sm:text-3xl font-serif text-brand-text">Which shop are you visiting?</h2>
@@ -339,7 +353,7 @@
         
         <!-- LOGO CONTAINER -->
         <a id="brand-logo-container" href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300" aria-label="miogelato home">
-          <img id="brand-logo-img" src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105" />
+          <span id="brand-logo-img" class="wordmark block text-3xl sm:text-4xl px-1 py-1 group-hover:scale-105">miogelato</span>
         </a>
 
         <!-- LOCATION TOGGLE SLIDER AT TOP -->
@@ -453,8 +467,7 @@
     <!-- ================= FLAVORS & MENU SHOWCASE ================= -->
     <section id="menu" class="pt-0 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10 lg:mb-14">
-        <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Our Menu</h2>
-        <p class="hero-subtitle mt-3 text-brand-muted font-light transition-colors duration-400">Handmade in Morecambe since 2016</p>
+        <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Menu</h2>
 
         <!-- Menu quick links -->
         <div class="mt-6 flex flex-wrap justify-center gap-2 text-sm font-medium">
@@ -594,7 +607,6 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="stat-num-1 text-xs font-bold text-brand-brown uppercase tracking-widest block mb-2 transition-colors duration-400">Visit Our Gelaterias</span>
           <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Locations & Opening Hours</h2>
         </div>
 
@@ -681,7 +693,7 @@
         
         <div class="md:col-span-2 space-y-4">
           <a href="#" class="inline-block bg-brand-cream rounded-2xl px-4 py-2">
-            <img id="footer-logo-img" src="miogelato.jpg" alt="miogelato - hand made . fresh . delicious" class="h-14 w-auto mix-blend-multiply transition-all duration-300" />
+            <span id="footer-logo-img" class="wordmark block text-3xl sm:text-4xl">miogelato</span>
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
@@ -909,14 +921,6 @@
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-[#faf7fd] rounded-2xl px-3 py-1.5 border border-[#f49495]/30 shadow-sm transition-colors duration-300";
         }
-        if (brandLogoImg) {
-          brandLogoImg.src = 'miogelatolanc.jpg';
-          brandLogoImg.className = "h-8 sm:h-10 w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105";
-        }
-        if (footerLogoImg) {
-          footerLogoImg.src = 'miogelatolanc.jpg';
-          footerLogoImg.className = "h-8 sm:h-10 w-auto mix-blend-multiply transition-all duration-300";
-        }
 
         updateToggle('lancaster');
 
@@ -934,14 +938,6 @@
         setHeroTub('tub.jpg');
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
-        }
-        if (brandLogoImg) {
-          brandLogoImg.src = 'miogelato.jpg';
-          brandLogoImg.className = "h-14 sm:h-[4.5rem] w-auto mix-blend-multiply transition-all duration-300 group-hover:scale-105";
-        }
-        if (footerLogoImg) {
-          footerLogoImg.src = 'miogelato.jpg';
-          footerLogoImg.className = "h-14 w-auto mix-blend-multiply transition-all duration-300";
         }
 
         updateToggle('morecambe');
