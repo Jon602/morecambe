@@ -639,6 +639,11 @@
     body.theme-lancaster .js [data-collapsible] .collapse-chevron { background: rgba(149,190,171,.35); color: var(--lanc-green-deep); }
     body.theme-lancaster .js [data-collapsible].price-card .collapse-chevron { background: rgba(255,255,255,.15); color: #ffffff; }
 
+    /* Mobile expand buttons: match each card's own icon colour */
+    body.theme-lancaster .js [data-collapsible]:has(.card-icon-pink) .collapse-chevron { background: #fdeaea; color: #e27b7c; }
+    body.theme-lancaster .js [data-collapsible]:has(.card-icon-purple) .collapse-chevron { background: var(--lanc-green-tint); color: var(--lanc-green-deep); }
+    body.theme-lancaster .js #locations [data-collapsible] .collapse-chevron { background: #f0edfa; color: #7f78b8; }
+
     /* Gallery */
     body.theme-lancaster .gallery-tile { background: var(--lanc-green-tint); border-color: rgba(63,125,102,.3); }
     body.theme-lancaster .gallery-ph { color: var(--lanc-green-deep); }
@@ -1174,14 +1179,14 @@
         { src: 'gallery/morecambe-8.jpg', alt: 'Indoor seating' }
       ],
       lancaster: [
-        { src: 'gallery/lancaster-1.jpg', alt: 'Lancaster photo 1 (describe this photo)' },
-        { src: 'gallery/lancaster-2.jpg', alt: 'Lancaster photo 2 (describe this photo)' },
-        { src: 'gallery/lancaster-3.jpg', alt: 'Lancaster photo 3 (describe this photo)' },
-        { src: 'gallery/lancaster-4.jpg', alt: 'Lancaster photo 4 (describe this photo)' },
-        { src: 'gallery/lancaster-5.jpg', alt: 'Lancaster photo 5 (describe this photo)' },
-        { src: 'gallery/lancaster-6.jpg', alt: 'Lancaster photo 6 (describe this photo)' },
-        { src: 'gallery/lancaster-7.jpg', alt: 'Lancaster photo 7 (describe this photo)' },
-        { src: 'gallery/lancaster-8.jpg', alt: 'Lancaster photo 8 (describe this photo)' }
+        { src: 'gallery/lancaster-1.jpg', alt: '' },
+        { src: 'gallery/lancaster-2.jpg', alt: '' },
+        { src: 'gallery/lancaster-3.jpg', alt: '' },
+        { src: 'gallery/lancaster-4.jpg', alt: '' },
+        { src: 'gallery/lancaster-5.jpg', alt: '' },
+        { src: 'gallery/lancaster-6.jpg', alt: '' },
+        { src: 'gallery/lancaster-7.jpg', alt: '' },
+        { src: 'gallery/lancaster-8.jpg', alt: '' }
       ]
     };
     const GALLERY_NAMES = { morecambe: 'Morecambe', lancaster: 'Lancaster' };
