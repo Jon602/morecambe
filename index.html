@@ -260,6 +260,11 @@
       background-color: rgba(240, 237, 250, 0.5);
       border-color: rgba(127, 120, 184, 0.15);
     }
+      /* ===== Brand purple (#7a6bb0) for header, footer and Scoops & Prices card — Lancaster only ===== */
+    body.theme-lancaster { --brand-purple: #7a6bb0; }
+    body.theme-lancaster header.glass-nav { background: var(--brand-purple) !important; }
+    body.theme-lancaster footer.bg-brand-text { background-color: var(--brand-purple) !important; border-color: rgba(255,255,255,.2) !important; }
+    body.theme-lancaster .price-card-bg { background-color: var(--brand-purple) !important; color: #ffffff; }
   </style>
 
   <script>document.documentElement.classList.add("js");</script>
