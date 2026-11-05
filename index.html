@@ -602,6 +602,50 @@
     body.theme-lancaster .lb-btn:focus-visible { outline-color: #f49495; }
     @media (prefers-reduced-motion: reduce) { .gallery-tile, .gallery-tile img, #lightbox { transition: none; } }
   </style>
+  <style>
+    /* ===== Lancaster: sage green (#95beab, sampled from the supplied swatch) added to the purple + coral scheme ===== */
+    body.theme-lancaster {
+      --lanc-green: #95beab;        /* the swatch colour */
+      --lanc-green-deep: #3f7d66;   /* darker shade for text/icons so they stay readable */
+      --lanc-green-tint: #dcebe3;   /* light shade for chips and boxes */
+      --lanc-green-bg: #edf5f0;     /* page background */
+      background-color: var(--lanc-green-bg);
+    }
+    body.theme-lancaster ::-webkit-scrollbar-track { background: var(--lanc-green-bg); }
+    body.theme-lancaster ::-webkit-scrollbar-thumb { background: var(--lanc-green); }
+    body.theme-lancaster ::-webkit-scrollbar-thumb:hover { background: var(--lanc-green-deep); }
+
+    /* Hero */
+    body.theme-lancaster .hero-section { background: linear-gradient(to bottom, rgba(149,190,171,.45), transparent, var(--lanc-green-bg)); }
+    body.theme-lancaster .hero-blob-1 { background-color: rgba(149,190,171,.45); }
+    body.theme-lancaster .hero-blob-2 { background-color: rgba(244,148,149,.2); }
+    body.theme-lancaster .hero-tag { border-color: rgba(63,125,102,.3); }
+    body.theme-lancaster .hero-tag-dot { background-color: var(--lanc-green); }
+    body.theme-lancaster .hero-tag-text { color: var(--lanc-green-deep); }
+    body.theme-lancaster .btn-secondary { border-color: rgba(63,125,102,.35); }
+    body.theme-lancaster .btn-secondary:hover { background-color: var(--lanc-green-tint); }
+    body.theme-lancaster .stats-border { border-color: rgba(63,125,102,.25); }
+    body.theme-lancaster .stat-num-2 { color: var(--lanc-green-deep); }
+
+    /* Menu */
+    body.theme-lancaster .menu-quick-link { border-color: rgba(63,125,102,.35); }
+    body.theme-lancaster .menu-quick-link:hover { background-color: var(--lanc-green-tint); }
+    body.theme-lancaster .menu-quick-link i { color: var(--lanc-green-deep); }
+    body.theme-lancaster .card-surface { border-color: rgba(63,125,102,.22); }
+    body.theme-lancaster .card-icon-purple { background-color: var(--lanc-green-tint); color: var(--lanc-green-deep); }
+    body.theme-lancaster .drinks-info-box { background-color: rgba(220,235,227,.85); border-color: rgba(63,125,102,.3); }
+    body.theme-lancaster .drinks-info-box i { color: var(--lanc-green-deep); }
+    body.theme-lancaster .flavour { border-bottom-color: rgba(63,125,102,.2); }
+    body.theme-lancaster .js [data-collapsible] .collapse-chevron { background: rgba(149,190,171,.35); color: var(--lanc-green-deep); }
+    body.theme-lancaster .js [data-collapsible].price-card .collapse-chevron { background: rgba(255,255,255,.15); color: #ffffff; }
+
+    /* Gallery */
+    body.theme-lancaster .gallery-tile { background: var(--lanc-green-tint); border-color: rgba(63,125,102,.3); }
+    body.theme-lancaster .gallery-ph { color: var(--lanc-green-deep); }
+
+    /* Locations & hours: the big green block */
+    body.theme-lancaster .locations-section { background-color: rgba(149,190,171,.5); border-color: rgba(63,125,102,.25); }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
