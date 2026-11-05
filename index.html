@@ -580,6 +580,28 @@
       #menu .flavour::before { position: absolute; left: 0; top: calc(.35rem + .625em - .175rem); margin-right: 0 !important; vertical-align: baseline; }
     }
   </style>
+  <style>
+    /* ===== Gallery ===== */
+    .gallery-tile { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; padding: 0; border-radius: 1.25rem; background: #f6e9d0; border: 1px solid rgba(87,74,61,.12); cursor: pointer; transition: box-shadow .25s ease, background-color .4s ease, border-color .4s ease; }
+    .gallery-tile img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .gallery-tile:hover { box-shadow: 0 12px 24px -14px rgba(59,49,42,.55); }
+    .gallery-tile:hover img { transform: scale(1.05); }
+    .gallery-tile:focus-visible { outline: 2px solid #f39200; outline-offset: 3px; }
+    .gallery-ph { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; font-size: .8rem; color: #b35f00; }
+    .gallery-ph i { font-size: 1.4rem; opacity: .7; }
+    .gallery-tile.is-missing { cursor: default; }
+    .gallery-tile.is-missing img { display: none; }
+    .gallery-tile.is-missing .gallery-ph { display: flex; }
+    body.theme-lancaster .gallery-tile { background: #f0edfa; border-color: rgba(127,120,184,.25); }
+    body.theme-lancaster .gallery-tile:focus-visible { outline-color: #f49495; }
+    body.theme-lancaster .gallery-ph { color: #7f78b8; }
+    .gallery-link-off { display: none !important; }
+    .lb-btn { display: flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(255,255,255,.12); color: #fff; transition: background-color .2s ease; }
+    .lb-btn:hover { background: rgba(255,255,255,.25); }
+    .lb-btn:focus-visible { outline: 2px solid #f39200; outline-offset: 2px; }
+    body.theme-lancaster .lb-btn:focus-visible { outline-color: #f49495; }
+    @media (prefers-reduced-motion: reduce) { .gallery-tile, .gallery-tile img, #lightbox { transition: none; } }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -639,6 +661,7 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
           <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu & Flavours</a>
+          <a href="#gallery" class="js-gallery-link hidden lg:inline text-white/90 hover:text-brand-orange transition-colors">Gallery</a>
           <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Hours &amp; Locations</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
         </nav>
@@ -661,6 +684,7 @@
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden md:hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
       <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu & Flavours</a>
+      <a href="#gallery" class="js-gallery-link mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Gallery</a>
       <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Hours &amp; Locations</a>
       <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Information</a>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center px-3 py-2.5 rounded-full text-base font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark"><i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Get Directions</a>
@@ -721,10 +745,10 @@
             </div>
           </div>
 
-          <!-- Hero Graphic swapped dynamically via Tublanc.jpg / tub.jpg -->
+          <!-- Hero Graphic swapped dynamically via Tublanc.png / tub.png -->
           <div class="lg:col-span-5 flex justify-center items-center">
             <div class="relative w-full max-w-md aspect-square flex items-center justify-center p-6">
-              <img id="hero-tub-img" src="tub.jpg" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs" style="opacity:0;transition:opacity .25s ease" />
+              <img id="hero-tub-img" src="tub.png" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs" style="opacity:0;transition:opacity .25s ease" />
             </div>
           </div>
 
@@ -882,6 +906,16 @@
     </section>
 
 
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery" class="scroll-mt-28 pt-0 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="gallery-title">
+      <div class="text-center mb-10 lg:mb-14">
+        <h2 id="gallery-title" class="text-3xl sm:text-4xl font-serif text-brand-text">Gallery</h2>
+        <p id="gallery-subtitle" class="hero-subtitle mt-2 text-sm sm:text-base text-brand-muted transition-colors duration-400"></p>
+      </div>
+      <!-- Photos are rendered here from GALLERY_PHOTOS (see script) -->
+      <ul id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"></ul>
+    </section>
+
     <!-- ================= LOCATIONS & HOURS ================= -->
     <section id="locations" class="locations-section py-16 sm:py-24 bg-brand-brown-light/30 border-t border-brand-brown/10 transition-colors duration-400">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -959,6 +993,20 @@
 
 
   <!-- ================= FOOTER ================= -->
+  <!-- ================= GALLERY LIGHTBOX ================= -->
+  <div id="lightbox" class="hidden fixed inset-0 z-[70] flex items-center justify-center bg-black/90 opacity-0 transition-opacity duration-200" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button id="lb-close" type="button" class="lb-btn absolute top-3 right-3 sm:top-5 sm:right-5" aria-label="Close photo viewer"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <button id="lb-prev" type="button" class="lb-btn absolute left-2 sm:left-5 top-1/2 -translate-y-1/2" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+    <button id="lb-next" type="button" class="lb-btn absolute right-2 sm:right-5 top-1/2 -translate-y-1/2" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
+    <figure class="flex flex-col items-center px-14 sm:px-20 max-w-full">
+      <img id="lb-img" src="" alt="" class="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl">
+      <figcaption class="mt-4 text-center text-sm text-white/85">
+        <span id="lb-caption"></span>
+        <span id="lb-count" class="block mt-1 text-xs text-white/55"></span>
+      </figcaption>
+    </figure>
+  </div>
+
   <footer class="bg-brand-text text-white py-12 border-t border-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -1045,6 +1093,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       setupMobileMenu();
       renderFlavours('morecambe');
+      renderGallery('morecambe');
     });
 
     function setupMobileMenu() {
@@ -1064,6 +1113,160 @@
         });
       }
     }
+
+    // ===== Gallery =====
+    // Replace the src / alt text for each photo with your own.
+    // Put the image files in a "gallery" folder next to index.html (WebP or JPG, around 800px wide).
+    // To show a different number of photos, add or remove lines. An empty list hides the gallery for that shop.
+    const GALLERY_PHOTOS = {
+      morecambe: [
+        { src: 'gallery/morecambe-1.jpg', alt: '' },
+        { src: 'gallery/morecambe-2.jpg', alt: '' },
+        { src: 'gallery/morecambe-3.jpg', alt: 'Raspberry ripple & mint choc chip' },
+        { src: 'gallery/morecambe-4.jpg', alt: 'Award winning coffee from Exchange Coffee Company' },
+        { src: 'gallery/morecambe-5.jpg', alt: 'Strawberry sorbet' },
+        { src: 'gallery/morecambe-6.jpg', alt: 'Cherry & amaretti biscuit' },
+        { src: 'gallery/morecambe-7.jpg', alt: 'Latte' },
+        { src: 'gallery/morecambe-8.jpg', alt: 'Indoor seating' }
+      ],
+      lancaster: [
+        { src: 'gallery/lancaster-1.jpg', alt: 'Lancaster photo 1 (describe this photo)' },
+        { src: 'gallery/lancaster-2.jpg', alt: 'Lancaster photo 2 (describe this photo)' },
+        { src: 'gallery/lancaster-3.jpg', alt: 'Lancaster photo 3 (describe this photo)' },
+        { src: 'gallery/lancaster-4.jpg', alt: 'Lancaster photo 4 (describe this photo)' },
+        { src: 'gallery/lancaster-5.jpg', alt: 'Lancaster photo 5 (describe this photo)' },
+        { src: 'gallery/lancaster-6.jpg', alt: 'Lancaster photo 6 (describe this photo)' },
+        { src: 'gallery/lancaster-7.jpg', alt: 'Lancaster photo 7 (describe this photo)' },
+        { src: 'gallery/lancaster-8.jpg', alt: 'Lancaster photo 8 (describe this photo)' }
+      ]
+    };
+    const GALLERY_NAMES = { morecambe: 'Morecambe', lancaster: 'Lancaster' };
+    let galleryCurrent = [];
+    let galleryMissing = new Set();
+
+    function renderGallery(loc) {
+      const grid = document.getElementById('gallery-grid');
+      const section = document.getElementById('gallery');
+      if (!grid || !section) return;
+
+      const photos = GALLERY_PHOTOS[loc] || [];
+      const missing = new Set();
+      galleryCurrent = photos;
+      galleryMissing = missing;
+
+      const hasPhotos = photos.length > 0;
+      section.classList.toggle('hidden', !hasPhotos);
+      document.querySelectorAll('.js-gallery-link').forEach(a => a.classList.toggle('gallery-link-off', !hasPhotos));
+
+      const sub = document.getElementById('gallery-subtitle');
+      if (sub) sub.textContent = `A look around our ${GALLERY_NAMES[loc] || ''} gelateria`;
+
+      grid.innerHTML = '';
+      photos.forEach((p, i) => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'gallery-tile';
+        btn.dataset.index = i;
+        btn.setAttribute('aria-label', p.alt ? `View larger: ${p.alt}` : `View larger photo ${i + 1}`);
+
+        const img = document.createElement('img');
+        img.src = p.src;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onerror = () => { btn.classList.add('is-missing'); btn.disabled = true; missing.add(i); };
+
+        const ph = document.createElement('span');
+        ph.className = 'gallery-ph';
+        ph.setAttribute('aria-hidden', 'true');
+        ph.innerHTML = '<i class="fa-regular fa-image"></i><span>Photo coming soon</span>';
+
+        btn.append(img, ph);
+        li.appendChild(btn);
+        grid.appendChild(li);
+      });
+    }
+
+    // Lightbox: click a photo to view it larger. Arrow keys / swipe to move, Esc to close.
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const grid = document.getElementById('gallery-grid');
+      if (!lb || !grid) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-caption');
+      const count = document.getElementById('lb-count');
+      const closeBtn = document.getElementById('lb-close');
+      const prevBtn = document.getElementById('lb-prev');
+      const nextBtn = document.getElementById('lb-next');
+      let idx = 0, lastFocus = null, touchX = null;
+
+      function show(i) {
+        const p = galleryCurrent[i];
+        if (!p) return;
+        idx = i;
+        img.onerror = () => { cap.textContent = 'Photo unavailable'; };
+        img.src = p.src;
+        img.alt = p.alt;
+        cap.textContent = p.alt;
+        count.textContent = `${i + 1} / ${galleryCurrent.length}`;
+      }
+
+      // Next photo in a direction, skipping any that failed to load
+      function step(dir) {
+        const n = galleryCurrent.length;
+        for (let k = 1; k <= n; k++) {
+          const j = (((idx + dir * k) % n) + n) % n;
+          if (!galleryMissing.has(j)) { show(j); return; }
+        }
+      }
+
+      function open(i) {
+        lastFocus = document.activeElement;
+        show(i);
+        lb.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => lb.classList.remove('opacity-0'));
+        closeBtn.focus();
+        document.addEventListener('keydown', onKey);
+      }
+
+      function close() {
+        lb.classList.add('opacity-0');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKey);
+        setTimeout(() => lb.classList.add('hidden'), 200);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      function onKey(e) {
+        if (e.key === 'Escape') { close(); return; }
+        if (e.key === 'ArrowLeft') { step(-1); return; }
+        if (e.key === 'ArrowRight') { step(1); return; }
+        if (e.key === 'Tab') { // keep focus inside the viewer
+          const items = [closeBtn, prevBtn, nextBtn];
+          const first = items[0], last = items[items.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
+
+      grid.addEventListener('click', e => {
+        const b = e.target.closest('.gallery-tile');
+        if (b && !b.disabled) open(Number(b.dataset.index));
+      });
+      closeBtn.addEventListener('click', close);
+      prevBtn.addEventListener('click', () => step(-1));
+      nextBtn.addEventListener('click', () => step(1));
+      lb.addEventListener('click', e => { if (e.target === lb) close(); });
+      lb.addEventListener('touchstart', e => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', e => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) > 50) step(dx > 0 ? -1 : 1);
+      });
+    })();
 
     function renderFlavours(loc) {
       const gelatoContainer = document.getElementById('gelato-flavours-list');
@@ -1106,6 +1309,14 @@
       const token = ++heroTubToken; // only the most recent request may update the image
       const show = () => { img.style.opacity = '1'; };
       const fallback = () => { img.src = src; img.classList.add('mix-blend-multiply'); show(); };
+      // A PNG already has a transparent background, so skip the background knock-out below
+      if (/\.png$/i.test(src)) {
+        img.classList.remove('mix-blend-multiply');
+        img.onload = show;
+        img.src = src;
+        if (img.complete) show();
+        return;
+      }
       const orig = new Image();
       orig.onload = () => {
         if (token !== heroTubToken) return;
@@ -1148,7 +1359,7 @@
       orig.src = src;
     }
     document.addEventListener('DOMContentLoaded', () => {
-      setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.jpg' : 'tub.jpg');
+      setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.png' : 'tub.png');
     });
 
     // Points every "Get Directions" link at the selected shop
@@ -1201,12 +1412,13 @@
       const footerLogoContainer = document.getElementById('footer-logo-container');
 
       renderFlavours(loc);
+      renderGallery(loc);
 
       if (loc === 'lancaster') {
         document.body.classList.add('theme-lancaster');
 
         // Swap hero image and top-left logo for Lancaster with blended background container
-        setHeroTub('Tublanc.jpg');
+        setHeroTub('Tublanc.png');
         if (brandLogoImg) { brandLogoImg.src = 'miolanc.jpg'; brandLogoImg.alt = 'miogelato Lancaster'; }
         if (footerLogoImg) { footerLogoImg.src = 'miolanc.jpg'; footerLogoImg.alt = 'miogelato Lancaster'; }
         if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-[#faf7fd] rounded-2xl px-4 py-2 border border-[#f49495]/30 shadow-sm transition-colors duration-300"; }
@@ -1227,7 +1439,7 @@
         document.body.classList.remove('theme-lancaster');
 
         // Swap hero image and logos back for Morecambe with cream background container
-        setHeroTub('tub.jpg');
+        setHeroTub('tub.png');
         if (brandLogoImg) { brandLogoImg.src = 'miomore.jpg'; brandLogoImg.alt = 'miogelato Morecambe'; }
         if (footerLogoImg) { footerLogoImg.src = 'miomore.jpg'; footerLogoImg.alt = 'miogelato Morecambe'; }
         if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300"; }
