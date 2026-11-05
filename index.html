@@ -275,15 +275,15 @@
     @media (max-width: 767px) {
       .js [data-collapsible] .collapse-head { position: relative; cursor: pointer; padding-right: 3rem; -webkit-tap-highlight-color: transparent; }
       .js [data-collapsible] .collapse-head:focus-visible { outline: 2px solid #f39200; outline-offset: 4px; border-radius: 1rem; }
-      body.theme-lancaster .js [data-collapsible] .collapse-head:focus-visible { outline-color: #f49495; }
+      .js body.theme-lancaster [data-collapsible] .collapse-head:focus-visible { outline-color: #f49495; }
       .js [data-collapsible] .collapse-body { display: none; }
       .js [data-collapsible].open .collapse-body { display: block; }
       .js [data-collapsible]:not(.open) .collapse-head { margin-bottom: 0; }
       .js [data-collapsible] .collapse-chevron { display: flex; position: absolute; right: 0; top: .5rem; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(243,146,0,.15); color: #b35f00; transition: transform .25s ease; }
-      body.theme-lancaster .js [data-collapsible] .collapse-chevron { background: rgba(244,148,149,.2); color: #f49495; }
+      .js body.theme-lancaster [data-collapsible] .collapse-chevron { background: rgba(244,148,149,.2); color: #f49495; }
       .js [data-collapsible].open .collapse-chevron { transform: rotate(180deg); }
       .js [data-collapsible].price-card .collapse-chevron { background: rgba(255,255,255,.12); color: #f39200; }
-      body.theme-lancaster .js [data-collapsible].price-card .collapse-chevron { color: #f49495; }
+      .js body.theme-lancaster [data-collapsible].price-card .collapse-chevron { color: #f49495; }
     }
     /* Menu styling */
     .flavour { padding: .6rem 0; border-bottom: 1px dashed rgba(87,74,61,.18); font-size: 1rem; transition: border-color 0.4s ease; }
@@ -633,16 +633,19 @@
     body.theme-lancaster .menu-quick-link i { color: var(--lanc-green-deep); }
     body.theme-lancaster .card-surface { border-color: rgba(63,125,102,.22); }
     body.theme-lancaster .card-icon-purple { background-color: var(--lanc-green-tint); color: var(--lanc-green-deep); }
+    /* Lancaster on mobile only: drinks icons pink to match the other two cards */
+    @media (max-width: 767px) {
+      body.theme-lancaster .card-icon-purple { background-color: #fdeaea; color: #f49495; }
+    }
     body.theme-lancaster .drinks-info-box { background-color: rgba(220,235,227,.85); border-color: rgba(63,125,102,.3); }
     body.theme-lancaster .drinks-info-box i { color: var(--lanc-green-deep); }
     body.theme-lancaster .flavour { border-bottom-color: rgba(63,125,102,.2); }
-    body.theme-lancaster .js [data-collapsible] .collapse-chevron { background: rgba(149,190,171,.35); color: var(--lanc-green-deep); }
-    body.theme-lancaster .js [data-collapsible].price-card .collapse-chevron { background: rgba(255,255,255,.15); color: #ffffff; }
+    .js body.theme-lancaster [data-collapsible] .collapse-chevron { background: rgba(149,190,171,.35); color: var(--lanc-green-deep); }
+    .js body.theme-lancaster [data-collapsible].price-card .collapse-chevron { background: rgba(255,255,255,.15); color: #ffffff; }
 
-    /* Mobile expand buttons: match each card's own icon colour */
-    body.theme-lancaster .js [data-collapsible]:has(.card-icon-pink) .collapse-chevron { background: #fdeaea; color: #e27b7c; }
-    body.theme-lancaster .js [data-collapsible]:has(.card-icon-purple) .collapse-chevron { background: var(--lanc-green-tint); color: var(--lanc-green-deep); }
-    body.theme-lancaster .js #locations [data-collapsible] .collapse-chevron { background: #f0edfa; color: #7f78b8; }
+    /* Mobile expand buttons: pink on all four menu cards (matches the pink icon chips) */
+    .js body.theme-lancaster #menu [data-collapsible] .collapse-chevron { background: #fdeaea; color: #f49495; }
+    .js body.theme-lancaster #locations [data-collapsible] .collapse-chevron { background: #f0edfa; color: #7f78b8; }
 
     /* Gallery */
     body.theme-lancaster .gallery-tile { background: var(--lanc-green-tint); border-color: rgba(63,125,102,.3); }
