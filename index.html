@@ -539,12 +539,6 @@
     }
   </style>
   <style>
-    /* Header pill is visible from 600px, so drop the duplicate inside the burger menu */
-    @media (min-width: 600px) {
-      #mobile-menu a.js-directions.mobile-link { display: none !important; }
-    }
-  </style>
-  <style>
     @media (max-width: 767px) {
       .gelato-prices { padding: .7rem .85rem !important; margin-bottom: .6rem !important; border-radius: .85rem !important; }
       .gelato-prices h4 { font-size: 1.05rem !important; }
@@ -666,6 +660,48 @@
     /* Locations & hours: the big green block */
     body.theme-lancaster .locations-section { background-color: rgba(149,190,171,.5); border-color: rgba(63,125,102,.25); }
   </style>
+  <style>
+    /* ===== HEADER LAYOUT =====
+       One script (fitHeader) measures the header and sets ONE of three states on <html>:
+         nav-full     all links + Get Directions in the header, no burger
+         nav-tight    same, with tighter spacing and slightly smaller link text
+         nav-compact  burger menu holds the links, Get Directions stays in the header
+         nav-nodir    burger menu holds everything (very narrow screens)
+       No Tailwind breakpoint classes are used for the header any more. */
+    header .h-20 > * { flex-shrink: 0; }
+    header nav a, header .dir-btn, #loc-toggle button { white-space: nowrap; }
+    #mobile-menu-btn { display: none; }
+    html.nav-compact #main-nav, html.nav-nodir #main-nav { display: none; }
+    html.nav-compact #mobile-menu-btn, html.nav-nodir #mobile-menu-btn { display: block; }
+    html.nav-nodir header .dir-btn { display: none !important; }
+    #mobile-menu a.js-directions.mobile-link { display: none !important; }
+    html.nav-nodir #mobile-menu a.js-directions.mobile-link { display: inline-flex !important; }
+    html.nav-full #mobile-menu, html.nav-tight #mobile-menu { display: none !important; }
+
+    /* Roomier spacing for the full nav, tighter spacing (nav-tight) before the burger ever appears */
+    header .max-w-7xl { padding-left: clamp(.75rem, 2vw, 2rem) !important; padding-right: clamp(.75rem, 2vw, 2rem) !important; }
+    header #main-nav { gap: 1.5rem !important; font-size: .95rem !important; }
+    header #main-nav > * { margin: 0 !important; }
+    html.nav-tight header #main-nav { gap: 1rem !important; font-size: .85rem !important; }
+    html.nav-tight header .dir-btn { padding: .25rem .6rem !important; }
+    html.nav-tight #loc-toggle button { padding: .2rem .55rem !important; }
+    /* Logo scales smoothly with the window (no stepped size jumps) and can never be squashed */
+    header #brand-logo-container { flex-shrink: 0; padding: .2rem clamp(.35rem, .9vw, .75rem) !important; }
+    header #brand-logo-img { height: clamp(1.6rem, .9rem + 2.6vw, 3rem) !important; width: auto !important; max-width: none; flex-shrink: 0; object-fit: contain; padding: 0 !important; }
+    /* Get Directions pill: same size as one half of the Morecambe/Lancaster toggle */
+    header .dir-btn { padding: .25rem .75rem !important; font-size: .85rem !important; font-weight: 600 !important; line-height: 1.35 !important; border-radius: 9999px; }
+    header .dir-btn i { font-size: .85rem !important; margin-right: .35rem !important; }
+    /* Burger dropdown follows the selected shop, matching the location toggle thumb (orange / pink) */
+    #mobile-menu { background: #f39200 !important; border-bottom-color: rgba(59,49,42,.2) !important; transition: background-color .3s; }
+    body.theme-lancaster #mobile-menu { background: #f49495 !important; }
+    #mobile-menu a.mobile-link { color: #3b312a !important; }
+    body.theme-lancaster #mobile-menu a.mobile-link { color: #2b2545 !important; }
+    #mobile-menu a.mobile-link:hover, #mobile-menu a.mobile-link:focus-visible { background: rgba(255,255,255,.35) !important; color: inherit !important; }
+    #mobile-menu a.js-directions.mobile-link { background: #3b312a !important; color: #fff !important; }
+    body.theme-lancaster #mobile-menu a.js-directions.mobile-link { background: #2b2545 !important; color: #fff !important; }
+    #mobile-menu a.js-directions.mobile-link:hover { background: #2a221c !important; color: #fff !important; }
+    body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { background: #1d1a33 !important; }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -723,21 +759,21 @@
         </div>
 
         <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
+        <nav id="main-nav" class="flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
           <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu & Flavours</a>
-          <a href="#gallery" class="js-gallery-link hidden lg:inline text-white/90 hover:text-brand-orange transition-colors">Gallery</a>
+          <a href="#gallery" class="js-gallery-link text-white/90 hover:text-brand-orange transition-colors">Gallery</a>
           <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Hours &amp; Locations</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
         </nav>
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Get Directions" class="js-directions dir-btn btn-primary hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Get Directions" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
             <i class="fa-solid fa-location-arrow mr-2 text-xs"></i><span class="dir-label">Get Directions</span>
           </a>
 
           <!-- Mobile menu toggle button -->
-          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none">
+          <button id="mobile-menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none">
             <i class="fa-solid fa-bars text-xl"></i>
           </button>
         </div>
@@ -746,7 +782,7 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+    <div id="mobile-menu" class="hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
       <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu & Flavours</a>
       <a href="#gallery" class="js-gallery-link mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Gallery</a>
       <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Hours &amp; Locations</a>
@@ -1168,11 +1204,13 @@
       if (btn && menu) {
         btn.addEventListener('click', () => {
           menu.classList.toggle('hidden');
+          btn.setAttribute('aria-expanded', String(!menu.classList.contains('hidden')));
         });
 
         links.forEach(l => {
           l.addEventListener('click', () => {
             menu.classList.add('hidden');
+            btn.setAttribute('aria-expanded', 'false');
           });
         });
       }
@@ -1612,6 +1650,53 @@
         if (saved) setTheme(saved);
         else open();
       });
+    })();
+  </script>
+  <script>
+    // Picks the header layout that fits the current width, so it never wraps or overlaps
+    (function () {
+      const root = document.documentElement;
+      const MODES = ['nav-full', 'nav-tight', 'nav-compact', 'nav-nodir'];
+      let last = '', queued = false;
+      function closeMenu() {
+        document.getElementById('mobile-menu')?.classList.add('hidden');
+        document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
+      }
+      function fits(row) {
+        const kids = Array.from(row.children).filter(k => k.getClientRects().length);
+        const need = kids.reduce((w, k) => w + k.getBoundingClientRect().width, 0) + 12 * (kids.length - 1);
+        return need <= row.clientWidth;
+      }
+      function fitHeader() {
+        queued = false;
+        const row = document.querySelector('header .h-20');
+        if (!row) return;
+        let chosen = MODES[MODES.length - 1];
+        for (const mode of MODES) {
+          root.classList.remove(...MODES);
+          root.classList.add(mode);
+          if (fits(row)) { chosen = mode; break; }
+        }
+        root.classList.remove(...MODES);
+        root.classList.add(chosen);
+        if (chosen !== last) {
+          last = chosen;
+          if (chosen === 'nav-full' || chosen === 'nav-tight') closeMenu();
+        }
+      }
+      function queue() { if (!queued) { queued = true; requestAnimationFrame(fitHeader); } }
+      window.fitHeader = queue;
+      window.addEventListener('resize', queue);
+      window.addEventListener('load', queue);
+      document.addEventListener('DOMContentLoaded', () => {
+        fitHeader();
+        if (window.ResizeObserver) {
+          const ro = new ResizeObserver(queue);
+          ['brand-logo-img', 'loc-toggle'].forEach(id => { const el = document.getElementById(id); if (el) ro.observe(el); });
+          const row = document.querySelector('header .h-20'); if (row) ro.observe(row);
+        }
+      });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue);
     })();
   </script>
 </body>
