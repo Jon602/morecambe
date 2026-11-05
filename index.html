@@ -1099,13 +1099,16 @@
     /* Knocks the flat cream/white background out of the tub JPG so it becomes a real
        transparent image. This replaces mix-blend-multiply, which flickers between
        "seamless" and "visible square" when the browser re-composites layers. */
+    let heroTubToken = 0;
     function setHeroTub(src) {
       const img = document.getElementById('hero-tub-img');
       if (!img) return;
+      const token = ++heroTubToken; // only the most recent request may update the image
       const show = () => { img.style.opacity = '1'; };
       const fallback = () => { img.src = src; img.classList.add('mix-blend-multiply'); show(); };
       const orig = new Image();
       orig.onload = () => {
+        if (token !== heroTubToken) return;
         try {
           const c = document.createElement('canvas');
           c.width = orig.naturalWidth; c.height = orig.naturalHeight;
@@ -1172,7 +1175,20 @@
       if (lBtn) { lBtn.classList.toggle('text-white', isLanc); lBtn.classList.toggle('text-white/70', !isLanc); lBtn.setAttribute('aria-pressed', String(isLanc)); }
     }
 
+    // Remembered shop choice (wrapped in try/catch: storage can be blocked, e.g. private browsing)
+    const SHOP_KEY = 'miogelato-shop';
+    function getSavedShop() {
+      try {
+        const v = localStorage.getItem(SHOP_KEY);
+        return (v === 'morecambe' || v === 'lancaster') ? v : null;
+      } catch (e) { return null; }
+    }
+    function saveShop(loc) {
+      try { localStorage.setItem(SHOP_KEY, loc); } catch (e) {}
+    }
+
     function setTheme(loc) {
+      saveShop(loc);
       const morecambeBtn = document.getElementById('loc-morecambe-btn');
       const lancasterBtn = document.getElementById('loc-lancaster-btn');
       const heroLabel = document.getElementById('location-hero-label');
@@ -1273,7 +1289,7 @@
       });
     })();
 
-    // ===== Shop picker pop-up (shown on every page load) =====
+    // ===== Shop picker pop-up (first visit only; choice is remembered) =====
     (function () {
       const picker = document.getElementById('shop-picker');
       const panel = document.getElementById('shop-picker-panel');
@@ -1314,7 +1330,12 @@
         close();
       };
 
-      document.addEventListener('DOMContentLoaded', open);
+      // Returning visitors go straight to their shop; first-time visitors get the pop-up
+      document.addEventListener('DOMContentLoaded', () => {
+        const saved = getSavedShop();
+        if (saved) setTheme(saved);
+        else open();
+      });
     })();
   </script>
 </body>
