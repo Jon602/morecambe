@@ -47,6 +47,14 @@
     /* Zilla Slab runs small, so scale the root size up (all rem sizes follow) */
     html { font-size: 18px; }
 
+    /* Tailwind small-text sizes bumped: Zilla Slab has a small x-height */
+    .text-xs { font-size: .85rem !important; line-height: 1.35 !important; }
+    .text-sm { font-size: .95rem !important; line-height: 1.45 !important; }
+    @media (max-width: 767px) {
+      .text-xs { font-size: .9rem !important; }
+      .text-sm { font-size: 1rem !important; }
+    }
+
     /* Baseline standard transitions */
     body {
       font-family: 'Zilla Slab', serif;
@@ -301,7 +309,7 @@
     body.theme-lancaster .price-dark b { color: #f49495; }
     .price-light b { color: #b35f00; font-weight: 600; transition: color 0.4s ease; }
     body.theme-lancaster .price-light b { color: #7f78b8; }
-    .price-light small { display: block; flex-basis: 100%; font-size: .75rem; color: #7a6c5d; font-style: italic; margin-top: .1rem; transition: color 0.4s ease; }
+    .price-light small { display: block; flex-basis: 100%; font-size: .9rem; color: #7a6c5d; font-style: italic; margin-top: .1rem; transition: color 0.4s ease; }
     body.theme-lancaster .price-light small { color: #5c547a; }
     .pudding { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: 1rem 1.1rem; border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); transition: all 0.4s ease; }
     .pudding b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
@@ -335,12 +343,12 @@
       header .max-w-7xl { padding-left: .75rem; padding-right: .75rem; }
       #brand-logo-container { padding: .15rem .4rem !important; border-radius: .75rem !important; }
       #brand-logo-img { height: 1.5rem !important; padding: 0 !important; }
-      #loc-toggle button { padding: .2rem .6rem !important; font-size: .7rem !important; }
+      #loc-toggle button { padding: .2rem .6rem !important; font-size: .85rem !important; }
       #mobile-menu-btn { padding: .35rem .5rem !important; }
       #mobile-menu-btn i { font-size: 1.05rem !important; }
       #mobile-menu { padding: .25rem .75rem .75rem !important; }
       #mobile-menu > * { margin-top: .2rem !important; }
-      #mobile-menu .mobile-link { padding: .4rem .75rem !important; font-size: .9rem !important; }
+      #mobile-menu .mobile-link { padding: .4rem .75rem !important; font-size: 1rem !important; }
 
       main { padding-top: 3rem !important; }
       .scroll-mt-32 { scroll-margin-top: 3.5rem !important; }
@@ -350,15 +358,15 @@
       .hero-section .grid { gap: .5rem !important; }
       .hero-section .space-y-6 > * + * { margin-top: .6rem !important; }
       .hero-section .hero-tag { padding: .3rem .7rem !important; }
-      .hero-section .hero-tag-text { font-size: .62rem !important; letter-spacing: .03em !important; }
+      .hero-section .hero-tag-text { font-size: .85rem !important; letter-spacing: .03em !important; }
       .hero-section h1 { font-size: 1.65rem !important; line-height: 1.15 !important; }
-      .hero-section .hero-subtitle { font-size: .85rem !important; line-height: 1.4 !important; }
+      .hero-section .hero-subtitle { font-size: .95rem !important; line-height: 1.4 !important; }
       .hero-section .pt-4 { padding-top: .25rem !important; }
-      .hero-section .pt-4 > a { padding: .55rem 1rem !important; font-size: .85rem !important; }
+      .hero-section .pt-4 > a { padding: .55rem 1rem !important; font-size: .95rem !important; }
       .hero-section .pt-4.space-y-3 > * + * { margin-top: .4rem !important; }
       .hero-section .stats-border { padding-top: .6rem !important; gap: .5rem !important; }
       .hero-section .stat-num-1 { font-size: 1rem !important; }
-      .hero-section .stat-label { font-size: .62rem !important; line-height: 1.2 !important; }
+      .hero-section .stat-label { font-size: .85rem !important; line-height: 1.2 !important; }
       .hero-section .aspect-square { aspect-ratio: auto !important; padding: 0 !important; max-width: 10rem !important; }
       .hero-section #hero-tub-img { max-width: 10rem !important; }
       .hero-blob-1, .hero-blob-2 { width: 10rem !important; height: 10rem !important; }
@@ -367,7 +375,7 @@
       #menu { padding-bottom: 1.5rem !important; padding-left: .75rem !important; padding-right: .75rem !important; }
       #menu > .text-center { margin-bottom: .75rem !important; }
       #menu h2 { font-size: 1.4rem !important; }
-      #menu .mt-6.flex { margin-top: .5rem !important; gap: .35rem !important; font-size: .75rem !important; }
+      #menu .mt-6.flex { margin-top: .5rem !important; gap: .35rem !important; font-size: .9rem !important; }
       .menu-quick-link { padding: .3rem .7rem !important; }
       .menu-quick-link i { margin-right: .25rem !important; }
 
@@ -385,17 +393,17 @@
       #menu .collapse-head .flex.items-center { gap: .5rem !important; }
       #menu .collapse-head h3 { font-size: 1.1rem !important; line-height: 1.2 !important; }
       #menu .collapse-head .p-3 { padding: .45rem !important; border-radius: .75rem !important; }
-      #menu .collapse-head .p-3 i { font-size: .9rem !important; }
-      #menu .collapse-head > p { font-size: .75rem !important; }
+      #menu .collapse-head .p-3 i { font-size: 1rem !important; }
+      #menu .collapse-head > p { font-size: .9rem !important; }
       #menu [data-collapsible] .collapse-chevron { width: 1.6rem !important; height: 1.6rem !important; top: 50% !important; margin-top: -.8rem !important; }
-      #menu [data-collapsible] .collapse-chevron i { font-size: .65rem !important; }
+      #menu [data-collapsible] .collapse-chevron i { font-size: .85rem !important; }
 
       /* flavour lists: two compact columns */
       #gelato-flavours-list, #vegan-flavours-list {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         column-gap: .75rem !important;
       }
-      .flavour { padding: .3rem 0 !important; font-size: .85rem !important; line-height: 1.25 !important; }
+      .flavour { padding: .3rem 0 !important; font-size: .95rem !important; line-height: 1.25 !important; }
       .flavour::before { width: .35rem !important; height: .35rem !important; margin-right: .45rem !important; }
 
       /* vegan + guest boxes */
@@ -405,25 +413,25 @@
       #menu .bg-green-50 h4, .guest-box h4 { font-size: 1rem !important; }
       #menu .bg-green-50 .mb-3 { margin-bottom: .2rem !important; }
       .guest-box { padding: .6rem .75rem !important; gap: .6rem !important; border-radius: .85rem !important; }
-      .guest-box p { font-size: .75rem !important; margin-top: 0 !important; }
+      .guest-box p { font-size: .9rem !important; margin-top: 0 !important; }
 
       /* scoops & prices card */
-      .price-card p.inline-flex { margin-bottom: .6rem !important; padding: .25rem .7rem !important; font-size: .75rem !important; }
+      .price-card p.inline-flex { margin-bottom: .6rem !important; padding: .25rem .7rem !important; font-size: .9rem !important; }
       .price-card .space-y-3 > * + * { margin-top: .35rem !important; }
       .price-card .my-6 { margin: .6rem 0 !important; }
       .price-card .pt-8 { padding-top: .6rem !important; }
-      .price-dark { font-size: .9rem !important; }
+      .price-dark { font-size: 1rem !important; }
 
       /* light price lists (drinks) */
-      .price-light { padding: .28rem 0 !important; font-size: .9rem !important; }
-      .price-light small { font-size: .68rem !important; }
+      .price-light { padding: .28rem 0 !important; font-size: 1rem !important; }
+      .price-light small { font-size: .85rem !important; }
 
       /* puddings */
       #puddings .grid { gap: .4rem !important; }
-      .pudding { padding: .5rem .75rem !important; border-radius: .75rem !important; font-size: .85rem !important; }
+      .pudding { padding: .5rem .75rem !important; border-radius: .75rem !important; font-size: .95rem !important; }
 
       /* drinks info box */
-      .drinks-info-box { margin-top: .6rem !important; padding: .5rem .75rem !important; font-size: .75rem !important; border-radius: .75rem !important; }
+      .drinks-info-box { margin-top: .6rem !important; padding: .5rem .75rem !important; font-size: .9rem !important; border-radius: .75rem !important; }
 
       /* ---------- Locations ---------- */
       .locations-section { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
@@ -437,8 +445,8 @@
       #loc-card-morecambe .pt-4, #loc-card-lancaster .pt-4 { padding-top: .5rem !important; }
       #loc-card-morecambe .space-y-2 > * + *, #loc-card-lancaster .space-y-2 > * + * { margin-top: .2rem !important; }
       #loc-card-morecambe .mt-6, #loc-card-lancaster .mt-6 { margin-top: .6rem !important; }
-      #loc-card-morecambe .text-sm, #loc-card-lancaster .text-sm { font-size: .8rem !important; }
-      .menu-open-badge { font-size: .7rem; }
+      #loc-card-morecambe .text-sm, #loc-card-lancaster .text-sm { font-size: .95rem !important; }
+      .menu-open-badge { font-size: .85rem; }
 
       /* ---------- Footer ---------- */
       footer { padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
@@ -451,7 +459,7 @@
       footer .pt-8 { padding-top: .75rem !important; }
       #footer-logo-container { padding: .2rem .6rem !important; border-radius: .75rem !important; }
       #footer-logo-img { height: 1.9rem !important; }
-      footer .text-xs { font-size: .7rem !important; }
+      footer .text-xs { font-size: .85rem !important; }
 
       /* ---------- Shop picker pop-up ---------- */
       #shop-picker { padding: .75rem !important; }
@@ -459,12 +467,12 @@
       #shop-picker-panel .mb-5 { margin-bottom: .6rem !important; }
       #shop-picker-panel img { height: 2.25rem !important; }
       #shop-picker-title { font-size: 1.2rem !important; }
-      #shop-picker-panel > p { font-size: .8rem !important; margin-top: .25rem !important; }
+      #shop-picker-panel > p { font-size: .95rem !important; margin-top: .25rem !important; }
       #shop-picker-panel .mt-6 { margin-top: .75rem !important; gap: .5rem !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
       .shop-choice { padding: .75rem .4rem .65rem !important; border-radius: 1rem !important; gap: .15rem !important; }
       .shop-choice-icon { width: 2.4rem !important; height: 2.4rem !important; font-size: 1.05rem !important; border-radius: .7rem !important; margin-bottom: .1rem !important; }
       .shop-choice .text-2xl { font-size: 1.1rem !important; }
-      .shop-choice .text-sm { font-size: .7rem !important; line-height: 1.2 !important; }
+      .shop-choice .text-sm { font-size: .85rem !important; line-height: 1.2 !important; }
       #shop-picker-panel .mt-5 { margin-top: .6rem !important; }
 
       /* ---------- Toast ---------- */
@@ -482,9 +490,9 @@
       #brand-logo-container { padding: .2rem .5rem !important; }
       #brand-logo-img { height: 2rem !important; }
 
-      #loc-toggle button { padding: .25rem .7rem !important; font-size: .72rem !important; }
+      #loc-toggle button { padding: .25rem .7rem !important; font-size: .85rem !important; }
 
-      header nav { gap: 1rem !important; font-size: .8rem !important; white-space: nowrap; }
+      header nav { gap: 1rem !important; font-size: .95rem !important; white-space: nowrap; }
       header nav > a { margin-left: 0 !important; }
       header nav.space-x-6 > * + * { margin-left: 0 !important; }
 
@@ -497,19 +505,19 @@
   <style>
     /* Get Directions: slim pill from 600px up to 1023px (hidden below 600, it lives in the burger menu) */
     @media (min-width: 600px) and (max-width: 1023px) {
-      .dir-btn { display: inline-flex !important; padding: .3rem .8rem !important; font-size: .75rem !important; line-height: 1.2 !important; border-radius: 9999px; white-space: nowrap; }
-      .dir-btn i { margin-right: .35rem !important; font-size: .7rem !important; }
+      .dir-btn { display: inline-flex !important; padding: .3rem .8rem !important; font-size: .9rem !important; line-height: 1.2 !important; border-radius: 9999px; white-space: nowrap; }
+      .dir-btn i { margin-right: .35rem !important; font-size: .85rem !important; }
     }
   </style>
   <style>
     /* Location toggle: smaller size from 840px and below */
     @media (max-width: 840px) {
-      #loc-toggle button { padding: .2rem .6rem !important; font-size: .7rem !important; }
+      #loc-toggle button { padding: .2rem .6rem !important; font-size: .85rem !important; }
     }
   </style>
   <style>
     /* Burger menu: Get Directions is a normal-sized pill, not full width */
-    #mobile-menu a.js-directions { display: inline-flex !important; width: auto !important; padding: .22rem .55rem !important; font-size: .85rem !important; margin-top: .5rem !important; }
+    #mobile-menu a.js-directions { display: inline-flex !important; width: auto !important; padding: .22rem .55rem !important; font-size: .95rem !important; margin-top: .5rem !important; }
   </style>
   <style>
     /* Location cards: collapsible on phones, headed "Morecambe Shop" / "Lancaster Shop" + Open 7 Days badge */
@@ -520,14 +528,14 @@
       #locations [data-collapsible] .collapse-head { margin-bottom: .6rem !important; padding-right: 2.25rem !important; align-items: center !important; }
       #locations [data-collapsible]:not(.open) .collapse-head { margin-bottom: 0 !important; }
       #locations [data-collapsible] .collapse-chevron { width: 1.6rem !important; height: 1.6rem !important; top: 50% !important; margin-top: -.8rem !important; }
-      #locations [data-collapsible] .collapse-chevron i { font-size: .65rem !important; }
+      #locations [data-collapsible] .collapse-chevron i { font-size: .85rem !important; }
       #locations .loc-hours { margin-bottom: .6rem !important; }
       #locations [data-collapsible] .collapse-body { margin-top: 0; }
     }
   </style>
   <style>
     @media (max-width: 767px) {
-      #puddings .pudding-note { font-size: .8rem !important; margin-bottom: .6rem !important; }
+      #puddings .pudding-note { font-size: .95rem !important; margin-bottom: .6rem !important; }
     }
   </style>
   <style>
@@ -539,7 +547,7 @@
   <style>
     @media (max-width: 767px) {
       .gelato-prices { padding: .7rem .85rem !important; margin-bottom: .6rem !important; border-radius: .85rem !important; }
-      .gelato-prices h4 { font-size: .95rem !important; }
+      .gelato-prices h4 { font-size: 1.05rem !important; }
       .gelato-prices .space-y-2 > * + * { margin-top: .3rem !important; }
       .gelato-prices > .grid { row-gap: .3rem !important; }
     }
@@ -557,7 +565,7 @@
     body.theme-lancaster .extra-m { display: none; }
     body.theme-lancaster .extra-l { display: block; }
     @media (max-width: 767px) {
-      .gelato-prices .extra-note { margin-top: .5rem !important; padding-top: .5rem !important; font-size: .75rem !important; }
+      .gelato-prices .extra-note { margin-top: .5rem !important; padding-top: .5rem !important; font-size: .9rem !important; }
     }
   </style>
   <style>
@@ -566,15 +574,15 @@
       #menu .flavour { font-size: 1rem !important; padding: .35rem 0 !important; }
       #menu .price-dark { font-size: 1rem !important; }
       #menu .price-light { font-size: 1rem !important; padding: .32rem 0 !important; }
-      #menu .price-light small { font-size: .78rem !important; }
-      #menu .pudding { font-size: .95rem !important; padding: .55rem .8rem !important; }
-      #puddings .pudding-note { font-size: .9rem !important; }
-      #menu .guest-box p { font-size: .85rem !important; }
+      #menu .price-light small { font-size: .9rem !important; }
+      #menu .pudding { font-size: 1.05rem !important; padding: .55rem .8rem !important; }
+      #puddings .pudding-note { font-size: 1rem !important; }
+      #menu .guest-box p { font-size: .95rem !important; }
       #menu .guest-box h4, #menu .bg-green-50 h4, .gelato-flavours-heading { font-size: 1.1rem !important; }
-      .gelato-prices .extra-note { font-size: .85rem !important; }
-      #menu .drinks-info-box { font-size: .85rem !important; }
-      #locations .loc-body, #locations .collapse-body { font-size: .95rem !important; }
-      #loc-card-morecambe .text-sm, #loc-card-lancaster .text-sm { font-size: .9rem !important; }
+      .gelato-prices .extra-note { font-size: .95rem !important; }
+      #menu .drinks-info-box { font-size: .95rem !important; }
+      #locations .loc-body, #locations .collapse-body { font-size: 1.05rem !important; }
+      #loc-card-morecambe .text-sm, #loc-card-lancaster .text-sm { font-size: 1rem !important; }
     }
   </style>
   <style>
@@ -591,7 +599,7 @@
     .gallery-tile:hover { box-shadow: 0 12px 24px -14px rgba(59,49,42,.55); }
     .gallery-tile:hover img { transform: scale(1.05); }
     .gallery-tile:focus-visible { outline: 2px solid #f39200; outline-offset: 3px; }
-    .gallery-ph { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; font-size: .8rem; color: #b35f00; }
+    .gallery-ph { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; font-size: .95rem; color: #b35f00; }
     .gallery-ph i { font-size: 1.4rem; opacity: .7; }
     .gallery-tile.is-missing { cursor: default; }
     .gallery-tile.is-missing img { display: none; }
