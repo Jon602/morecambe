@@ -676,7 +676,7 @@
     html.nav-nodir header .dir-btn { display: none !important; }
     #mobile-menu a.js-directions.mobile-link { display: none !important; }
     html.nav-nodir #mobile-menu a.js-directions.mobile-link { display: inline-flex !important; }
-    html.nav-full #mobile-menu, html.nav-tight #mobile-menu { display: none !important; }
+    html.nav-full #mobile-menu, html.nav-tight #mobile-menu, html.nav-tighter #mobile-menu { display: none !important; }
 
     /* Roomier spacing for the full nav, tighter spacing (nav-tight) before the burger ever appears */
     header .max-w-7xl { padding-left: clamp(.75rem, 2vw, 2rem) !important; padding-right: clamp(.75rem, 2vw, 2rem) !important; }
@@ -685,6 +685,15 @@
     html.nav-tight header #main-nav { gap: 1rem !important; font-size: .85rem !important; }
     html.nav-tight header .dir-btn { padding: .25rem .6rem !important; }
     html.nav-tight #loc-toggle button { padding: .2rem .55rem !important; }
+
+    /* nav-tighter: last step before the burger. Same look and layout, everything just a touch smaller (fits down to ~1000px) */
+    html.nav-tighter header .max-w-7xl { padding-left: .6rem !important; padding-right: .6rem !important; }
+    html.nav-tighter header #main-nav { gap: .7rem !important; font-size: .78rem !important; }
+    html.nav-tighter header .dir-btn { padding: .2rem .5rem !important; font-size: .78rem !important; }
+    html.nav-tighter header .dir-btn i { font-size: .75rem !important; margin-right: .25rem !important; }
+    html.nav-tighter #loc-toggle button { padding: .18rem .45rem !important; font-size: .78rem !important; }
+    html.nav-tighter header #brand-logo-container { padding: .15rem .3rem !important; }
+    html.nav-tighter header #brand-logo-img { height: 1.9rem !important; }
     /* Logo scales smoothly with the window (no stepped size jumps) and can never be squashed */
     header #brand-logo-container { flex-shrink: 0; padding: .2rem clamp(.35rem, .9vw, .75rem) !important; }
     header #brand-logo-img { height: clamp(1.6rem, .9rem + 2.6vw, 3rem) !important; width: auto !important; max-width: none; flex-shrink: 0; object-fit: contain; padding: 0 !important; }
@@ -701,6 +710,28 @@
     body.theme-lancaster #mobile-menu a.js-directions.mobile-link { background: #2b2545 !important; color: #fff !important; }
     #mobile-menu a.js-directions.mobile-link:hover { background: #2a221c !important; color: #fff !important; }
     body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { background: #1d1a33 !important; }
+  </style>
+  <style>
+    /* ===== Faint black & white background image =====
+       Put your image next to index.html as bg-texture.jpg (or change the URL below).
+       --bg-image-opacity: 0.04 = barely there, 0.10 = clearly visible. */
+    :root { --bg-image-opacity: 0.16; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: url('bg-texture.jpg') 62% 50% / cover no-repeat;
+      filter: grayscale(1);
+      opacity: var(--bg-image-opacity);
+    }
+  </style>
+  <style>
+    /* Hero used to fade into a solid cream/lilac colour at its bottom edge, which hid the background image
+       and left a hard line where it met the Menu section. Now it fades to transparent so the image runs through. */
+    body .hero-section { background: linear-gradient(to bottom, rgba(246,233,208,.4), transparent) !important; }
+    body.theme-lancaster .hero-section { background: linear-gradient(to bottom, rgba(149,190,171,.45), transparent) !important; }
   </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
@@ -1656,7 +1687,7 @@
     // Picks the header layout that fits the current width, so it never wraps or overlaps
     (function () {
       const root = document.documentElement;
-      const MODES = ['nav-full', 'nav-tight', 'nav-compact', 'nav-nodir'];
+      const MODES = ['nav-full', 'nav-tight', 'nav-tighter', 'nav-compact', 'nav-nodir'];
       let last = '', queued = false;
       function closeMenu() {
         document.getElementById('mobile-menu')?.classList.add('hidden');
@@ -1681,7 +1712,7 @@
         root.classList.add(chosen);
         if (chosen !== last) {
           last = chosen;
-          if (chosen === 'nav-full' || chosen === 'nav-tight') closeMenu();
+          if (chosen === 'nav-full' || chosen === 'nav-tight' || chosen === 'nav-tighter') closeMenu();
         }
       }
       function queue() { if (!queued) { queued = true; requestAnimationFrame(fitHeader); } }
