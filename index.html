@@ -315,17 +315,27 @@
     .pudding b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
   </style>
   <style>
-    /* Shop picker pop-up */
+    /* Shop picker pop-up: both boxes share one style (light fill, coloured border, coloured text, round icon).
+       Morecambe takes its colours from the miogelato logo; Lancaster from the tub graphic + mint green. */
     .shop-choice {
-      display: flex; flex-direction: column; align-items: center; text-align: center; gap: .35rem;
-      width: 100%; padding: 1.5rem 1rem 1.25rem; border-radius: 1.5rem;
-      background: #ffffff; border: 2px solid transparent; box-shadow: 0 1px 3px rgba(59,49,42,.12);
-      cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      display: flex; align-items: center; justify-content: center; gap: 1rem; width: 100%; text-align: center;
+      padding: 1.1rem 1.25rem; border-radius: 1.5rem; border: 3px solid;
+      box-shadow: 0 4px 12px rgba(59,49,42,.12); cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .shop-choice:hover, .shop-choice:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(59,49,42,.16); outline: none; }
-    .shop-choice-m:hover, .shop-choice-m:focus-visible { border-color: #f39200; }
-    .shop-choice-l:hover, .shop-choice-l:focus-visible { border-color: #f49495; }
-    .shop-choice-icon { width: 3.5rem; height: 3.5rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: .35rem; }
+    .shop-choice:hover, .shop-choice:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(59,49,42,.2); outline: none; }
+    #shop-picker-panel:focus { outline: none; }
+    .shop-choice-m:focus-visible { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #f18f13; }
+    .shop-choice-l:focus-visible { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #7f71b1; }
+    .shop-choice-icon { flex: none; height: 3.5rem; width: auto; display: block; }
+    .shop-choice-name { flex: none; font-size: 2rem; font-weight: 500; line-height: 1.1; }
+
+    /* Morecambe: logo orange, brown and yellow-orange */
+    .shop-choice-m { background: #fff6e4; border-color: #f18f13; color: #574839; }
+
+    /* Lancaster: mint green, purple and pink */
+    .shop-choice-l { background: #edfdf1; border-color: #7f71b1; color: #7f71b1; }
+
     @media (prefers-reduced-motion: reduce) { .shop-choice, #shop-picker, #shop-picker-panel { transition: none; } }
   </style>
   <style>
@@ -466,13 +476,11 @@
       #shop-picker-panel { padding: 1rem !important; border-radius: 1.25rem !important; }
       #shop-picker-panel .mb-5 { margin-bottom: .6rem !important; }
       #shop-picker-panel img { height: 2.25rem !important; }
-      #shop-picker-title { font-size: 1.2rem !important; }
-      #shop-picker-panel > p { font-size: .95rem !important; margin-top: .25rem !important; }
-      #shop-picker-panel .mt-6 { margin-top: .75rem !important; gap: .5rem !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-      .shop-choice { padding: .75rem .4rem .65rem !important; border-radius: 1rem !important; gap: .15rem !important; }
-      .shop-choice-icon { width: 2.4rem !important; height: 2.4rem !important; font-size: 1.05rem !important; border-radius: .7rem !important; margin-bottom: .1rem !important; }
-      .shop-choice .text-2xl { font-size: 1.1rem !important; }
-      .shop-choice .text-sm { font-size: .85rem !important; line-height: 1.2 !important; }
+      #shop-picker-title { font-size: 1.4rem !important; }
+      #shop-picker-panel .mt-6 { margin-top: .75rem !important; gap: .6rem !important; }
+      .shop-choice { padding: .7rem .9rem !important; border-radius: 1rem !important; gap: .75rem !important; }
+      .shop-choice-icon { height: 2.5rem !important; width: auto !important; }
+      .shop-choice-name { font-size: 1.4rem !important; }
       #shop-picker-panel .mt-5 { margin-top: .6rem !important; }
 
       /* ---------- Toast ---------- */
@@ -738,32 +746,27 @@
 
   <!-- ================= SHOP PICKER POP-UP ================= -->
   <div id="shop-picker" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 bg-brand-brown-dark/70 backdrop-blur-sm opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="shop-picker-title">
-    <div id="shop-picker-panel" class="w-full max-w-lg max-h-full overflow-y-auto rounded-3xl bg-brand-bg shadow-2xl p-6 sm:p-8 text-center scale-95 transition-transform duration-300">
+    <div id="shop-picker-panel" tabindex="-1" class="w-full max-w-md max-h-full overflow-y-auto rounded-3xl bg-brand-bg shadow-2xl p-6 sm:p-8 text-center scale-95 transition-transform duration-300">
 
       <div class="inline-block bg-brand-cream rounded-2xl px-3 py-1.5 mb-5">
         <img src="miomore.jpg" alt="miogelato" class="block h-12 sm:h-16 w-auto px-1 py-0.5">
       </div>
 
-      <h2 id="shop-picker-title" class="text-2xl sm:text-3xl font-serif text-brand-text">Which shop are you visiting?</h2>
-      <p class="mt-2 text-sm sm:text-base text-brand-muted font-light">Choose your gelateria to see its flavours, menu and opening hours.</p>
+      <h2 id="shop-picker-title" class="text-3xl sm:text-4xl font-serif font-medium text-brand-text">Select</h2>
 
-      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="mt-6 flex flex-col gap-3">
         <button type="button" id="shop-picker-first" onclick="chooseShop('morecambe')" class="shop-choice shop-choice-m">
-          <span class="shop-choice-icon" style="background:#fdf0d8;color:#f39200"><i class="fa-solid fa-umbrella-beach"></i></span>
-          <span class="font-serif text-2xl text-brand-text">Morecambe</span>
-          <span class="text-sm text-brand-muted">272 Marine Road Central</span>
-          <span class="mt-1 text-sm font-semibold" style="color:#b35f00">View Morecambe <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></span>
+          <img class="shop-choice-icon" src="smalltub.png" alt="" aria-hidden="true">
+          <span class="shop-choice-name">Morecambe</span>
         </button>
 
         <button type="button" onclick="chooseShop('lancaster')" class="shop-choice shop-choice-l">
-          <span class="shop-choice-icon" style="background:#f0edfa;color:#7f78b8"><i class="fa-solid fa-chess-rook"></i></span>
-          <span class="font-serif text-2xl text-brand-text">Lancaster</span>
-          <span class="text-sm text-brand-muted">26 New Street</span>
-          <span class="mt-1 text-sm font-semibold" style="color:#7f78b8">View Lancaster <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></span>
+          <img class="shop-choice-icon" src="smallcone.png" alt="" aria-hidden="true">
+          <span class="shop-choice-name">Lancaster</span>
         </button>
       </div>
 
-      <button type="button" onclick="chooseShop('morecambe')" class="mt-5 text-xs text-brand-muted hover:text-brand-text underline underline-offset-2 transition-colors">Skip for now</button>
+      <button type="button" onclick="chooseShop('morecambe')" class="mt-5 text-sm text-brand-muted hover:text-brand-text underline underline-offset-2 transition-colors">Skip for now</button>
     </div>
   </div>
 
@@ -1646,8 +1649,7 @@
         requestAnimationFrame(() => {
           picker.classList.remove('opacity-0');
           panel.classList.remove('scale-95');
-          const first = document.getElementById('shop-picker-first');
-          if (first) first.focus();
+          panel.focus({ preventScroll: true }); // focus the pop-up itself so no button shows a focus ring until Tab is pressed
         });
         document.addEventListener('keydown', onKey);
       }
@@ -1678,7 +1680,8 @@
       // Returning visitors go straight to their shop; first-time visitors get the pop-up
       document.addEventListener('DOMContentLoaded', () => {
         const saved = getSavedShop();
-        if (saved) setTheme(saved);
+        const forced = /[?&]picker\b/.test(location.search); // add ?picker to the URL to preview the pop-up
+        if (saved && !forced) setTheme(saved);
         else open();
       });
     })();
