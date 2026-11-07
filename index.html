@@ -659,6 +659,11 @@
       .hero-section .pt-4.flex { flex-wrap: wrap; gap: .75rem !important; align-items: stretch !important; }
       .hero-section .pt-4.flex > a { margin: 0 !important; width: auto !important; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 3.25rem; padding: .75rem 1.6rem !important; }
     }
+    /* Landscape iPad / narrow laptop (text column ~480-600px): all three side by side on one row */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      .hero-section .pt-4.flex { flex-wrap: nowrap; gap: .5rem !important; }
+      .hero-section .pt-4.flex > a { flex: 0 1 auto; min-width: 0; padding: .75rem .95rem !important; min-height: 3rem; }
+    }
   </style>
   <style>
     /* Smaller gallery thumbnails: four per row at every width, grid capped and centred */
