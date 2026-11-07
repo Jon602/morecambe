@@ -641,6 +641,10 @@
     body.theme-lancaster .stats-border { border-color: rgba(63,125,102,.25); }
     body.theme-lancaster .stat-num-2 { color: var(--lanc-green-deep); }
 
+    /* Location cards: street names share one colour per toggle (orange on Morecambe, purple on Lancaster) */
+    body:not(.theme-lancaster) #locations .loc-street { color: #b35f00; }
+    body.theme-lancaster #locations .loc-street { color: #7f78b8; }
+
     /* Menu */
     body.theme-lancaster .menu-quick-link { border-color: rgba(63,125,102,.35); }
     body.theme-lancaster .menu-quick-link:hover { background-color: var(--lanc-green-tint); }
