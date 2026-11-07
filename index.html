@@ -640,6 +640,27 @@
     }
   </style>
   <style>
+    /* Desktop / iPad landscape (1024px+): Hot Puddings sits in the left column, under Scoops & Prices */
+    #gelato #puddings { margin-top: 0 !important; }
+    @media (min-width: 1024px) {
+      #gelato { grid-template-rows: auto 1fr; }
+      #gelato > .price-card { grid-column: 1 / span 4 !important; grid-row: 1 !important; }
+      #gelato > #puddings { grid-column: 1 / span 4 !important; grid-row: 2 !important; padding: .85rem 1.1rem !important; }
+      #gelato > [data-collapsible]:first-child { grid-column: 5 / span 8 !important; grid-row: 1 / span 2 !important; }
+      #puddings > .flex.items-center { margin-bottom: .25rem !important; }
+      #puddings .pudding-note { margin-bottom: .5rem !important; }
+      #puddings .grid { gap: .4rem !important; }
+      #puddings .pudding { padding: .4rem .8rem !important; }
+    }
+  </style>
+  <style>
+    /* iPad (9.7"-11") and small laptops: hero buttons stay on one line, same height, evenly spaced */
+    @media (min-width: 768px) and (max-width: 1279px) {
+      .hero-section .pt-4.flex { flex-wrap: wrap; gap: .75rem !important; align-items: stretch !important; }
+      .hero-section .pt-4.flex > a { margin: 0 !important; width: auto !important; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 3.25rem; padding: .75rem 1.6rem !important; }
+    }
+  </style>
+  <style>
     /* Smaller gallery thumbnails: four per row at every width, grid capped and centred */
     #gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: .5rem !important; max-width: 40rem; margin-left: auto; margin-right: auto; }
     #gallery > .text-center { margin-bottom: 1.25rem !important; }
@@ -1039,20 +1060,20 @@
           <p class="extra-note extra-m pt-3 border-t border-white/15 text-sm text-white/85">Pistachio is <b>£1 extra</b></p>
           <p class="extra-note extra-l pt-3 border-t border-white/15 text-sm text-white/85">Pistachio, Vegan Oreo &amp; Vegan Biscoff are <b>£1 extra</b></p>
         </div>
-      </div>
 
-      <!-- ===== PUDDINGS ===== -->
-      <div data-collapsible id="puddings" class="card-surface scroll-mt-32 mt-6 lg:mt-8 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-cookie-bite text-xl"></i></div>
-          <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Puddings</h3>
-        </div>
-        <p class="pudding-note hero-subtitle text-sm text-brand-muted italic mb-6 transition-colors duration-400">with a scoop of your favourite gelato</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="pudding pudding-card"><span>Apple Crumble</span><b>£7.00</b></div>
-          <div class="pudding pudding-card"><span>Vegan Apple Crumble <i class="fa-solid fa-leaf text-green-700 text-xs ml-1" title="Vegan"></i></span><b>£7.00</b></div>
-          <div class="pudding pudding-card"><span>Gluten Free Sticky Toffee Pudding</span><b>£7.00</b></div>
-          <div class="pudding pudding-card"><span>Cherry Bakewell</span><b>£7.00</b></div>
+        <!-- ===== PUDDINGS ===== -->
+        <div data-collapsible id="puddings" class="card-surface scroll-mt-32 mt-6 lg:mt-8 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-cookie-bite text-xl"></i></div>
+            <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Puddings</h3>
+          </div>
+          <p class="pudding-note hero-subtitle text-sm text-brand-muted italic mb-6 transition-colors duration-400">with a scoop of your favourite gelato</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            <div class="pudding pudding-card"><span>Apple Crumble</span><b>£7.00</b></div>
+            <div class="pudding pudding-card"><span>Vegan Apple Crumble <i class="fa-solid fa-leaf text-green-700 text-xs ml-1" title="Vegan"></i></span><b>£7.00</b></div>
+            <div class="pudding pudding-card"><span>Gluten Free Sticky Toffee Pudding</span><b>£7.00</b></div>
+            <div class="pudding pudding-card"><span>Cherry Bakewell</span><b>£7.00</b></div>
+          </div>
         </div>
       </div>
 
