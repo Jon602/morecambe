@@ -595,6 +595,62 @@
     }
   </style>
   <style>
+    /* Tablet + desktop: condensed menu cards (tighter padding, gaps and row spacing; font sizes unchanged) */
+    @media (min-width: 768px) {
+      #menu { padding-bottom: 3rem !important; }
+      #menu > .text-center { margin-bottom: 1.25rem !important; }
+      #menu .mt-6.flex { margin-top: .75rem !important; }
+
+      /* gaps between cards */
+      #gelato { gap: 1rem !important; }
+      #puddings { margin-top: 1rem !important; }
+      #menu .mt-6.grid { margin-top: 1rem !important; gap: 1rem !important; }
+
+      /* cards */
+      #menu [data-collapsible] { padding: 1rem 1.4rem !important; border-radius: 1.25rem !important; }
+      #menu [data-collapsible] > .flex.items-center { margin-bottom: .6rem !important; }
+      #menu [data-collapsible] .card-icon-pink,
+      #menu [data-collapsible] .card-icon-purple { padding: .5rem !important; border-radius: .85rem !important; }
+      #puddings .pudding-note { margin-bottom: .6rem !important; }
+
+      /* flavour lists */
+      .flavour { padding: .3rem 0 !important; }
+      #menu #gelato-flavours-list, #menu #vegan-flavours-list { column-gap: 2rem !important; }
+
+      /* vegan + guest boxes */
+      #menu .mt-8 { margin-top: .9rem !important; }
+      #menu .bg-green-50 { padding: .7rem 1rem !important; border-radius: 1rem !important; }
+      #menu .bg-green-50 .mb-3 { margin-bottom: .25rem !important; }
+      .guest-box { margin-top: .75rem !important; padding: .7rem 1rem !important; border-radius: 1rem !important; }
+
+      /* scoops & prices */
+      .price-card { padding: 1rem 1.4rem !important; border-radius: 1.25rem !important; gap: .5rem !important; }
+      .price-card .space-y-3 > * + * { margin-top: .35rem !important; }
+      .gelato-prices { margin-bottom: .75rem !important; padding: .7rem 1rem !important; border-radius: 1rem !important; }
+      .gelato-prices .space-y-2 > * + * { margin-top: .2rem !important; }
+      .gelato-prices .extra-note { margin-top: .5rem !important; padding-top: .5rem !important; }
+
+      /* drinks */
+      .price-light { padding: .28rem 0 !important; }
+      .drinks-info-box { margin-top: .75rem !important; padding: .55rem 1rem !important; border-radius: 1rem !important; }
+
+      /* puddings */
+      #puddings .grid { gap: .6rem !important; }
+      .pudding { padding: .55rem .9rem !important; border-radius: .85rem !important; }
+    }
+  </style>
+  <style>
+    /* Smaller gallery thumbnails: four per row at every width, grid capped and centred */
+    #gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: .5rem !important; max-width: 40rem; margin-left: auto; margin-right: auto; }
+    #gallery > .text-center { margin-bottom: 1.25rem !important; }
+    #gallery { padding-bottom: 3rem !important; }
+    .gallery-tile { border-radius: .85rem !important; }
+    @media (max-width: 767px) {
+      #gallery-grid { gap: .4rem !important; }
+      .gallery-tile { border-radius: .6rem !important; }
+    }
+  </style>
+  <style>
     /* ===== Gallery ===== */
     .gallery-tile { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; padding: 0; border-radius: 1.25rem; background: #f6e9d0; border: 1px solid rgba(87,74,61,.12); cursor: pointer; transition: box-shadow .25s ease, background-color .4s ease, border-color .4s ease; }
     .gallery-tile img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
