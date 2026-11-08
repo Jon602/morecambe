@@ -115,7 +115,7 @@
       background: #3b312a;
     }
 
-    /* ================= LANCASTER PALETTE (EXTRACTED FROM MIOGELATO LOGO) ================= -->
+    /* ================= LANCASTER PALETTE (EXTRACTED FROM MIOGELATO LOGO) ================= */
     /* Purple: #7f78b8, Coral Pink: #f49495, Dark Purple: #3d375e, Dark Purple Nav: #362e52 */
     body.theme-lancaster {
       background-color: #faf7fd;
@@ -356,9 +356,7 @@
       #loc-toggle button { padding: .2rem .6rem !important; font-size: .85rem !important; }
       #mobile-menu-btn { padding: .35rem .5rem !important; }
       #mobile-menu-btn i { font-size: 1.05rem !important; }
-      #mobile-menu { padding: .25rem .75rem .75rem !important; }
-      #mobile-menu > * { margin-top: .2rem !important; }
-      #mobile-menu .mobile-link { padding: .4rem .75rem !important; font-size: 1rem !important; }
+      #mobile-menu { padding: .75rem !important; }
 
       main { padding-top: 3rem !important; }
       .scroll-mt-32 { scroll-margin-top: 3.5rem !important; }
@@ -371,9 +369,8 @@
       .hero-section .hero-tag-text { font-size: .85rem !important; letter-spacing: .03em !important; }
       .hero-section h1 { font-size: 1.65rem !important; line-height: 1.15 !important; }
       .hero-section .hero-subtitle { font-size: .95rem !important; line-height: 1.4 !important; }
-      .hero-section .pt-4 { padding-top: .25rem !important; }
-      .hero-section .pt-4 > a { padding: .55rem 1rem !important; font-size: .95rem !important; }
-      .hero-section .pt-4.space-y-3 > * + * { margin-top: .4rem !important; }
+      .hero-section .hero-cta-buttons { padding-top: .25rem !important; }
+      .hero-section .hero-cta-buttons > a { padding: .45rem .75rem !important; font-size: .85rem !important; width: auto !important; flex: 1 1 auto; text-align: center; }
       .hero-section .stats-border { padding-top: .6rem !important; gap: .5rem !important; }
       .hero-section .stat-num-1 { font-size: 1rem !important; }
       .hero-section .stat-label { font-size: .85rem !important; line-height: 1.2 !important; }
@@ -654,15 +651,28 @@
     }
   </style>
   <style>
-    /* iPad (9.7"-11") and small laptops: hero buttons stay on one line, same height, evenly spaced */
-    @media (min-width: 768px) and (max-width: 1279px) {
-      .hero-section .pt-4.flex { flex-wrap: wrap; gap: .75rem !important; align-items: stretch !important; }
-      .hero-section .pt-4.flex > a { margin: 0 !important; width: auto !important; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 3.25rem; padding: .75rem 1.6rem !important; }
+    /* Hero buttons side-by-side positioning & responsive layout */
+    .hero-cta-buttons {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
     }
-    /* Landscape iPad / narrow laptop (text column ~480-600px): all three side by side on one row */
-    @media (min-width: 1024px) and (max-width: 1279px) {
-      .hero-section .pt-4.flex { flex-wrap: nowrap; gap: .5rem !important; }
-      .hero-section .pt-4.flex > a { flex: 0 1 auto; min-width: 0; padding: .75rem .95rem !important; min-height: 3rem; }
+    .hero-cta-buttons > a {
+      flex: 1 1 auto;
+      text-align: center;
+      white-space: nowrap;
+    }
+    @media (min-width: 1024px) {
+      .hero-cta-buttons {
+        justify-content: flex-start;
+        gap: 1rem;
+      }
+      .hero-cta-buttons > a {
+        flex: 0 1 auto;
+      }
     }
   </style>
   <style>
@@ -797,16 +807,71 @@
     /* Directions pill: same size as one half of the Morecambe/Lancaster toggle */
     header .dir-btn { padding: .25rem .75rem !important; font-size: .85rem !important; font-weight: 600 !important; line-height: 1.35 !important; border-radius: 9999px; }
     header .dir-btn i { font-size: .85rem !important; margin-right: .35rem !important; }
-    /* Burger dropdown follows the selected shop, matching the location toggle thumb (orange / pink) */
-    #mobile-menu { background: #f39200 !important; border-bottom-color: rgba(59,49,42,.2) !important; transition: background-color .3s; }
-    body.theme-lancaster #mobile-menu { background: #f49495 !important; }
-    #mobile-menu a.mobile-link { color: #3b312a !important; }
-    body.theme-lancaster #mobile-menu a.mobile-link { color: #2b2545 !important; }
-    #mobile-menu a.mobile-link:hover, #mobile-menu a.mobile-link:focus-visible { background: rgba(255,255,255,.35) !important; color: inherit !important; }
-    #mobile-menu a.js-directions.mobile-link { background: #3b312a !important; color: #fff !important; }
-    body.theme-lancaster #mobile-menu a.js-directions.mobile-link { background: #2b2545 !important; color: #fff !important; }
-    #mobile-menu a.js-directions.mobile-link:hover { background: #2a221c !important; color: #fff !important; }
-    body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { background: #1d1a33 !important; }
+    
+    /* ===== REDESIGNED CARD-STYLE MOBILE BURGER MENU ===== */
+    #mobile-menu-container {
+      position: absolute;
+      top: 100%;
+      left: 1rem;
+      right: 1rem;
+      max-width: 28rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 0.5rem;
+    }
+    #mobile-menu { 
+      background: #fdf0d8 !important; 
+      border: 1px solid rgba(243,146,0,.25) !important;
+      border-radius: 1.25rem !important;
+      box-shadow: 0 10px 25px -5px rgba(59, 49, 42, 0.25), 0 8px 10px -6px rgba(59, 49, 42, 0.2) !important;
+      padding: 1.25rem 1.5rem !important; 
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    body.theme-lancaster #mobile-menu { 
+      background: #fdeaea !important; 
+      border-color: rgba(244,148,149,.3) !important; 
+    }
+    #mobile-menu a.mobile-link { 
+      color: #b35f00 !important; 
+      font-weight: 600 !important;
+      padding: 0.6rem 0.8rem !important;
+      border-radius: 0.75rem !important;
+      background: rgba(255, 255, 255, 0.5);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    body.theme-lancaster #mobile-menu a.mobile-link { 
+      color: #d66b6c !important; 
+    }
+    #mobile-menu a.mobile-link:hover, #mobile-menu a.mobile-link:focus-visible { 
+      background: rgba(255, 255, 255, 0.9) !important; 
+      color: #3b312a !important; 
+    }
+    body.theme-lancaster #mobile-menu a.mobile-link:hover, body.theme-lancaster #mobile-menu a.mobile-link:focus-visible {
+      color: #2b2545 !important;
+    }
+    #mobile-menu a.js-directions.mobile-link { 
+      background: #f39200 !important; 
+      color: #3b312a !important; 
+      font-weight: 600 !important;
+      border-radius: 9999px !important;
+      padding: 0.75rem 1rem !important;
+      margin-top: 0.5rem;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    body.theme-lancaster #mobile-menu a.js-directions.mobile-link { 
+      background: #f49495 !important; 
+      color: #ffffff !important; 
+    }
+    #mobile-menu a.js-directions.mobile-link:hover { 
+      background: #d97f00 !important; 
+      color: #ffffff !important; 
+    }
+    body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { 
+      background: #e27b7c !important; 
+    }
   </style>
   <style>
     /* ===== Faint black & white background image =====
@@ -970,7 +1035,7 @@
   <!-- ================= HEADER & NAVIGATION ================= -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-brand-orange/15 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 sm:h-24">
+      <div class="flex items-center justify-between h-20 sm:h-24 relative">
         
         <!-- LOGO CONTAINER -->
         <a id="brand-logo-container" href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300" aria-label="miogelato home">
@@ -1005,16 +1070,18 @@
           </button>
         </div>
 
-      </div>
-    </div>
+        <!-- Mobile Dropdown Menu Card Wrapper -->
+        <div id="mobile-menu-container" class="hidden">
+          <div id="mobile-menu">
+            <a href="#menu" class="mobile-link block text-base font-medium">Menu</a>
+            <a href="#locations" class="mobile-link block text-base font-medium">Opening hours</a>
+            <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block text-base font-medium">Allergy Info</a>
+            <a href="#gallery" class="js-gallery-link mobile-link block text-base font-medium">Gallery</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center text-base font-medium"><i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Directions</a>
+          </div>
+        </div>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
-      <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu</a>
-      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Opening hours</a>
-      <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Info</a>
-      <a href="#gallery" class="js-gallery-link mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Gallery</a>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center px-3 py-2.5 rounded-full text-base font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark"><i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Directions</a>
+      </div>
     </div>
   </header>
 
@@ -1044,14 +1111,15 @@
               Hand-made beside the seaside with local milk, slow-churned artisan techniques, and hand-selected natural ingredients.
             </p>
 
-            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
-              <a href="#locations" class="menu-open-badge w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-center whitespace-nowrap bg-brand-brown-light text-brand-brown hover:opacity-80 transition-all duration-400">
+            <!-- SIDE BY SIDE HERO BUTTONS -->
+            <div class="pt-4 hero-cta-buttons">
+              <a href="#locations" class="menu-open-badge inline-flex items-center justify-center gap-1.5 px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full font-medium text-xs sm:text-base text-center whitespace-nowrap bg-brand-brown-light text-brand-brown hover:opacity-80 transition-all duration-400">
                 <i class="fa-regular fa-clock"></i>Open 7 Days
               </a>
-              <a href="#menu" class="btn-primary w-full sm:w-auto px-8 py-4 rounded-full text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-md hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:-translate-y-0.5">
+              <a href="#menu" class="btn-primary inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-base text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-md hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:-translate-y-0.5 whitespace-nowrap">
                 Explore Flavours
               </a>
-              <a href="#locations" class="btn-secondary w-full sm:w-auto px-8 py-4 rounded-full text-brand-brown bg-white hover:bg-brand-brown-light border border-brand-brown/20 transition-all duration-300 font-medium text-center">
+              <a href="#locations" class="btn-secondary inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-base text-brand-brown bg-white hover:bg-brand-brown-light border border-brand-brown/20 transition-all duration-300 font-medium text-center whitespace-nowrap">
                 Visit Our Shops
               </a>
             </div>
@@ -1103,7 +1171,7 @@
       <div id="gelato" class="scroll-mt-32 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
         <!-- Flavours -->
-        <div data-collapsible class="card-surface lg:col-span-8 lg:order-2 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+        <div data-collapsible data-default-open="true" class="card-surface lg:col-span-8 lg:order-2 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
           <div class="flex items-center gap-3 mb-6">
             <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-ice-cream text-xl"></i></div>
             <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Handmade Gelato</h3>
@@ -1425,20 +1493,29 @@
 
     function setupMobileMenu() {
       const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
+      const menuContainer = document.getElementById('mobile-menu-container');
       const links = document.querySelectorAll('.mobile-link');
 
-      if (btn && menu) {
-        btn.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
-          btn.setAttribute('aria-expanded', String(!menu.classList.contains('hidden')));
+      if (btn && menuContainer) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          menuContainer.classList.toggle('hidden');
+          btn.setAttribute('aria-expanded', String(!menuContainer.classList.contains('hidden')));
         });
 
         links.forEach(l => {
           l.addEventListener('click', () => {
-            menu.classList.add('hidden');
+            menuContainer.classList.add('hidden');
             btn.setAttribute('aria-expanded', 'false');
           });
+        });
+
+        // Click outside to close
+        document.addEventListener('click', (e) => {
+          if (!menuContainer.contains(e.target) && !btn.contains(e.target)) {
+            menuContainer.classList.add('hidden');
+            btn.setAttribute('aria-expanded', 'false');
+          }
         });
       }
     }
@@ -1785,7 +1862,7 @@
       }
     }
 
-    // Collapsible menu cards on mobile (collapsed on load)
+    // Collapsible menu cards on mobile
     (function () {
       const cards = document.querySelectorAll('[data-collapsible]');
       const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
@@ -1804,12 +1881,17 @@
         head.appendChild(chev);
         head.setAttribute('role', 'button');
         head.setAttribute('tabindex', '0');
-        head.setAttribute('aria-expanded', 'false');
+        
         const set = open => {
           card.classList.toggle('open', open);
           head.setAttribute('aria-expanded', String(open));
         };
         card._set = set;
+
+        // Set initial collapse state based on data-default-open attribute
+        const defaultOpen = card.getAttribute('data-default-open') === 'true';
+        set(defaultOpen);
+
         const toggle = () => { if (isMobile()) set(!card.classList.contains('open')); };
         head.addEventListener('click', toggle);
         head.addEventListener('keydown', e => {
@@ -1883,7 +1965,7 @@
       const MODES = ['nav-full', 'nav-tight', 'nav-tighter', 'nav-compact', 'nav-nodir'];
       let last = '', queued = false;
       function closeMenu() {
-        document.getElementById('mobile-menu')?.classList.add('hidden');
+        document.getElementById('mobile-menu-container')?.classList.add('hidden');
         document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
       }
       function fits(row) {
