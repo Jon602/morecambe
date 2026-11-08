@@ -1167,7 +1167,7 @@
       <div id="gelato" class="scroll-mt-32 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
         <!-- Flavours -->
-        <div data-collapsible class="card-surface lg:col-span-8 lg:order-2 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
+        <div data-collapsible data-start-open class="card-surface lg:col-span-8 lg:order-2 bg-brand-surface rounded-3xl border border-brand-brown/10 shadow-sm p-6 sm:p-8 transition-colors duration-400">
           <div class="flex items-center gap-3 mb-6">
             <div class="card-icon-pink p-3 rounded-2xl bg-brand-orange-light text-brand-orange-text transition-colors duration-400"><i class="fa-solid fa-ice-cream text-xl"></i></div>
             <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Handmade Gelato</h3>
@@ -1880,6 +1880,7 @@
           head.setAttribute('aria-expanded', String(open));
         };
         card._set = set;
+        if (card.hasAttribute('data-start-open')) set(true); // e.g. Handmade Gelato starts expanded
         const toggle = () => { if (isMobile()) set(!card.classList.contains('open')); };
         head.addEventListener('click', toggle);
         head.addEventListener('keydown', e => {
