@@ -511,7 +511,7 @@
     }
   </style>
   <style>
-    /* Get Directions: slim pill from 600px up to 1023px (hidden below 600, it lives in the burger menu) */
+    /* Directions: slim pill from 600px up to 1023px (hidden below 600, it lives in the burger menu) */
     @media (min-width: 600px) and (max-width: 1023px) {
       .dir-btn { display: inline-flex !important; padding: .3rem .8rem !important; font-size: .9rem !important; line-height: 1.2 !important; border-radius: 9999px; white-space: nowrap; }
       .dir-btn i { margin-right: .35rem !important; font-size: .85rem !important; }
@@ -524,7 +524,7 @@
     }
   </style>
   <style>
-    /* Burger menu: Get Directions is a normal-sized pill, not full width */
+    /* Burger menu: Directions is a normal-sized pill, not full width */
     #mobile-menu a.js-directions { display: inline-flex !important; width: auto !important; padding: .22rem .55rem !important; font-size: .95rem !important; margin-top: .5rem !important; }
   </style>
   <style>
@@ -760,9 +760,9 @@
   <style>
     /* ===== HEADER LAYOUT =====
        One script (fitHeader) measures the header and sets ONE of three states on <html>:
-         nav-full     all links + Get Directions in the header, no burger
+         nav-full     all links + Directions in the header, no burger
          nav-tight    same, with tighter spacing and slightly smaller link text
-         nav-compact  burger menu holds the links, Get Directions stays in the header
+         nav-compact  burger menu holds the links, Directions stays in the header
          nav-nodir    burger menu holds everything (very narrow screens)
        No Tailwind breakpoint classes are used for the header any more. */
     header .h-20 > * { flex-shrink: 0; }
@@ -794,7 +794,7 @@
     /* Logo scales smoothly with the window (no stepped size jumps) and can never be squashed */
     header #brand-logo-container { flex-shrink: 0; padding: .2rem clamp(.35rem, .9vw, .75rem) !important; }
     header #brand-logo-img { height: clamp(1.6rem, .9rem + 2.6vw, 3rem) !important; width: auto !important; max-width: none; flex-shrink: 0; object-fit: contain; padding: 0 !important; }
-    /* Get Directions pill: same size as one half of the Morecambe/Lancaster toggle */
+    /* Directions pill: same size as one half of the Morecambe/Lancaster toggle */
     header .dir-btn { padding: .25rem .75rem !important; font-size: .85rem !important; font-weight: 600 !important; line-height: 1.35 !important; border-radius: 9999px; }
     header .dir-btn i { font-size: .85rem !important; margin-right: .35rem !important; }
     /* Burger dropdown follows the selected shop, matching the location toggle thumb (orange / pink) */
@@ -830,6 +830,103 @@
     body .hero-section { background: linear-gradient(to bottom, rgba(246,233,208,.4), transparent) !important; }
     body.theme-lancaster .hero-section { background: linear-gradient(to bottom, rgba(149,190,171,.45), transparent) !important; }
   </style>
+  <style>
+    /* Header buttons: Directions + location switch are matching round icon buttons.
+       Orange with dark brown icon on Morecambe, pink with dark purple icon on Lancaster. */
+    html { --sw-size: 1.9rem; }
+    html.nav-tighter { --sw-size: 1.7rem; }
+    @media (max-width: 767px) { html { --sw-size: 1.7rem; } }
+
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn,
+    #loc-toggle.loc-switch {
+      display: inline-flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box;
+      width: var(--sw-size); height: var(--sw-size); padding: 0 !important;
+      border: 0 !important; border-radius: 50% !important; box-shadow: none !important; transform: none !important;
+      background: #f39200 !important; color: #3b312a !important; cursor: pointer;
+      transition: background-color .3s ease, color .3s ease; -webkit-tap-highlight-color: transparent;
+    }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn:hover,
+    #loc-toggle.loc-switch:hover { background: #d97f00 !important; }
+    body.theme-lancaster header a.dir-btn, body.theme-lancaster #loc-toggle.loc-switch { background: #f49495 !important; color: #3d375e !important; }
+    body.theme-lancaster header a.dir-btn:hover, body.theme-lancaster #loc-toggle.loc-switch:hover { background: #e27b7c !important; }
+    /* Space between the two buttons (and before the burger) */
+    #loc-toggle.loc-switch { margin-left: .9rem; }
+    @media (max-width: 767px) { #loc-toggle.loc-switch { margin-left: .7rem; } }
+
+    header a.dir-btn:focus-visible, #loc-toggle.loc-switch:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+    header a.dir-btn i { font-size: calc(var(--sw-size) * .42) !important; margin: 0 !important; color: inherit !important; }
+    #loc-toggle.loc-switch svg { width: 68%; height: 68%; transition: transform .4s ease; }
+    body.theme-lancaster #loc-toggle.loc-switch svg { transform: rotate(180deg); }
+    @media (prefers-reduced-motion: reduce) { #loc-toggle.loc-switch svg { transition: none; } }
+  </style>
+  <style>
+    /* Header colour: cream on Morecambe, sage green on Lancaster (text switches to dark so it stays readable) */
+    header.glass-nav { background: #fbf3e2 !important; border-bottom-color: rgba(87,74,61,.18) !important; }
+    body.theme-lancaster header.glass-nav { background: #a7cbb9 !important; border-bottom-color: rgba(63,125,102,.35) !important; }
+
+    header #main-nav a { color: #3b312a !important; }
+    header #main-nav a:hover, header #main-nav a:focus-visible { color: #b35f00 !important; text-decoration: underline; text-underline-offset: 4px; }
+    body.theme-lancaster header #main-nav a { color: #2b2545 !important; }
+    body.theme-lancaster header #main-nav a:hover, body.theme-lancaster header #main-nav a:focus-visible { color: #3d375e !important; }
+
+    header #mobile-menu-btn { color: #3b312a !important; }
+    header #mobile-menu-btn:hover { background: rgba(0,0,0,.08) !important; }
+    body.theme-lancaster header #mobile-menu-btn { color: #2b2545 !important; }
+
+    header a.dir-btn:focus-visible, #loc-toggle.loc-switch:focus-visible { outline-color: #3b312a; }
+    body.theme-lancaster header a.dir-btn:focus-visible, body.theme-lancaster #loc-toggle.loc-switch:focus-visible { outline-color: #3d375e; }
+  </style>
+  <style>
+    /* Logo: no box behind it (the logo files are transparent, so the header colour shows through) */
+    header #brand-logo-container { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
+
+    /* Header 25% slimmer (page content and anchor offsets moved up to match) */
+    @media (min-width: 1024px) {
+      header .h-20 { height: 4.5rem !important; }
+      main { padding-top: 4.5rem !important; }
+      .hero-section { padding-top: 6rem !important; }
+      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 5.5rem !important; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      header .h-20, header .sm\:h-24 { height: 3rem !important; }
+      main { padding-top: 3rem !important; }
+      .hero-section { padding-top: 3.75rem !important; }
+      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 4.25rem !important; }
+    }
+    @media (max-width: 767px) {
+      header .h-20, header .sm\:h-24 { height: 2.25rem !important; }
+      main { padding-top: 2.25rem !important; }
+      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 2.75rem !important; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Header text only: DM Sans (clean, modern, easy to read small). Rest of the site stays Zilla Slab. */
+    header #main-nav a, #mobile-menu a.mobile-link:not(.js-directions) { font-family: 'DM Sans', 'Zilla Slab', sans-serif !important; font-weight: 500 !important; letter-spacing: .005em; -webkit-font-smoothing: antialiased; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header #main-nav { font-size: 1rem !important; }
+    html.nav-tight header #main-nav { font-size: .92rem !important; }
+    html.nav-tighter header #main-nav { font-size: .84rem !important; letter-spacing: 0; }
+    html #mobile-menu a.mobile-link:not(.js-directions) { font-size: 1.05rem !important; }
+  </style>
+  <style>
+    /* Header alignment fixes */
+    /* 1. Logo has no box now, so drop its side padding/border: logo edge lines up with the page content and mirrors the buttons on the right */
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header #brand-logo-container { padding: .2rem 0 !important; border-width: 0 !important; }
+    /* 2. On desktop the header edges match the page content edges (2rem), except in the tightest mode */
+    @media (min-width: 1024px) {
+      html:is(.nav-full, .nav-tight) header .max-w-7xl { padding-left: 2rem !important; padding-right: 2rem !important; }
+    }
+    /* 3. Nav is centred on the page (not just between the logo and the buttons) */
+    header .h-20 { position: relative; }
+    html:is(.nav-full, .nav-tight, .nav-tighter) header #main-nav { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+  </style>
+  <style>
+    /* Picture of the header switch button, shown in the shop picker pop-up as a hint */
+    .shop-hint-btn { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: #f39200; color: #3b312a; box-shadow: 0 2px 6px rgba(59,49,42,.2); }
+    .shop-hint-btn svg { width: 68%; height: 68%; }
+    .shop-hint p { max-width: 15rem; margin: 0; }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -838,7 +935,7 @@
     <div id="shop-picker-panel" tabindex="-1" class="w-full max-w-md max-h-full overflow-y-auto rounded-3xl bg-brand-bg shadow-2xl p-6 sm:p-8 text-center scale-95 transition-transform duration-300">
 
       <div class="inline-block mb-5">
-        <img src="miomore.jpg" alt="miogelato" class="block h-12 sm:h-16 w-auto px-1 py-0.5">
+        <img src="miomore.png" alt="miogelato" class="block h-12 sm:h-16 w-auto px-1 py-0.5">
       </div>
 
       <h2 id="shop-picker-title" class="text-3xl sm:text-4xl font-serif font-medium text-brand-text">Select</h2>
@@ -855,6 +952,16 @@
         </button>
       </div>
 
+      <div class="shop-hint mt-5 flex items-center justify-center gap-3 text-left">
+        <span class="shop-hint-btn" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M54 6 L84 24 L54 42 L54 34 C30 32 14 40 8 54 C12 36 28 19 54 18 Z"/>
+            <path d="M54 6 L84 24 L54 42 L54 34 C30 32 14 40 8 54 C12 36 28 19 54 18 Z" transform="rotate(180 50 50)"/>
+          </svg>
+        </span>
+        <p class="text-sm text-brand-muted leading-snug">You can switch shop at any time using this button at the top of the page</p>
+      </div>
+
       <button type="button" onclick="chooseShop('morecambe')" class="mt-5 text-sm text-brand-muted hover:text-brand-text underline underline-offset-2 transition-colors">Skip for now</button>
     </div>
   </div>
@@ -867,33 +974,30 @@
         
         <!-- LOGO CONTAINER -->
         <a id="brand-logo-container" href="#" class="flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300" aria-label="miogelato home">
-          <img id="brand-logo-img" src="miomore.jpg" alt="miogelato Morecambe" class="block h-9 sm:h-12 w-auto px-1 py-0.5 transition-transform duration-300 group-hover:scale-105">
+          <img id="brand-logo-img" src="miomore.png" alt="miogelato Morecambe" class="block h-9 sm:h-12 w-auto px-1 py-0.5 transition-transform duration-300 group-hover:scale-105">
         </a>
-
-        <!-- LOCATION TOGGLE SLIDER AT TOP -->
-        <div id="loc-toggle" role="group" aria-label="Choose location" class="relative grid grid-cols-2 p-0.5 rounded-full bg-black/30 border border-white/20 shadow-inner">
-          <span id="loc-toggle-thumb" aria-hidden="true" class="absolute top-0.5 bottom-0.5 left-0.5 w-[calc(50%-0.125rem)] rounded-full shadow-md transition-all duration-300 ease-out" style="background-color:#f39200"></span>
-          <button id="loc-morecambe-btn" type="button" aria-pressed="true" onclick="setTheme('morecambe')" class="relative z-10 px-3 py-1 rounded-full text-xs font-semibold text-white whitespace-nowrap transition-colors duration-300">
-            Morecambe
-          </button>
-          <button id="loc-lancaster-btn" type="button" aria-pressed="false" onclick="setTheme('lancaster')" class="relative z-10 px-3 py-1 rounded-full text-xs font-semibold text-white/70 whitespace-nowrap transition-colors duration-300">
-            Lancaster
-          </button>
-        </div>
 
         <!-- Desktop Navigation Links -->
         <nav id="main-nav" class="flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
-          <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu & Flavours</a>
-          <a href="#gallery" class="js-gallery-link text-white/90 hover:text-brand-orange transition-colors">Gallery</a>
-          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Hours &amp; Locations</a>
+          <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu</a>
+          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Opening hours</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
+          <a href="#gallery" class="js-gallery-link text-white/90 hover:text-brand-orange transition-colors">Gallery</a>
         </nav>
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Get Directions" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
-            <i class="fa-solid fa-location-arrow mr-2 text-xs"></i><span class="dir-label">Get Directions</span>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Directions" title="Directions" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-location-arrow" aria-hidden="true"></i>
           </a>
+
+          <!-- LOCATION SWITCH: round swap button, colour follows the selected shop -->
+          <button id="loc-toggle" type="button" onclick="toggleShop()" aria-label="Showing Morecambe. Switch to Lancaster" title="Switch to Lancaster" class="loc-switch">
+            <svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M54 6 L84 24 L54 42 L54 34 C30 32 14 40 8 54 C12 36 28 19 54 18 Z"/>
+              <path d="M54 6 L84 24 L54 42 L54 34 C30 32 14 40 8 54 C12 36 28 19 54 18 Z" transform="rotate(180 50 50)"/>
+            </svg>
+          </button>
 
           <!-- Mobile menu toggle button -->
           <button id="mobile-menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none">
@@ -906,11 +1010,11 @@
 
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
-      <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu & Flavours</a>
+      <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Menu</a>
+      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Opening hours</a>
+      <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Info</a>
       <a href="#gallery" class="js-gallery-link mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Gallery</a>
-      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Hours &amp; Locations</a>
-      <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange">Allergy Information</a>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center px-3 py-2.5 rounded-full text-base font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark"><i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Get Directions</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center px-3 py-2.5 rounded-full text-base font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark"><i class="fa-solid fa-location-arrow mr-2 text-xs"></i>Directions</a>
     </div>
   </header>
 
@@ -1236,7 +1340,7 @@
         
         <div class="md:col-span-2 space-y-4">
           <a id="footer-logo-container" href="#" class="inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300">
-            <img id="footer-logo-img" src="miomore.jpg" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
+            <img id="footer-logo-img" src="miomore.png" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
@@ -1587,7 +1691,7 @@
       setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.png' : 'tub.png');
     });
 
-    // Points every "Get Directions" link at the selected shop
+    // Points every "Directions" link at the selected shop
     const DIRECTIONS = {
       morecambe: 'https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX',
       lancaster: 'https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%2026%20New%20Street%2C%20Lancaster%2C%20LA1%201EG'
@@ -1596,19 +1700,16 @@
       document.querySelectorAll('.js-directions').forEach(a => { a.href = DIRECTIONS[loc] || DIRECTIONS.morecambe; });
     }
 
-    // Moves the sliding thumb in the location toggle
+    // Updates the location switch button (accessible name) and the directions links
     function updateToggle(loc) {
       updateDirections(loc);
-      const thumb = document.getElementById('loc-toggle-thumb');
-      const mBtn = document.getElementById('loc-morecambe-btn');
-      const lBtn = document.getElementById('loc-lancaster-btn');
-      const isLanc = loc === 'lancaster';
-      if (thumb) {
-        thumb.style.transform = isLanc ? 'translateX(100%)' : 'translateX(0)';
-        thumb.style.backgroundColor = isLanc ? '#f49495' : '#f39200';
-      }
-      if (mBtn) { mBtn.classList.toggle('text-white', !isLanc); mBtn.classList.toggle('text-white/70', isLanc); mBtn.setAttribute('aria-pressed', String(!isLanc)); }
-      if (lBtn) { lBtn.classList.toggle('text-white', isLanc); lBtn.classList.toggle('text-white/70', !isLanc); lBtn.setAttribute('aria-pressed', String(isLanc)); }
+      const btn = document.getElementById('loc-toggle');
+      const isL = loc === 'lancaster';
+      const label = `Showing ${isL ? 'Lancaster' : 'Morecambe'}. Switch to ${isL ? 'Morecambe' : 'Lancaster'}`;
+      if (btn) { btn.setAttribute('aria-label', label); btn.title = `Switch to ${isL ? 'Morecambe' : 'Lancaster'}`; }
+    }
+    function toggleShop() {
+      setTheme(document.body.classList.contains('theme-lancaster') ? 'morecambe' : 'lancaster');
     }
 
     // Remembered shop choice (wrapped in try/catch: storage can be blocked, e.g. private browsing)
@@ -1644,8 +1745,8 @@
 
         // Swap hero image and top-left logo for Lancaster with blended background container
         setHeroTub('Tublanc.png');
-        if (brandLogoImg) { brandLogoImg.src = 'miolanc.jpg'; brandLogoImg.alt = 'miogelato Lancaster'; }
-        if (footerLogoImg) { footerLogoImg.src = 'miolanc.jpg'; footerLogoImg.alt = 'miogelato Lancaster'; }
+        if (brandLogoImg) { brandLogoImg.src = 'miolanc.png'; brandLogoImg.alt = 'miogelato Lancaster'; }
+        if (footerLogoImg) { footerLogoImg.src = 'miolanc.png'; footerLogoImg.alt = 'miogelato Lancaster'; }
         if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-[#faf7fd] rounded-2xl px-4 py-2 border border-[#f49495]/30 shadow-sm transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-[#faf7fd] rounded-2xl px-3 py-1.5 border border-[#f49495]/30 shadow-sm transition-colors duration-300";
@@ -1665,8 +1766,8 @@
 
         // Swap hero image and logos back for Morecambe with cream background container
         setHeroTub('tub.png');
-        if (brandLogoImg) { brandLogoImg.src = 'miomore.jpg'; brandLogoImg.alt = 'miogelato Morecambe'; }
-        if (footerLogoImg) { footerLogoImg.src = 'miomore.jpg'; footerLogoImg.alt = 'miogelato Morecambe'; }
+        if (brandLogoImg) { brandLogoImg.src = 'miomore.png'; brandLogoImg.alt = 'miogelato Morecambe'; }
+        if (footerLogoImg) { footerLogoImg.src = 'miomore.png'; footerLogoImg.alt = 'miogelato Morecambe'; }
         if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
@@ -1786,8 +1887,12 @@
         document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
       }
       function fits(row) {
-        const kids = Array.from(row.children).filter(k => k.getClientRects().length);
-        const need = kids.reduce((w, k) => w + k.getBoundingClientRect().width, 0) + 12 * (kids.length - 1);
+        const vis = k => k && k.getClientRects().length;
+        const w = k => vis(k) ? k.getBoundingClientRect().width : 0;
+        const logo = row.children[0], nav = row.children[1], right = row.children[2];
+        const need = vis(nav)
+          ? 2 * (Math.max(w(logo), w(right)) + 12) + w(nav)   // nav is centred, so both sides reserve the wider side
+          : w(logo) + w(right) + 12;
         return need <= row.clientWidth;
       }
       function fitHeader() {
