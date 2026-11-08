@@ -371,6 +371,7 @@
       .hero-section .hero-tag-text { font-size: .85rem !important; letter-spacing: .03em !important; }
       .hero-section h1 { font-size: 1.65rem !important; line-height: 1.15 !important; }
       .hero-section .hero-subtitle { font-size: .95rem !important; line-height: 1.4 !important; }
+      .hero-section .hero-actions, .hero-section .stats-border { display: none !important; }
       .hero-section .pt-4 { padding-top: .25rem !important; }
       .hero-section .pt-4 > a { padding: .55rem 1rem !important; font-size: .95rem !important; }
       .hero-section .pt-4.space-y-3 > * + * { margin-top: .4rem !important; }
@@ -1131,7 +1132,7 @@
               Hand-made beside the seaside with local milk, slow-churned artisan techniques, and hand-selected natural ingredients.
             </p>
 
-            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
+            <div class="hero-actions pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
               <a href="#locations" class="menu-open-badge w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-center whitespace-nowrap bg-brand-brown-light text-brand-brown hover:opacity-80 transition-all duration-400">
                 <i class="fa-regular fa-clock"></i>Open 7 Days
               </a>
@@ -1160,7 +1161,7 @@
           </div>
 
           <!-- Hero Graphic swapped dynamically via Tublanc.png / tub.png -->
-          <div class="lg:col-span-5 flex justify-center items-center">
+          <div class="hidden md:flex lg:col-span-5 justify-center items-center">
             <div class="relative w-full max-w-md aspect-square flex items-center justify-center p-6">
               <img id="hero-tub-img" src="tub.png" alt="Mio Gelato Tub" class="relative z-10 w-full max-w-xs" style="opacity:0;transition:opacity .25s ease" />
             </div>
