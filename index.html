@@ -985,6 +985,12 @@
     }
     html body.theme-lancaster .hero-section a.menu-open-badge:hover, html body.theme-lancaster .hero-section a.btn-primary:hover, html body.theme-lancaster .hero-section a.btn-secondary:hover { background: #6a5ca0 !important; }
   </style>
+  <style>
+    /* Phones: hero buttons are a tidy fixed width, centred, instead of full screen width */
+    @media (max-width: 639px) {
+      .hero-section .pt-4.flex > a { width: min(15rem, 100%) !important; align-self: center; }
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
