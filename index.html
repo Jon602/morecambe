@@ -64,6 +64,41 @@
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
+    .location-banner {
+      padding: .24rem max(1rem, calc((100% - 80rem) / 2));
+      background: #fdf0d8;
+      border-bottom: 1px solid rgba(179, 95, 0, .18);
+      transition: background-color .3s ease, border-color .3s ease;
+    }
+    .location-banner-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      min-height: 1.2rem;
+      padding: .2rem 1.25rem;
+      color: #b35f00;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: color .3s ease;
+    }
+    .location-banner-icon {
+      flex: none;
+      font-size: 1rem;
+      color: #f39200;
+    }
+    body:not(.theme-lancaster) .location-banner {
+      background: #5a4613;
+      border-bottom-color: rgba(255, 255, 255, .18);
+    }
+    body:not(.theme-lancaster) .location-banner-pill,
+    body:not(.theme-lancaster) .location-banner-icon {
+      color: #d1d5db;
+    }
+
     .font-jost {
       font-family: 'Zilla Slab', serif;
       font-weight: 500;
@@ -145,16 +180,6 @@
     }
     body.theme-lancaster .hero-blob-2 {
       background-color: rgba(127, 120, 184, 0.25);
-    }
-    body.theme-lancaster .hero-tag {
-      background-color: #ffffff;
-      border-color: rgba(127, 120, 184, 0.3);
-    }
-    body.theme-lancaster .hero-tag-dot {
-      background-color: #f49495;
-    }
-    body.theme-lancaster .hero-tag-text {
-      color: #7f78b8;
     }
     body.theme-lancaster .hero-title-gradient {
       background-image: linear-gradient(to right, #7f78b8, #e57375, #f49495);
@@ -368,8 +393,6 @@
       .hero-section { padding-top: 1rem !important; padding-bottom: 1rem !important; }
       .hero-section .grid { gap: .5rem !important; }
       .hero-section .space-y-6 > * + * { margin-top: .6rem !important; }
-      .hero-section .hero-tag { padding: .3rem .7rem !important; }
-      .hero-section .hero-tag-text { font-size: .85rem !important; letter-spacing: .03em !important; }
       .hero-section h1 { font-size: 1.65rem !important; line-height: 1.15 !important; }
       .hero-section .hero-subtitle { font-size: .95rem !important; line-height: 1.4 !important; }
       .hero-section .hero-actions, .hero-section .stats-border { display: none !important; }
@@ -470,7 +493,8 @@
       /* ---------- Footer ---------- */
       footer { padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
       footer .max-w-7xl { padding-left: .75rem !important; padding-right: .75rem !important; }
-      footer .grid { gap: .75rem !important; margin-bottom: .75rem !important; }
+      footer .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; gap: .75rem !important; margin-bottom: .75rem !important; }
+      footer .grid > div:first-child { grid-column: 1 / -1; }
       footer .space-y-4 > * + * { margin-top: .5rem !important; }
       footer h4 { margin-bottom: .4rem !important; }
       footer ul.space-y-2 > * + * { margin-top: .2rem !important; }
@@ -719,6 +743,12 @@
       --lanc-green-bg: #edf5f0;     /* page background */
       background-color: var(--lanc-green-bg);
     }
+    body.theme-lancaster .location-banner {
+      background: #7a6bb0;
+      border-bottom-color: rgba(61, 55, 94, .35);
+    }
+    body.theme-lancaster .location-banner-pill { color: #ffffff; }
+    body.theme-lancaster .location-banner-icon { color: #ffffff; }
     body.theme-lancaster ::-webkit-scrollbar-track { background: var(--lanc-green-bg); }
     body.theme-lancaster ::-webkit-scrollbar-thumb { background: var(--lanc-green); }
     body.theme-lancaster ::-webkit-scrollbar-thumb:hover { background: var(--lanc-green-deep); }
@@ -727,9 +757,6 @@
     body.theme-lancaster .hero-section { background: linear-gradient(to bottom, rgba(149,190,171,.45), transparent, var(--lanc-green-bg)); }
     body.theme-lancaster .hero-blob-1 { background-color: rgba(149,190,171,.45); }
     body.theme-lancaster .hero-blob-2 { background-color: rgba(244,148,149,.2); }
-    body.theme-lancaster .hero-tag { border-color: rgba(63,125,102,.3); }
-    body.theme-lancaster .hero-tag-dot { background-color: var(--lanc-green); }
-    body.theme-lancaster .hero-tag-text { color: var(--lanc-green-deep); }
     body.theme-lancaster .btn-secondary { border-color: rgba(63,125,102,.35); }
     body.theme-lancaster .btn-secondary:hover { background-color: var(--lanc-green-tint); }
     body.theme-lancaster .stats-border { border-color: rgba(63,125,102,.25); }
@@ -1024,6 +1051,147 @@
     html body.theme-lancaster header #mobile-menu-btn:hover { background: #e27b7c !important; }
     html body.theme-lancaster header #mobile-menu-btn:focus-visible { outline-color: #3d375e; }
   </style>
+  <style>
+    #menu > .text-center h2,
+    #gallery-title,
+    .locations-section h2 {
+      font-weight: 600 !important;
+      color: #b35f00 !important;
+    }
+    body.theme-lancaster #menu > .text-center h2,
+    body.theme-lancaster #gallery-title,
+    body.theme-lancaster .locations-section h2 {
+      color: #7f78b8 !important;
+    }
+
+    /* Lancaster header and footer use the flavour-card pink with purple details. */
+    body.theme-lancaster header.glass-nav,
+    body.theme-lancaster footer.bg-brand-text {
+      background: #f49495 !important;
+      border-color: rgba(61, 55, 94, 0.25) !important;
+      color: #3d375e !important;
+    }
+    body.theme-lancaster header #brand-logo-container {
+      background: #ffffff !important;
+      border-color: rgba(61, 55, 94, 0.2) !important;
+      padding: .2rem .4rem !important;
+    }
+    body.theme-lancaster header #mobile-menu-btn,
+    body.theme-lancaster header a.dir-btn,
+    body.theme-lancaster header #loc-toggle.loc-switch {
+      color: #3d375e !important;
+    }
+    body.theme-lancaster header #main-nav a,
+    body.theme-lancaster header #main-nav a:hover,
+    body.theme-lancaster header #main-nav a:focus-visible {
+      color: #3d375e !important;
+    }
+    body.theme-lancaster header #main-nav a {
+      padding: .3rem .65rem;
+      border-radius: 9999px;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    body.theme-lancaster header #main-nav a:hover,
+    body.theme-lancaster header #main-nav a:focus-visible {
+      background: #ffffff !important;
+      text-decoration: none !important;
+    }
+    body.theme-lancaster header #brand-logo-img {
+      height: calc(clamp(1.6rem, .9rem + 2.6vw, 3rem) * .8) !important;
+    }
+    body.theme-lancaster header #mobile-menu-btn,
+    body.theme-lancaster header a.dir-btn,
+    body.theme-lancaster header #loc-toggle.loc-switch {
+      background: #ffffff !important;
+    }
+    html body.theme-lancaster header #mobile-menu-btn {
+      background: #ffffff !important;
+      color: #3d375e !important;
+    }
+    body.theme-lancaster header #mobile-menu-btn:hover,
+    body.theme-lancaster header a.dir-btn:hover,
+    body.theme-lancaster header #loc-toggle.loc-switch:hover {
+      background: #f0edfa !important;
+    }
+    html body.theme-lancaster header #mobile-menu-btn:hover { background: #f0edfa !important; }
+    body.theme-lancaster header i,
+    body.theme-lancaster header svg {
+      color: #3d375e !important;
+      stroke: #3d375e;
+    }
+    body.theme-lancaster header #mobile-menu .mobile-link,
+    body.theme-lancaster header #mobile-menu .mm-ico {
+      color: #3d375e !important;
+    }
+    body.theme-lancaster footer p,
+    body.theme-lancaster footer h4,
+    body.theme-lancaster footer li,
+    body.theme-lancaster footer a {
+      color: #3d375e !important;
+    }
+    body.theme-lancaster footer .social-link {
+      background-color: #ffffff !important;
+      color: #3d375e !important;
+    }
+    body.theme-lancaster footer .social-link:hover {
+      background-color: #95beab !important;
+      color: #3d375e !important;
+    }
+    body:not(.theme-lancaster) footer .social-link {
+      background-color: #ffffff !important;
+      color: #3b312a !important;
+    }
+    body:not(.theme-lancaster) footer #footer-logo-container {
+      background-color: #ffffff !important;
+    }
+    @media (min-width: 1024px) {
+      body.theme-lancaster header .h-20 { height: 3.375rem !important; }
+      body.theme-lancaster main { padding-top: 3.375rem !important; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body.theme-lancaster header .h-20,
+      body.theme-lancaster header .sm\:h-24 { height: 2.25rem !important; }
+      body.theme-lancaster main { padding-top: 2.25rem !important; }
+    }
+    @media (max-width: 767px) {
+      body.theme-lancaster header .h-20,
+      body.theme-lancaster header .sm\:h-24 { height: 2.3625rem !important; }
+      body.theme-lancaster main { padding-top: 2.3625rem !important; }
+    }
+    body:not(.theme-lancaster) header #brand-logo-container {
+      background: #ffffff !important;
+      border-color: rgba(87, 74, 61, .2) !important;
+      padding: .2rem .4rem !important;
+    }
+    body:not(.theme-lancaster) header #brand-logo-img {
+      height: calc(clamp(1.6rem, .9rem + 2.6vw, 3rem) * .8) !important;
+    }
+    body:not(.theme-lancaster) header #main-nav a {
+      padding: .3rem .65rem;
+      border-radius: 9999px;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    body:not(.theme-lancaster) header #main-nav a:hover,
+    body:not(.theme-lancaster) header #main-nav a:focus-visible {
+      background: #ffffff !important;
+      color: #b35f00 !important;
+      text-decoration: none !important;
+    }
+    @media (min-width: 1024px) {
+      body:not(.theme-lancaster) header .h-20 { height: 3.375rem !important; }
+      body:not(.theme-lancaster) main { padding-top: 3.375rem !important; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body:not(.theme-lancaster) header .h-20,
+      body:not(.theme-lancaster) header .sm\:h-24 { height: 2.25rem !important; }
+      body:not(.theme-lancaster) main { padding-top: 2.25rem !important; }
+    }
+    @media (max-width: 767px) {
+      body:not(.theme-lancaster) header .h-20,
+      body:not(.theme-lancaster) header .sm\:h-24 { height: 2.3625rem !important; }
+      body:not(.theme-lancaster) main { padding-top: 2.3625rem !important; }
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -1116,6 +1284,12 @@
   </header>
 
   <main class="pt-24 sm:pt-28">
+    <div class="location-banner">
+      <div class="location-banner-pill">
+        <i class="location-banner-icon fa-solid fa-location-dot" aria-hidden="true"></i>
+        <span id="location-hero-label">Morecambe Gelateria</span>
+      </div>
+    </div>
 
     <!-- ================= HERO SECTION ================= -->
     <section class="hero-section relative overflow-hidden py-12 lg:py-20 bg-gradient-to-b from-brand-brown-light/40 via-transparent to-brand-bg">
@@ -1126,13 +1300,6 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div class="lg:col-span-7 text-center lg:text-left space-y-6">
-            <div class="hero-tag inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white border border-brand-orange/30 shadow-sm transition-colors duration-400">
-              <span class="hero-tag-dot w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse transition-colors duration-400"></span>
-              <span class="hero-tag-text text-xs font-semibold text-brand-brown uppercase tracking-wider transition-colors duration-400">
-                <span id="location-hero-label">Morecambe Gelateria</span> • Handcrafted Artisanal Gelato
-              </span>
-            </div>
-
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-jost text-brand-text leading-tight">
               Award-winning gelato, <span class="hero-title-gradient text-transparent bg-clip-text bg-gradient-to-r from-brand-brown via-brand-orange-text to-brand-orange-dark italic">Handmade, since 2016</span>.
             </h1>
@@ -1182,7 +1349,7 @@
 
 
     <!-- ================= FLAVOURS & MENU SHOWCASE ================= -->
-    <section id="menu" class="pt-0 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="menu" class="scroll-mt-32 pt-0 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10 lg:mb-14">
         <h2 class="text-3xl sm:text-4xl font-serif text-brand-text">Menu</h2>
 
@@ -1448,19 +1615,22 @@
         <div>
           <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Navigation</h4>
           <ul class="space-y-2 text-xs text-gray-400">
-            <li><a href="#menu" class="hover:text-brand-orange-text transition-colors">Gelato Menu</a></li>
-            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Hours &amp; Locations</a></li>
+            <li><a href="#menu" class="hover:text-brand-orange-text transition-colors">Menu</a></li>
+            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Opening hours</a></li>
+            <li><a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="hover:text-brand-orange-text transition-colors">Allergy Info</a></li>
+            <li><a href="#gallery" class="js-gallery-link hover:text-brand-orange-text transition-colors">Gallery</a></li>
+            <li><a href="#" class="js-directions hover:text-brand-orange-text transition-colors">Directions</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Contact & Follow</h4>
-          <div class="flex space-x-4 mb-4">
+          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4 text-right">Contact & Follow</h4>
+          <div class="flex justify-end space-x-4 mb-4">
             <a href="https://www.instagram.com/miogelatomore/" target="_blank" rel="noopener" aria-label="Instagram @miogelatomore" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://www.facebook.com/MiogelatoGelato" target="_blank" rel="noopener" aria-label="Facebook Miogelato" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-tiktok"></i></a>
           </div>
-          <p class="text-xs text-gray-400">info@miogelato.co.uk</p>
+          <p class="text-xs text-gray-400 text-right">info@miogelato.co.uk</p>
         </div>
 
       </div>
@@ -1735,12 +1905,49 @@
     /* Knocks the flat cream/white background out of the tub JPG so it becomes a real
        transparent image. This replaces mix-blend-multiply, which flickers between
        "seamless" and "visible square" when the browser re-composites layers. */
+    function alignHeroTub() {
+      const img = document.getElementById('hero-tub-img');
+      const actions = document.querySelector('.hero-section .hero-actions');
+      if (!img || !actions) return;
+      if (!window.matchMedia('(min-width: 1024px)').matches) {
+        img.style.transform = '';
+        return;
+      }
+      img.style.transform = 'none';
+      if (img.dataset.heroContentBottomSource !== img.currentSrc) {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        if (!context) return;
+        context.drawImage(img, 0, 0);
+        const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        let contentBottom = canvas.height - 1;
+        for (; contentBottom >= 0; contentBottom--) {
+          let visiblePixels = 0;
+          for (let x = 0; x < canvas.width; x++) {
+            if (pixels[(contentBottom * canvas.width + x) * 4 + 3] > 128) {
+              visiblePixels++;
+            }
+          }
+          if (visiblePixels >= canvas.width * .05) break;
+        }
+        img.dataset.heroContentBottomSource = img.currentSrc;
+        img.dataset.heroContentBottomInset = String(canvas.height - 1 - contentBottom);
+      }
+      const rect = img.getBoundingClientRect();
+      const contentInset = Number(img.dataset.heroContentBottomInset) * rect.width / img.naturalWidth;
+      const imageBottom = rect.bottom - contentInset;
+      const actionsBottom = actions.getBoundingClientRect().bottom;
+      img.style.transform = `translateY(${actionsBottom - imageBottom}px)`;
+    }
+
     let heroTubToken = 0;
     function setHeroTub(src) {
       const img = document.getElementById('hero-tub-img');
       if (!img) return;
       const token = ++heroTubToken; // only the most recent request may update the image
-      const show = () => { img.style.opacity = '1'; };
+      const show = () => { img.style.opacity = '1'; alignHeroTub(); };
       const fallback = () => { img.src = src; img.classList.add('mix-blend-multiply'); show(); };
       // A PNG already has a transparent background, so skip the background knock-out below
       if (/\.png$/i.test(src)) {
@@ -1793,6 +2000,16 @@
     }
     document.addEventListener('DOMContentLoaded', () => {
       setHeroTub(document.body.classList.contains('theme-lancaster') ? 'Tublanc.png' : 'tub.png');
+      alignHeroTub();
+      window.addEventListener('resize', alignHeroTub);
+      const heroText = document.querySelector('.hero-section .grid > div:first-child');
+      const heroImage = document.querySelector('.hero-section #hero-tub-img');
+      if (window.ResizeObserver) {
+        const observer = new ResizeObserver(alignHeroTub);
+        if (heroText) observer.observe(heroText);
+        if (heroImage) observer.observe(heroImage);
+      }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(alignHeroTub);
     });
 
     // Points every "Directions" link at the selected shop
@@ -1872,7 +2089,7 @@
         setHeroTub('tub.png');
         if (brandLogoImg) { brandLogoImg.src = 'miomore.png'; brandLogoImg.alt = 'miogelato Morecambe'; }
         if (footerLogoImg) { footerLogoImg.src = 'miomore.png'; footerLogoImg.alt = 'miogelato Morecambe'; }
-        if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300"; }
+        if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-white rounded-2xl px-4 py-2 transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
         }
