@@ -65,38 +65,70 @@
     }
 
     .location-banner {
+      position: sticky;
+      top: var(--location-banner-top, 0px);
+      z-index: 40;
       padding: .24rem max(1rem, calc((100% - 80rem) / 2));
       background: #fdf0d8;
       border-bottom: 1px solid rgba(179, 95, 0, .18);
       transition: background-color .3s ease, border-color .3s ease;
     }
-    .location-banner-pill {
+    .location-banner-inner {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .75rem;
-      min-height: 1.2rem;
-      padding: .2rem 1.25rem;
-      color: #b35f00;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-align: center;
-      text-transform: uppercase;
-      transition: color .3s ease;
+      max-width: 80rem;
+      margin: 0 auto;
     }
-    .location-banner-icon {
+    #loc-toggle.loc-switch {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       flex: none;
-      font-size: 1rem;
-      color: #f39200;
+      align-items: center;
+      width: 12.5rem;
+      height: 2.25rem;
+      padding: .2rem;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 9999px;
+      background: rgba(255,255,255,.14);
+      color: #d1d5db;
+      font: inherit;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
+    #loc-toggle.loc-switch::before {
+      content: "";
+      position: absolute;
+      top: .2rem;
+      bottom: .2rem;
+      left: .2rem;
+      width: calc(50% - .2rem);
+      border-radius: 9999px;
+      background: #f39200;
+      transition: transform .25s ease, background-color .25s ease;
+    }
+    #loc-toggle.loc-switch span {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      transition: color .25s ease;
+    }
+    #loc-toggle.loc-switch span:first-child { color: #3b312a; }
+    #loc-toggle.loc-switch span:last-child { color: #d1d5db; }
+    body.theme-lancaster #loc-toggle.loc-switch::before {
+      background: #f49495 !important;
+      transform: translateX(100%) !important;
+    }
+    body.theme-lancaster #loc-toggle.loc-switch span:first-child { color: #d1d5db !important; }
+    body.theme-lancaster #loc-toggle.loc-switch span:last-child { color: #3d375e !important; }
+    #loc-toggle.loc-switch:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    :root { --location-banner-height: calc(2.73rem + 1px); }
     body:not(.theme-lancaster) .location-banner {
       background: #473629;
       border-bottom-color: rgba(255, 255, 255, .18);
-    }
-    body:not(.theme-lancaster) .location-banner-pill,
-    body:not(.theme-lancaster) .location-banner-icon {
-      color: #d1d5db;
     }
 
     .font-jost {
@@ -379,7 +411,6 @@
       header .max-w-7xl { padding-left: .75rem; padding-right: .75rem; }
       #brand-logo-container { padding: .15rem .4rem !important; border-radius: .75rem !important; }
       #brand-logo-img { height: 1.5rem !important; padding: 0 !important; }
-      #loc-toggle button { padding: .2rem .6rem !important; font-size: .85rem !important; }
       #mobile-menu-btn { padding: .35rem .5rem !important; }
       #mobile-menu-btn i { font-size: 1.05rem !important; }
       #mobile-menu { padding: .25rem .75rem .75rem !important; }
@@ -531,8 +562,6 @@
       #brand-logo-container { padding: .2rem .5rem !important; }
       #brand-logo-img { height: 2rem !important; }
 
-      #loc-toggle button { padding: .25rem .7rem !important; font-size: .85rem !important; }
-
       header nav { gap: 1rem !important; font-size: .95rem !important; white-space: nowrap; }
       header nav > a { margin-left: 0 !important; }
       header nav.space-x-6 > * + * { margin-left: 0 !important; }
@@ -548,12 +577,6 @@
     @media (min-width: 600px) and (max-width: 1023px) {
       .dir-btn { display: inline-flex !important; padding: .3rem .8rem !important; font-size: .9rem !important; line-height: 1.2 !important; border-radius: 9999px; white-space: nowrap; }
       .dir-btn i { margin-right: .35rem !important; font-size: .85rem !important; }
-    }
-  </style>
-  <style>
-    /* Location toggle: smaller size from 840px and below */
-    @media (max-width: 840px) {
-      #loc-toggle button { padding: .2rem .6rem !important; font-size: .85rem !important; }
     }
   </style>
   <style>
@@ -747,8 +770,6 @@
       background: #7a6bb0;
       border-bottom-color: rgba(61, 55, 94, .35);
     }
-    body.theme-lancaster .location-banner-pill { color: #ffffff; }
-    body.theme-lancaster .location-banner-icon { color: #ffffff; }
     body.theme-lancaster ::-webkit-scrollbar-track { background: var(--lanc-green-bg); }
     body.theme-lancaster ::-webkit-scrollbar-thumb { background: var(--lanc-green); }
     body.theme-lancaster ::-webkit-scrollbar-thumb:hover { background: var(--lanc-green-deep); }
@@ -796,13 +817,14 @@
   <style>
     /* ===== HEADER LAYOUT =====
        One script (fitHeader) measures the header and sets ONE of three states on <html>:
-         nav-full     all links + Directions in the header, no burger
+         nav-full     all links in the header, no burger
          nav-tight    same, with tighter spacing and slightly smaller link text
-         nav-compact  burger menu holds the links, Directions stays in the header
-         nav-nodir    burger menu holds everything (very narrow screens)
+         nav-compact  burger menu holds the navigation links
+         nav-nodir    burger menu holds the navigation links (very narrow screens)
+       The Directions shortcut is in the location bar below the header.
        No Tailwind breakpoint classes are used for the header any more. */
     header .h-20 > * { flex-shrink: 0; }
-    header nav a, header .dir-btn, #loc-toggle button { white-space: nowrap; }
+    header nav a, header .dir-btn { white-space: nowrap; }
     #mobile-menu-btn { display: none; }
     html.nav-compact #main-nav, html.nav-nodir #main-nav { display: none; }
     html.nav-compact #mobile-menu-btn, html.nav-nodir #mobile-menu-btn { display: block; }
@@ -817,14 +839,12 @@
     header #main-nav > * { margin: 0 !important; }
     html.nav-tight header #main-nav { gap: 1rem !important; font-size: .85rem !important; }
     html.nav-tight header .dir-btn { padding: .25rem .6rem !important; }
-    html.nav-tight #loc-toggle button { padding: .2rem .55rem !important; }
 
     /* nav-tighter: last step before the burger. Same look and layout, everything just a touch smaller (fits down to ~1000px) */
     html.nav-tighter header .max-w-7xl { padding-left: .6rem !important; padding-right: .6rem !important; }
     html.nav-tighter header #main-nav { gap: .7rem !important; font-size: .78rem !important; }
     html.nav-tighter header .dir-btn { padding: .2rem .5rem !important; font-size: .78rem !important; }
     html.nav-tighter header .dir-btn i { font-size: .75rem !important; margin-right: .25rem !important; }
-    html.nav-tighter #loc-toggle button { padding: .18rem .45rem !important; font-size: .78rem !important; }
     html.nav-tighter header #brand-logo-container { padding: .15rem .3rem !important; }
     html.nav-tighter header #brand-logo-img { height: 1.9rem !important; }
     /* Logo scales smoothly with the window (no stepped size jumps) and can never be squashed */
@@ -867,34 +887,26 @@
     body.theme-lancaster .hero-section { background: linear-gradient(to bottom, rgba(149,190,171,.45), transparent) !important; }
   </style>
   <style>
-    /* Header buttons: Directions + location switch are matching round icon buttons.
-       Orange with dark brown icon on Morecambe, pink with dark purple icon on Lancaster. */
+    /* Header Directions button uses the location's accent color. */
     html { --sw-size: 1.9rem; }
     html.nav-tighter { --sw-size: 1.7rem; }
     @media (max-width: 767px) { html { --sw-size: 1.7rem; } }
 
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn,
-    #loc-toggle.loc-switch {
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn {
       display: inline-flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box;
       width: var(--sw-size); height: var(--sw-size); padding: 0 !important;
       border: 0 !important; border-radius: 50% !important; box-shadow: none !important; transform: none !important;
       background: #f39200 !important; color: #3b312a !important; cursor: pointer;
       transition: background-color .3s ease, color .3s ease; -webkit-tap-highlight-color: transparent;
     }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn:hover,
-    #loc-toggle.loc-switch:hover { background: #d97f00 !important; }
-    body.theme-lancaster header a.dir-btn, body.theme-lancaster #loc-toggle.loc-switch { background: #f49495 !important; color: #3d375e !important; }
-    body.theme-lancaster header a.dir-btn:hover, body.theme-lancaster #loc-toggle.loc-switch:hover { background: #e27b7c !important; }
-    /* Space between the two buttons (and before the burger) */
-    #loc-toggle.loc-switch { margin-left: .9rem; }
-    @media (max-width: 767px) { #loc-toggle.loc-switch { margin-left: .7rem; } }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn:hover { background: #d97f00 !important; }
+    body.theme-lancaster header a.dir-btn { background: #f49495 !important; color: #3d375e !important; }
+    body.theme-lancaster header a.dir-btn:hover { background: #e27b7c !important; }
 
-    header a.dir-btn:focus-visible, #loc-toggle.loc-switch:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    header a.dir-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
     header a.dir-btn i { font-size: calc(var(--sw-size) * .42) !important; margin: 0 !important; color: inherit !important; }
-    #loc-toggle.loc-switch svg { width: 68%; height: 68%; transition: transform .4s ease; }
-    body.theme-lancaster #loc-toggle.loc-switch svg { transform: rotate(180deg); }
-    @media (prefers-reduced-motion: reduce) { #loc-toggle.loc-switch svg { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { #loc-toggle.loc-switch::before { transition: none; } }
   </style>
   <style>
     /* Header colour: cream on Morecambe, sage green on Lancaster (text switches to dark so it stays readable) */
@@ -910,8 +922,8 @@
     header #mobile-menu-btn:hover { background: rgba(0,0,0,.08) !important; }
     body.theme-lancaster header #mobile-menu-btn { color: #2b2545 !important; }
 
-    header a.dir-btn:focus-visible, #loc-toggle.loc-switch:focus-visible { outline-color: #3b312a; }
-    body.theme-lancaster header a.dir-btn:focus-visible, body.theme-lancaster #loc-toggle.loc-switch:focus-visible { outline-color: #3d375e; }
+    header a.dir-btn:focus-visible { outline-color: #3b312a; }
+    body.theme-lancaster header a.dir-btn:focus-visible { outline-color: #3d375e; }
   </style>
   <style>
     /* Logo: no box behind it (the logo files are transparent, so the header colour shows through) */
@@ -1077,8 +1089,7 @@
       padding: .2rem .4rem !important;
     }
     body.theme-lancaster header #mobile-menu-btn,
-    body.theme-lancaster header a.dir-btn,
-    body.theme-lancaster header #loc-toggle.loc-switch {
+    body.theme-lancaster header a.dir-btn {
       color: #3d375e !important;
     }
     body.theme-lancaster header #main-nav a,
@@ -1096,12 +1107,26 @@
       background: #ffffff !important;
       text-decoration: none !important;
     }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn {
+      width: auto !important;
+      height: auto !important;
+      min-width: 0;
+      padding: .35rem .85rem !important;
+      gap: .45rem;
+      border-radius: 9999px !important;
+      font-size: .85rem !important;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    header a.dir-btn i {
+      font-size: .85rem !important;
+      margin: 0 !important;
+    }
     body.theme-lancaster header #brand-logo-img {
       height: calc(clamp(1.6rem, .9rem + 2.6vw, 3rem) * .8) !important;
     }
     body.theme-lancaster header #mobile-menu-btn,
-    body.theme-lancaster header a.dir-btn,
-    body.theme-lancaster header #loc-toggle.loc-switch {
+    body.theme-lancaster header a.dir-btn {
       background: #ffffff !important;
     }
     html body.theme-lancaster header #mobile-menu-btn {
@@ -1109,8 +1134,7 @@
       color: #3d375e !important;
     }
     body.theme-lancaster header #mobile-menu-btn:hover,
-    body.theme-lancaster header a.dir-btn:hover,
-    body.theme-lancaster header #loc-toggle.loc-switch:hover {
+    body.theme-lancaster header a.dir-btn:hover {
       background: #f0edfa !important;
     }
     html body.theme-lancaster header #mobile-menu-btn:hover { background: #f0edfa !important; }
@@ -1150,13 +1174,18 @@
     }
     @media (min-width: 768px) and (max-width: 1023px) {
       body.theme-lancaster header .h-20,
-      body.theme-lancaster header .sm\:h-24 { height: 2.25rem !important; }
-      body.theme-lancaster main { padding-top: 2.25rem !important; }
+      body.theme-lancaster header .sm\:h-24 { height: 3rem !important; }
+      body.theme-lancaster main { padding-top: 3rem !important; }
     }
     @media (max-width: 767px) {
       body.theme-lancaster header .h-20,
       body.theme-lancaster header .sm\:h-24 { height: 2.3625rem !important; }
       body.theme-lancaster main { padding-top: 2.3625rem !important; }
+    }
+    .scroll-mt-32,
+    .scroll-mt-28,
+    #locations {
+      scroll-margin-top: calc(var(--location-banner-top, 0px) + var(--location-banner-height) + .5rem) !important;
     }
     body:not(.theme-lancaster) header #brand-logo-container {
       background: #ffffff !important;
@@ -1183,8 +1212,8 @@
     }
     @media (min-width: 768px) and (max-width: 1023px) {
       body:not(.theme-lancaster) header .h-20,
-      body:not(.theme-lancaster) header .sm\:h-24 { height: 2.25rem !important; }
-      body:not(.theme-lancaster) main { padding-top: 2.25rem !important; }
+      body:not(.theme-lancaster) header .sm\:h-24 { height: 3rem !important; }
+      body:not(.theme-lancaster) main { padding-top: 3rem !important; }
     }
     @media (max-width: 767px) {
       body:not(.theme-lancaster) header .h-20,
@@ -1252,17 +1281,10 @@
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Directions" title="Directions" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Find Us" title="Find Us" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
             <i class="fa-solid fa-location-arrow" aria-hidden="true"></i>
+            <span>Find Us</span>
           </a>
-
-          <!-- LOCATION SWITCH: round swap button, colour follows the selected shop -->
-          <button id="loc-toggle" type="button" onclick="toggleShop()" aria-label="Showing Morecambe. Switch to Lancaster" title="Switch to Lancaster" class="loc-switch">
-            <svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
-              <path d="M54 6 L84 24 L54 42 L54 34 C30 32 14 40 8 54 C12 36 28 19 54 18 Z"/>
-              <path d="M54 6 L84 24 L54 42 L54 34 C30 32 14 40 8 54 C12 36 28 19 54 18 Z" transform="rotate(180 50 50)"/>
-            </svg>
-          </button>
 
           <!-- Mobile menu toggle button -->
           <button id="mobile-menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" class="focus:outline-none">
@@ -1285,9 +1307,11 @@
 
   <main class="pt-24 sm:pt-28">
     <div class="location-banner">
-      <div class="location-banner-pill">
-        <i class="location-banner-icon fa-solid fa-location-dot" aria-hidden="true"></i>
-        <span id="location-hero-label">Morecambe Gelateria</span>
+      <div class="location-banner-inner">
+        <button id="loc-toggle" type="button" role="switch" aria-checked="false" onclick="toggleShop()" aria-label="Showing Morecambe. Switch to Lancaster" title="Switch to Lancaster" class="loc-switch">
+          <span>Morecambe</span>
+          <span>Lancaster</span>
+        </button>
       </div>
     </div>
 
@@ -2027,7 +2051,11 @@
       const btn = document.getElementById('loc-toggle');
       const isL = loc === 'lancaster';
       const label = `Showing ${isL ? 'Lancaster' : 'Morecambe'}. Switch to ${isL ? 'Morecambe' : 'Lancaster'}`;
-      if (btn) { btn.setAttribute('aria-label', label); btn.title = `Switch to ${isL ? 'Morecambe' : 'Lancaster'}`; }
+      if (btn) {
+        btn.setAttribute('aria-label', label);
+        btn.setAttribute('aria-checked', String(isL));
+        btn.title = `Switch to ${isL ? 'Morecambe' : 'Lancaster'}`;
+      }
     }
     function toggleShop() {
       setTheme(document.body.classList.contains('theme-lancaster') ? 'morecambe' : 'lancaster');
@@ -2049,7 +2077,6 @@
       saveShop(loc);
       const morecambeBtn = document.getElementById('loc-morecambe-btn');
       const lancasterBtn = document.getElementById('loc-lancaster-btn');
-      const heroLabel = document.getElementById('location-hero-label');
       const cardMorecambe = document.getElementById('loc-card-morecambe');
       const cardLancaster = document.getElementById('loc-card-lancaster');
       const heroTubImg = document.getElementById('hero-tub-img');
@@ -2075,8 +2102,6 @@
 
         updateToggle('lancaster');
 
-        if (heroLabel) heroLabel.innerText = 'Lancaster Gelateria';
-
         // Highlight active shop card
         if (cardLancaster && cardMorecambe) {
           cardLancaster.classList.add('ring-2', 'ring-[#f49495]');
@@ -2095,8 +2120,6 @@
         }
 
         updateToggle('morecambe');
-
-        if (heroLabel) heroLabel.innerText = 'Morecambe Gelateria';
 
         // Highlight active shop card
         if (cardLancaster && cardMorecambe) {
@@ -2219,6 +2242,8 @@
       }
       function fitHeader() {
         queued = false;
+        const header = document.querySelector('header');
+        if (header) root.style.setProperty('--location-banner-top', `${header.getBoundingClientRect().height}px`);
         const row = document.querySelector('header .h-20');
         if (!row) return;
         let chosen = MODES[MODES.length - 1];
@@ -2242,7 +2267,7 @@
         fitHeader();
         if (window.ResizeObserver) {
           const ro = new ResizeObserver(queue);
-          ['brand-logo-img', 'loc-toggle'].forEach(id => { const el = document.getElementById(id); if (el) ro.observe(el); });
+          ['brand-logo-img'].forEach(id => { const el = document.getElementById(id); if (el) ro.observe(el); });
           const row = document.querySelector('header .h-20'); if (row) ro.observe(row);
         }
       });
