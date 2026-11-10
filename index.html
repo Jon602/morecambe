@@ -1224,6 +1224,37 @@
       body:not(.theme-lancaster) main { padding-top: 2.3625rem !important; }
     }
   </style>
+  <style>
+    /* Morecambe: light grey header + page background, no white box behind the header logo */
+    body:not(.theme-lancaster) { background-color: #f1f1f2; }
+    body:not(.theme-lancaster) ::-webkit-scrollbar-track { background: #f1f1f2; }
+    body:not(.theme-lancaster) header.glass-nav { background: #e2e2e4 !important; border-bottom-color: rgba(0,0,0,.12) !important; }
+    body:not(.theme-lancaster) header #brand-logo-container { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
+    body:not(.theme-lancaster) .hero-section { background: linear-gradient(to bottom, rgba(0,0,0,.05), transparent) !important; }
+    body:not(.theme-lancaster) .locations-section { background-color: rgba(0,0,0,.04) !important; }
+  </style>
+  <style>
+    /* Toggle pill: shorter, and a thinner Lancaster side */
+    :root { --location-banner-height: calc(2.2rem + 1px); }
+    #loc-toggle.loc-switch {
+      height: 1.72rem;
+      width: 10.4rem;
+      padding: .13rem;
+      grid-template-columns: 1fr .82fr;
+      font-size: .78rem;
+      line-height: 1;
+    }
+    #loc-toggle.loc-switch::before {
+      top: .13rem; bottom: .13rem; left: .13rem;
+      width: calc((100% - .26rem) / 1.82);
+      transition: left .25s ease, width .25s ease, background-color .25s ease;
+    }
+    body.theme-lancaster #loc-toggle.loc-switch::before {
+      transform: none !important;
+      left: calc(.13rem + (100% - .26rem) / 1.82) !important;
+      width: calc((100% - .26rem) * .82 / 1.82);
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
