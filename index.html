@@ -1255,6 +1255,30 @@
       width: calc((100% - .26rem) * .82 / 1.82);
     }
   </style>
+  <style>
+    /* Burger icon: plain icon (no circle), normal size; orange in Morecambe, white in Lancaster */
+    html header #mobile-menu-btn,
+    html body.theme-lancaster header #mobile-menu-btn {
+      background: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+    html header #mobile-menu-btn { color: #f39200 !important; }
+    html header #mobile-menu-btn:hover { background: transparent !important; color: #d97f00 !important; }
+    html body.theme-lancaster header #mobile-menu-btn { color: #ffffff !important; }
+    html body.theme-lancaster header #mobile-menu-btn:hover { background: transparent !important; color: rgba(255,255,255,.8) !important; }
+    html header #mobile-menu-btn i { font-size: 1.5rem !important; color: inherit !important; }
+    html header #mobile-menu-btn:focus-visible { outline-color: currentColor; }
+  </style>
+  <style>
+    /* Header stops shrinking below 784px: hold the same height and logo size it has at 784px wide */
+    @media (max-width: 783px) {
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .h-20,
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .sm\:h-24 { height: 48px !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) main { padding-top: 48px !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header #brand-logo-img { height: 27.8px !important; }
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
