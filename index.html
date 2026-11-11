@@ -371,6 +371,13 @@
     body.theme-lancaster .price-light small { color: #5c547a; }
     .pudding { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: 1rem 1.1rem; border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); transition: all 0.4s ease; }
     .pudding b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
+    .pudding-group { border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); padding: .35rem 1.1rem; transition: all 0.4s ease; }
+    .pudding-group b { color: #b35f00; font-weight: 600; white-space: nowrap; transition: color 0.4s ease; }
+    .pudding-row { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; padding: .8rem 0; }
+    .pudding-row + .pudding-row { border-top: 1px solid rgba(243,146,0,.25); }
+    body.theme-lancaster .pudding-row + .pudding-row { border-top-color: rgba(244,148,149,.3); }
+    @media (max-width: 767px) { .pudding-group { padding: .15rem .75rem !important; border-radius: .75rem !important; font-size: .95rem; } .pudding-row { padding: .5rem 0 !important; } }
+    @media (min-width: 1024px) { #puddings .pudding-group { padding: .1rem .8rem !important; } #puddings .pudding-row { padding: .4rem 0 !important; } }
   </style>
   <style>
     /* Shop picker pop-up: both boxes share one style (light fill, coloured border, coloured text, round icon).
@@ -1514,11 +1521,11 @@
             <h3 class="text-2xl sm:text-3xl font-serif text-brand-text">Hot Puddings</h3>
           </div>
           <p class="pudding-note hero-subtitle text-sm text-brand-muted italic mb-6 transition-colors duration-400">with a scoop of your favourite gelato</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <div class="pudding pudding-card"><span>Apple Crumble</span><b>£7.00</b></div>
-            <div class="pudding pudding-card"><span>Vegan Apple Crumble <i class="fa-solid fa-leaf text-green-700 text-xs ml-1" title="Vegan"></i></span><b>£7.00</b></div>
-            <div class="pudding pudding-card"><span>Gluten Free Sticky Toffee Pudding</span><b>£7.00</b></div>
-            <div class="pudding pudding-card"><span>Cherry Bakewell</span><b>£7.00</b></div>
+          <div class="pudding-group pudding-card">
+            <div class="pudding-row"><span>Apple Crumble</span><b>£7.00</b></div>
+            <div class="pudding-row"><span>Vegan Apple Crumble <i class="fa-solid fa-leaf text-green-700 text-xs ml-1" title="Vegan"></i></span><b>£7.00</b></div>
+            <div class="pudding-row"><span>Gluten Free Sticky Toffee Pudding</span><b>£7.00</b></div>
+            <div class="pudding-row"><span>Cherry Bakewell</span><b>£7.00</b></div>
           </div>
         </div>
       </div>
