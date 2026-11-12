@@ -13,8 +13,8 @@
         extend: {
           colors: {
             brand: {
-              brown: '#574a3d',
-              'brown-dark': '#3b312a',
+              brown: '#42362a',
+              'brown-dark': '#42362a',
               'brown-light': '#f6e9d0',
               orange: '#f39200',
               'orange-dark': '#d97f00',
@@ -23,7 +23,7 @@
               cream: '#fbf3e2',
               bg: '#fdf8ee',
               surface: '#fffdf8',
-              text: '#3b312a',
+              text: '#42362a',
               muted: '#7a6c5d'
             }
           },
@@ -59,7 +59,7 @@
     body {
       font-family: 'Zilla Slab', serif;
       background-color: #fdf8ee;
-      color: #3b312a;
+      color: #42362a;
       overflow-x: hidden;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
@@ -116,7 +116,7 @@
       text-align: center;
       transition: color .25s ease;
     }
-    #loc-toggle.loc-switch span:first-child { color: #3b312a; }
+    #loc-toggle.loc-switch span:first-child { color: #42362a; }
     #loc-toggle.loc-switch span:last-child { color: #d1d5db; }
     body.theme-lancaster #loc-toggle.loc-switch::before {
       background: #f49495 !important;
@@ -127,7 +127,7 @@
     #loc-toggle.loc-switch:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
     :root { --location-banner-height: calc(2.73rem + 1px); }
     body:not(.theme-lancaster) .location-banner {
-      background: #473629;
+      background: #42362a;
       border-bottom-color: rgba(255, 255, 255, .18);
     }
 
@@ -162,7 +162,7 @@
     }
 
     .glass-nav {
-      background: rgba(72, 54, 41, 0.96);
+      background: rgba(66, 54, 42, 0.96);
       backdrop-filter: blur(16px);
       transition: background-color 0.4s ease, border-color 0.4s ease;
     }
@@ -175,11 +175,11 @@
       background: #fdf8ee;
     }
     ::-webkit-scrollbar-thumb {
-      background: #574a3d;
+      background: #42362a;
       border-radius: 5px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #3b312a;
+      background: #42362a;
     }
 
     /* ================= LANCASTER PALETTE (EXTRACTED FROM MIOGELATO LOGO) ================= -->
@@ -356,7 +356,7 @@
       .js body.theme-lancaster [data-collapsible].price-card .collapse-chevron { color: #f49495; }
     }
     /* Menu styling */
-    .flavour { padding: .6rem 0; border-bottom: 1px dashed rgba(87,74,61,.18); font-size: 1rem; transition: border-color 0.4s ease; }
+    .flavour { padding: .6rem 0; border-bottom: 1px dashed rgba(66,54,42,.18); font-size: 1rem; transition: border-color 0.4s ease; }
     body.theme-lancaster .flavour { border-bottom-color: rgba(127,120,184,.2); }
     .flavour::before { content: ''; display: inline-block; width: .45rem; height: .45rem; border-radius: 9999px; background: #f39200; margin-right: .75rem; vertical-align: middle; transition: background-color 0.4s ease; }
     .price-dark, .price-light { display: flex; align-items: baseline; gap: .5rem; }
@@ -385,10 +385,10 @@
     .shop-choice {
       display: flex; align-items: center; justify-content: center; gap: 1rem; width: 100%; text-align: center;
       padding: 1.1rem 1.25rem; border-radius: 1.5rem; border: 3px solid;
-      box-shadow: 0 4px 12px rgba(59,49,42,.12); cursor: pointer;
+      box-shadow: 0 4px 12px rgba(66,54,42,.12); cursor: pointer;
       transition: transform .2s ease, box-shadow .2s ease;
     }
-    .shop-choice:hover, .shop-choice:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(59,49,42,.2); outline: none; }
+    .shop-choice:hover, .shop-choice:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(66,54,42,.2); outline: none; }
     #shop-picker-panel:focus { outline: none; }
     .shop-choice-m:focus-visible { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #f18f13; }
     .shop-choice-l:focus-visible { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #7f71b1; }
@@ -396,7 +396,7 @@
     .shop-choice-name { flex: none; font-size: 2rem; font-weight: 500; line-height: 1.1; }
 
     /* Morecambe: logo orange, brown and yellow-orange */
-    .shop-choice-m { background: #fff6e4; border-color: #f18f13; color: #574839; }
+    .shop-choice-m { background: #fff6e4; border-color: #f18f13; color: #42362a; }
 
     /* Lancaster: mint green, purple and pink */
     .shop-choice-l { background: #edfdf1; border-color: #7f71b1; color: #7f71b1; }
@@ -593,7 +593,7 @@
   <style>
     /* Location cards: collapsible on phones, headed "Morecambe" / "Lancaster" + Open 7 Days badge */
     @media (max-width: 767px) {
-      #locations .loc-label { font-family: 'Zilla Slab', serif; font-size: 1.35rem !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0 !important; line-height: 1.2; color: #3b312a !important; }
+      #locations .loc-label { font-family: 'Zilla Slab', serif; font-size: 1.35rem !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0 !important; line-height: 1.2; color: #42362a !important; }
       body.theme-lancaster #locations .loc-label { color: #2b2545 !important; }
       #locations .loc-street { display: none; }
       #locations [data-collapsible] .collapse-head { margin-bottom: .6rem !important; padding-right: 2.25rem !important; align-items: center !important; }
@@ -744,9 +744,9 @@
   </style>
   <style>
     /* ===== Gallery ===== */
-    .gallery-tile { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; padding: 0; border-radius: 1.25rem; background: #f6e9d0; border: 1px solid rgba(87,74,61,.12); cursor: pointer; transition: box-shadow .25s ease, background-color .4s ease, border-color .4s ease; }
+    .gallery-tile { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; padding: 0; border-radius: 1.25rem; background: #f6e9d0; border: 1px solid rgba(66,54,42,.12); cursor: pointer; transition: box-shadow .25s ease, background-color .4s ease, border-color .4s ease; }
     .gallery-tile img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
-    .gallery-tile:hover { box-shadow: 0 12px 24px -14px rgba(59,49,42,.55); }
+    .gallery-tile:hover { box-shadow: 0 12px 24px -14px rgba(66,54,42,.55); }
     .gallery-tile:hover img { transform: scale(1.05); }
     .gallery-tile:focus-visible { outline: 2px solid #f39200; outline-offset: 3px; }
     .gallery-ph { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; font-size: .95rem; color: #b35f00; }
@@ -861,14 +861,14 @@
     header .dir-btn { padding: .25rem .75rem !important; font-size: .85rem !important; font-weight: 600 !important; line-height: 1.35 !important; border-radius: 9999px; }
     header .dir-btn i { font-size: .85rem !important; margin-right: .35rem !important; }
     /* Burger dropdown follows the selected shop, matching the location toggle thumb (orange / pink) */
-    #mobile-menu { background: #f39200 !important; border-bottom-color: rgba(59,49,42,.2) !important; transition: background-color .3s; }
+    #mobile-menu { background: #f39200 !important; border-bottom-color: rgba(66,54,42,.2) !important; transition: background-color .3s; }
     body.theme-lancaster #mobile-menu { background: #f49495 !important; }
-    #mobile-menu a.mobile-link { color: #3b312a !important; }
+    #mobile-menu a.mobile-link { color: #42362a !important; }
     body.theme-lancaster #mobile-menu a.mobile-link { color: #2b2545 !important; }
     #mobile-menu a.mobile-link:hover, #mobile-menu a.mobile-link:focus-visible { background: rgba(255,255,255,.35) !important; color: inherit !important; }
-    #mobile-menu a.js-directions.mobile-link { background: #3b312a !important; color: #fff !important; }
+    #mobile-menu a.js-directions.mobile-link { background: #42362a !important; color: #fff !important; }
     body.theme-lancaster #mobile-menu a.js-directions.mobile-link { background: #2b2545 !important; color: #fff !important; }
-    #mobile-menu a.js-directions.mobile-link:hover { background: #2a221c !important; color: #fff !important; }
+    #mobile-menu a.js-directions.mobile-link:hover { background: #33291f !important; color: #fff !important; }
     body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { background: #1d1a33 !important; }
   </style>
   <style>
@@ -903,7 +903,7 @@
       display: inline-flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box;
       width: var(--sw-size); height: var(--sw-size); padding: 0 !important;
       border: 0 !important; border-radius: 50% !important; box-shadow: none !important; transform: none !important;
-      background: #f39200 !important; color: #3b312a !important; cursor: pointer;
+      background: #f39200 !important; color: #42362a !important; cursor: pointer;
       transition: background-color .3s ease, color .3s ease; -webkit-tap-highlight-color: transparent;
     }
     html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn:hover { background: #d97f00 !important; }
@@ -917,19 +917,19 @@
   </style>
   <style>
     /* Header colour: cream on Morecambe, sage green on Lancaster (text switches to dark so it stays readable) */
-    header.glass-nav { background: #fbf3e2 !important; border-bottom-color: rgba(87,74,61,.18) !important; }
+    header.glass-nav { background: #fbf3e2 !important; border-bottom-color: rgba(66,54,42,.18) !important; }
     body.theme-lancaster header.glass-nav { background: #a7cbb9 !important; border-bottom-color: rgba(63,125,102,.35) !important; }
 
-    header #main-nav a { color: #3b312a !important; }
+    header #main-nav a { color: #42362a !important; }
     header #main-nav a:hover, header #main-nav a:focus-visible { color: #b35f00 !important; text-decoration: underline; text-underline-offset: 4px; }
     body.theme-lancaster header #main-nav a { color: #2b2545 !important; }
     body.theme-lancaster header #main-nav a:hover, body.theme-lancaster header #main-nav a:focus-visible { color: #3d375e !important; }
 
-    header #mobile-menu-btn { color: #3b312a !important; }
+    header #mobile-menu-btn { color: #42362a !important; }
     header #mobile-menu-btn:hover { background: rgba(0,0,0,.08) !important; }
     body.theme-lancaster header #mobile-menu-btn { color: #2b2545 !important; }
 
-    header a.dir-btn:focus-visible { outline-color: #3b312a; }
+    header a.dir-btn:focus-visible { outline-color: #42362a; }
     body.theme-lancaster header a.dir-btn:focus-visible { outline-color: #3d375e; }
   </style>
   <style>
@@ -979,15 +979,15 @@
   </style>
   <style>
     /* Picture of the header switch button, shown in the shop picker pop-up as a hint */
-    .shop-hint-btn { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: #f39200; color: #3b312a; box-shadow: 0 2px 6px rgba(59,49,42,.2); }
+    .shop-hint-btn { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: #f39200; color: #42362a; box-shadow: 0 2px 6px rgba(66,54,42,.2); }
     .shop-hint-btn svg { width: 68%; height: 68%; }
     .shop-hint p { max-width: 15rem; margin: 0; }
   </style>
   <style>
     /* ===== Burger menu as a floating card (same look as the Hot Puddings card), colour-matched per shop ===== */
     html body #mobile-menu {
-      --mm-surface: #fffdf8; --mm-border: rgba(87,74,61,.12); --mm-row: #fdf0d8; --mm-row-hover: #fae6bd;
-      --mm-row-border: rgba(243,146,0,.25); --mm-text: #3b312a; --mm-accent: #b35f00; --mm-solid: #f39200; --mm-solid-hover: #d97f00;
+      --mm-surface: #fffdf8; --mm-border: rgba(66,54,42,.12); --mm-row: #fdf0d8; --mm-row-hover: #fae6bd;
+      --mm-row-border: rgba(243,146,0,.25); --mm-text: #42362a; --mm-accent: #b35f00; --mm-solid: #f39200; --mm-solid-hover: #d97f00;
     }
     html body.theme-lancaster #mobile-menu {
       --mm-surface: #ffffff; --mm-border: rgba(63,125,102,.22); --mm-row: #fdeaea; --mm-row-hover: #fbdcdc;
@@ -997,7 +997,7 @@
       position: absolute; top: calc(100% + .5rem); right: clamp(.75rem, 2vw, 2rem); left: auto;
       width: min(21rem, calc(100% - 1.5rem)); box-sizing: border-box;
       background: var(--mm-surface) !important; border: 1px solid var(--mm-border) !important; border-radius: 1.5rem;
-      box-shadow: 0 14px 34px rgba(59,49,42,.2); padding: .7rem !important; -webkit-backdrop-filter: none; backdrop-filter: none;
+      box-shadow: 0 14px 34px rgba(66,54,42,.2); padding: .7rem !important; -webkit-backdrop-filter: none; backdrop-filter: none;
       transition: background-color .3s, border-color .3s;
     }
     html body header #mobile-menu:not(.hidden) { display: flex; flex-direction: column; gap: .5rem; animation: mmIn .18s ease-out; }
@@ -1021,7 +1021,7 @@
     /* Directions row (only shown in the burger when the header button is hidden): solid accent row */
     html body #mobile-menu a.js-directions.mobile-link {
       width: 100% !important; margin: 0 !important; padding: .5rem .75rem !important; font-size: 1.05rem !important;
-      background: var(--mm-solid) !important; border-color: var(--mm-solid); color: #3b312a !important;
+      background: var(--mm-solid) !important; border-color: var(--mm-solid); color: #42362a !important;
       font-family: 'DM Sans', 'Zilla Slab', sans-serif !important; font-weight: 500 !important;
     }
     html body.theme-lancaster #mobile-menu a.js-directions.mobile-link { color: #2b2545 !important; }
@@ -1031,7 +1031,7 @@
   <style>
     /* Hero pill buttons (Open 7 Days / Explore Flavours / Visit Our Shops): one shared style per shop */
     html body .hero-section a.menu-open-badge, html body .hero-section a.btn-primary, html body .hero-section a.btn-secondary {
-      background: #fdf0d8 !important; color: #3b312a !important; border: 1px solid #574a3d !important;
+      background: #fdf0d8 !important; color: #42362a !important; border: 1px solid #42362a !important;
       box-shadow: none !important; transform: none !important; opacity: 1 !important;
       transition: background-color .25s ease, border-color .25s ease, color .25s ease;
     }
@@ -1058,14 +1058,14 @@
       box-sizing: border-box; align-items: center; justify-content: center; flex: none;
       width: var(--sw-size); height: var(--sw-size); padding: 0 !important;
       border: 0 !important; border-radius: 50% !important; box-shadow: none !important;
-      background: #f39200 !important; color: #3b312a !important; cursor: pointer;
+      background: #f39200 !important; color: #42362a !important; cursor: pointer;
       transition: background-color .3s ease, color .3s ease; -webkit-tap-highlight-color: transparent;
     }
     html.nav-compact header #mobile-menu-btn, html.nav-nodir header #mobile-menu-btn { display: inline-flex; }
     html header #mobile-menu-btn:hover { background: #d97f00 !important; }
     html header #mobile-menu-btn i { font-size: calc(var(--sw-size) * .42) !important; margin: 0 !important; color: inherit !important; line-height: 1; }
     html header #mobile-menu-btn[aria-expanded="true"] i::before { content: "\f00d"; }
-    html header #mobile-menu-btn:focus-visible { outline: 2px solid #3b312a; outline-offset: 2px; }
+    html header #mobile-menu-btn:focus-visible { outline: 2px solid #42362a; outline-offset: 2px; }
     html body.theme-lancaster header #mobile-menu-btn { background: #f49495 !important; color: #3d375e !important; }
     html body.theme-lancaster header #mobile-menu-btn:hover { background: #e27b7c !important; }
     html body.theme-lancaster header #mobile-menu-btn:focus-visible { outline-color: #3d375e; }
@@ -1091,7 +1091,7 @@
       color: #3d375e !important;
     }
     body:not(.theme-lancaster) footer.bg-brand-text {
-      background-color: #473629 !important;
+      background-color: #42362a !important;
     }
     body.theme-lancaster header #brand-logo-container {
       background: #ffffff !important;
@@ -1173,7 +1173,7 @@
     }
     body:not(.theme-lancaster) footer .social-link {
       background-color: #ffffff !important;
-      color: #3b312a !important;
+      color: #42362a !important;
     }
     body:not(.theme-lancaster) footer #footer-logo-container {
       background-color: #ffffff !important;
@@ -1199,7 +1199,7 @@
     }
     body:not(.theme-lancaster) header #brand-logo-container {
       background: #ffffff !important;
-      border-color: rgba(87, 74, 61, .2) !important;
+      border-color: rgba(66, 54, 42, .2) !important;
       padding: .2rem .4rem !important;
     }
     body:not(.theme-lancaster) header #brand-logo-img {
@@ -1306,10 +1306,10 @@
     .bar-social a {
       display: inline-flex; align-items: center; justify-content: center;
       width: 1.5rem; height: 1.5rem; border-radius: 50%;
-      background: #ffffff; color: #3b312a; font-size: .8rem; line-height: 1;
+      background: #ffffff; color: #42362a; font-size: .8rem; line-height: 1;
       transition: background-color .2s ease, color .2s ease;
     }
-    .bar-social a:hover, .bar-social a:focus-visible { background: #f39200; color: #3b312a; }
+    .bar-social a:hover, .bar-social a:focus-visible { background: #f39200; color: #42362a; }
     .bar-social a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     body.theme-lancaster .bar-social a { color: #3d375e; }
     body.theme-lancaster .bar-social a:hover, body.theme-lancaster .bar-social a:focus-visible { background: #f49495; color: #3d375e; }
@@ -1338,6 +1338,24 @@
     html body header #mobile-menu a.mobile-link,
     html body header #mobile-menu a.js-directions.mobile-link { font-size: .85rem !important; font-weight: 500 !important; }
     html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body header a.dir-btn { font-size: .7rem !important; font-weight: 600 !important; }
+  </style>
+  <style>
+    /* Toggle pill: no outline */
+    #loc-toggle.loc-switch { border: 0 !important; }
+
+    /* Top-bar social icons: plain icons, no white circles */
+    .bar-social { gap: .75rem; }
+    .bar-social a, .bar-social a:hover, .bar-social a:focus-visible {
+      background: transparent !important; border-radius: 0; width: auto; height: auto;
+      font-size: 1.05rem; color: #ffffff;
+    }
+    .bar-social a:hover, .bar-social a:focus-visible { color: #f39200; }
+    body.theme-lancaster .bar-social a { color: #ffffff; }
+    body.theme-lancaster .bar-social a:hover, body.theme-lancaster .bar-social a:focus-visible { color: #f49495; }
+
+    /* Find Us button: dark brown on Morecambe */
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn { background: #42362a !important; color: #ffffff !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn:hover { background: #33291f !important; }
   </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
@@ -1420,7 +1438,7 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden border-b border-brand-orange/10 bg-[#483629]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+    <div id="mobile-menu" class="hidden border-b border-brand-orange/10 bg-[#42362a]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
       <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-ice-cream"></i></span><span>Menu</span></a>
       <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-clock"></i></span><span>Opening hours</span></a>
       <a href="#gallery" class="js-gallery-link mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-images"></i></span><span>Gallery</span></a>
@@ -1514,7 +1532,7 @@
           </div>
 
           <!-- Scoops & Prices: inside this card below 1024px (standalone card takes over at lg) -->
-          <div class="gelato-prices price-card-bg lg:hidden mb-6 rounded-2xl bg-[#483629] text-white p-4 sm:p-5 transition-colors duration-400">
+          <div class="gelato-prices price-card-bg lg:hidden mb-6 rounded-2xl bg-[#42362a] text-white p-4 sm:p-5 transition-colors duration-400">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
               <ul class="space-y-2">
                 <li class="price-dark"><span>Single</span><i></i><b>£3.75</b></li>
@@ -1560,7 +1578,7 @@
         </div>
 
         <!-- Prices (standalone card, left column from 1024px): same content as the in-card prices on smaller screens -->
-        <div class="price-card price-card-bg lg:col-span-4 lg:order-1 bg-[#483629] text-white rounded-3xl shadow-sm p-6 sm:p-8 hidden lg:flex flex-col gap-3 self-start transition-colors duration-400">
+        <div class="price-card price-card-bg lg:col-span-4 lg:order-1 bg-[#42362a] text-white rounded-3xl shadow-sm p-6 sm:p-8 hidden lg:flex flex-col gap-3 self-start transition-colors duration-400">
           <ul class="space-y-3">
             <li class="price-dark"><span>Single</span><i></i><b>£3.75</b></li>
             <li class="price-dark"><span>Double</span><i></i><b>£5.75</b></li>
