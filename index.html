@@ -1451,6 +1451,65 @@
     html body.theme-lancaster footer .border-gray-800,
     html body.theme-lancaster footer div[class*="border-"] { border-color: #ffffff !important; }
   </style>
+  <style>
+    /* ===== Readability + mobile polish (keep this block last so it wins) ===== */
+
+    /* 1. Hero subheading: darker, regular weight, soft light halo so it stays legible over the photo */
+    body:not(.theme-lancaster) .hero-section .hero-subtitle { color: #4a3d31; }
+    body.theme-lancaster .hero-section .hero-subtitle { color: #3d375e; }
+    .hero-section .hero-subtitle {
+      font-weight: 400;
+      text-wrap: pretty;
+      text-shadow: 0 0 .9rem rgba(255, 255, 255, .6);
+    }
+    body:not(.theme-lancaster) .hero-section .stat-label { color: #5c4f42; }
+
+    /* 2. Menu pills: borders strong enough to see against the background photo */
+    body:not(.theme-lancaster) .menu-quick-link { border-color: rgba(179, 95, 0, .5); }
+    body.theme-lancaster .menu-quick-link { border-color: rgba(63, 125, 102, .55); }
+
+    /* 3. Burger icon: dark brown in Morecambe (Lancaster is already dark purple) */
+    html body:not(.theme-lancaster) header #mobile-menu-btn { color: #42362a !important; }
+    html body:not(.theme-lancaster) header #mobile-menu-btn:hover { color: #b35f00 !important; }
+
+    /* 5. Locations section fades in at the top and out at the bottom, with no border line, so neither edge shows */
+    .locations-section { border-top: 0 !important; }
+    body:not(.theme-lancaster) .locations-section {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .04) 20%, rgba(0, 0, 0, .04) 60%, rgba(0, 0, 0, 0)) !important;
+    }
+    body.theme-lancaster .locations-section {
+      background: linear-gradient(to bottom, rgba(149, 190, 171, 0), rgba(149, 190, 171, .5) 20%, rgba(149, 190, 171, .5) 60%, rgba(149, 190, 171, 0)) !important;
+    }
+
+    /* 6. Gallery subtitle: same darker, readable treatment as the hero subheading */
+    #gallery-subtitle { font-weight: 400; text-shadow: 0 0 .9rem rgba(255, 255, 255, .6); }
+    body:not(.theme-lancaster) #gallery-subtitle { color: #4a3d31; }
+    body.theme-lancaster #gallery-subtitle { color: #3d375e; }
+
+    /* 4. Phones */
+    @media (max-width: 767px) {
+      /* pills as a tidy 2-column grid, last one (Allergy Information) full width */
+      #menu .mt-6.flex {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: .5rem !important;
+        max-width: 26rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #menu .menu-quick-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .55rem .5rem !important;
+        white-space: nowrap;
+      }
+      #menu .menu-quick-link:last-child { grid-column: 1 / -1; }
+
+      /* breathing room so "Menu" reads as a new section below the hero */
+      #menu { padding-top: 1.75rem !important; }
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -1556,8 +1615,8 @@
               Award-winning gelato, <span class="hero-title-gradient text-transparent bg-clip-text bg-gradient-to-r from-brand-brown via-brand-orange-text to-brand-orange-dark italic">Handmade, since 2016</span>.
             </h1>
 
-            <p class="hero-subtitle text-base sm:text-lg text-brand-muted max-w-2xl mx-auto lg:mx-0 font-light transition-colors duration-400">
-              Hand-made beside the seaside with local milk, slow-churned artisan techniques, and hand-selected natural ingredients.
+            <p class="hero-subtitle text-base sm:text-lg text-brand-muted max-w-2xl mx-auto lg:mx-0 transition-colors duration-400">
+              Handmade beside the seaside with local milk, slow-churned artisan techniques, and hand&#8209;selected natural ingredients.
             </p>
 
             <div class="hero-actions pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
@@ -1860,7 +1919,7 @@
             <img id="footer-logo-img" src="miomorefooter.png" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
-            Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
+            Award-winning gelato created in Morecambe, since 2016. Handmade beside the seaside!
           </p>
         </div>
 
