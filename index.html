@@ -1422,6 +1422,35 @@
     html body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { background: #463b75 !important; border-color: #463b75 !important; }
     html body.theme-lancaster #mobile-menu a.js-directions.mobile-link .mm-ico { background: rgba(255,255,255,.18); color: #ffffff; }
   </style>
+  <style>
+    /* Morecambe footer: no white box behind the logo */
+    html body:not(.theme-lancaster) footer #footer-logo-container {
+      background: transparent !important; background-color: transparent !important;
+      border: 0 !important; box-shadow: none !important; padding-left: 0 !important; padding-right: 0 !important;
+    }
+  </style>
+  <style>
+    /* ===== Lancaster footer: dark purple (matches top bar), white text + dividers, no logo box ===== */
+    html body.theme-lancaster footer.bg-brand-text {
+      background: #54488a !important; background-color: #54488a !important;
+      border-color: #ffffff !important; color: #ffffff !important;
+    }
+    html body.theme-lancaster footer #footer-logo-container {
+      background: transparent !important; background-color: transparent !important;
+      border: 0 !important; box-shadow: none !important; padding-left: 0 !important; padding-right: 0 !important;
+    }
+    html body.theme-lancaster footer p,
+    html body.theme-lancaster footer h4,
+    html body.theme-lancaster footer li,
+    html body.theme-lancaster footer a,
+    html body.theme-lancaster footer .text-gray-500,
+    html body.theme-lancaster footer .text-gray-400,
+    html body.theme-lancaster footer .text-gray-300 { color: #ffffff !important; }
+    html body.theme-lancaster footer a:hover:not(.social-link) { color: #f49495 !important; }
+    html body.theme-lancaster footer .border-t,
+    html body.theme-lancaster footer .border-gray-800,
+    html body.theme-lancaster footer div[class*="border-"] { border-color: #ffffff !important; }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -1828,7 +1857,7 @@
         
         <div class="md:col-span-2 space-y-4">
           <a id="footer-logo-container" href="#" class="inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300">
-            <img id="footer-logo-img" src="miomore.png" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
+            <img id="footer-logo-img" src="miomorefooter.png" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
@@ -1848,20 +1877,19 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4 text-right">Contact & Follow</h4>
-          <div class="footer-social flex justify-end mb-4">
+          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4 text-left">Contact & Follow</h4>
+          <div class="footer-social flex justify-start mb-4">
             <a href="https://www.instagram.com/miogelatomore/" target="_blank" rel="noopener" aria-label="Instagram @miogelatomore" class="social-link"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://www.facebook.com/MiogelatoGelato" target="_blank" rel="noopener" aria-label="Facebook Miogelato" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
           </div>
-          <p class="text-xs text-gray-400 text-right">info@miogelato.co.uk</p>
+          <p class="text-xs text-gray-400 text-left">info@miogelato.co.uk</p>
         </div>
 
       </div>
 
       <div class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
-        <p>© 2026 Mio Gelato. Award-winning gelato created in Morecambe, since 2016. All rights reserved.</p>
-        <p class="mt-2 sm:mt-0">Official website: miogelato.co.uk</p>
+        <p>© 2026 Miogelato. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -2294,7 +2322,7 @@
         // Swap hero image and top-left logo for Lancaster with blended background container
         setHeroTub('Tublanc.png');
         if (brandLogoImg) { brandLogoImg.src = 'miolanc.png'; brandLogoImg.alt = 'miogelato Lancaster'; }
-        if (footerLogoImg) { footerLogoImg.src = 'miolanc.png'; footerLogoImg.alt = 'miogelato Lancaster'; }
+        if (footerLogoImg) { footerLogoImg.src = 'miolancfooter.png'; footerLogoImg.alt = 'miogelato Lancaster'; }
         if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-[#faf7fd] rounded-2xl px-4 py-2 border border-[#f49495]/30 shadow-sm transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-[#faf7fd] rounded-2xl px-3 py-1.5 border border-[#f49495]/30 shadow-sm transition-colors duration-300";
@@ -2313,7 +2341,7 @@
         // Swap hero image and logos back for Morecambe with cream background container
         setHeroTub('tub.png');
         if (brandLogoImg) { brandLogoImg.src = 'miomore.png'; brandLogoImg.alt = 'miogelato Morecambe'; }
-        if (footerLogoImg) { footerLogoImg.src = 'miomore.png'; footerLogoImg.alt = 'miogelato Morecambe'; }
+        if (footerLogoImg) { footerLogoImg.src = 'miomorefooter.png'; footerLogoImg.alt = 'miogelato Morecambe'; }
         if (footerLogoContainer) { footerLogoContainer.className = "inline-block bg-white rounded-2xl px-4 py-2 transition-colors duration-300"; }
         if (brandLogoContainer) {
           brandLogoContainer.className = "flex items-center group bg-brand-cream rounded-2xl px-3 py-1.5 transition-colors duration-300";
