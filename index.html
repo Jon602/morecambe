@@ -1364,6 +1364,64 @@
     html.nav-tiny header #brand-logo-img { height: 1.6rem !important; }
     html.nav-tiny header #brand-logo-container { padding: .15rem 0 !important; }
   </style>
+  <style>
+    /* Footer social icons: identical to the top-bar icons (plain, no circles) */
+    .footer-social { gap: .75rem; align-items: center; }
+    html body footer .footer-social a.social-link,
+    html body.theme-lancaster footer .footer-social a.social-link,
+    html body:not(.theme-lancaster) footer .footer-social a.social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: auto !important; height: auto !important; margin: 0 !important; border-radius: 0 !important;
+      background: transparent !important; background-color: transparent !important;
+      color: #ffffff !important; font-size: 1.05rem; line-height: 1;
+      transition: color .2s ease;
+    }
+    html body footer .footer-social a.social-link:hover,
+    html body footer .footer-social a.social-link:focus-visible { background: transparent !important; color: #f39200 !important; }
+    html body.theme-lancaster footer .footer-social a.social-link:hover,
+    html body.theme-lancaster footer .footer-social a.social-link:focus-visible { background: transparent !important; color: #f49495 !important; }
+    html body footer .footer-social a.social-link:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  </style>
+  <style>
+    /* Header text: title case (not all caps) */
+    html body header #main-nav a,
+    html body header #mobile-menu a.mobile-link,
+    html body header a.dir-btn { text-transform: none !important; letter-spacing: .02em !important; }
+    html.nav-tighter body header #main-nav, html.nav-tiny body header #main-nav { letter-spacing: .01em !important; }
+    html.nav-tiny body header #main-nav a { letter-spacing: .01em !important; }
+  </style>
+  <style>
+    /* Lancaster: darker purple top bar */
+    html body.theme-lancaster .location-banner { background: #54488a !important; border-bottom-color: rgba(31, 26, 56, .4) !important; }
+  </style>
+  <style>
+    /* ===== Lancaster header: cream bar, no logo box, dark-purple Find Us ===== */
+    html body.theme-lancaster header.glass-nav { background: #FFF6F5 !important; border-bottom-color: rgba(84, 72, 138, .15) !important; }
+    html body.theme-lancaster header #brand-logo-container {
+      background: transparent !important; border-color: transparent !important; box-shadow: none !important;
+    }
+    /* nav hover pill: white would vanish on cream, so use a soft purple tint */
+    html body.theme-lancaster header #main-nav a:hover,
+    html body.theme-lancaster header #main-nav a:focus-visible { background: rgba(84, 72, 138, .1) !important; }
+    /* burger icon was white (for the old purple bar): make it dark purple */
+    html body.theme-lancaster header #mobile-menu-btn { color: #54488a !important; }
+    html body.theme-lancaster header #mobile-menu-btn:hover { color: #3d3466 !important; }
+    /* Find Us: same dark purple as the top bar, white text + icon */
+    html body.theme-lancaster header a.dir-btn,
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body.theme-lancaster header a.dir-btn {
+      background: #54488a !important; color: #ffffff !important;
+    }
+    html body.theme-lancaster header a.dir-btn:hover,
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body.theme-lancaster header a.dir-btn:hover { background: #463b75 !important; color: #ffffff !important; }
+    html body.theme-lancaster header a.dir-btn i,
+    html body.theme-lancaster header a.dir-btn span,
+    html body.theme-lancaster header a.dir-btn svg { color: #ffffff !important; stroke: #ffffff; }
+    html body.theme-lancaster header a.dir-btn:focus-visible { outline-color: #54488a; }
+    /* same button inside the burger menu */
+    html body.theme-lancaster #mobile-menu a.js-directions.mobile-link { background: #54488a !important; border-color: #54488a !important; color: #ffffff !important; }
+    html body.theme-lancaster #mobile-menu a.js-directions.mobile-link:hover { background: #463b75 !important; border-color: #463b75 !important; }
+    html body.theme-lancaster #mobile-menu a.js-directions.mobile-link .mm-ico { background: rgba(255,255,255,.18); color: #ffffff; }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -1422,7 +1480,7 @@
         <!-- Desktop Navigation Links -->
         <nav id="main-nav" class="flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
           <a href="#menu" class="text-white/90 hover:text-brand-orange transition-colors">Menu</a>
-          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Opening hours</a>
+          <a href="#locations" class="text-white/90 hover:text-brand-orange transition-colors">Opening Hours</a>
           <a href="#gallery" class="js-gallery-link text-white/90 hover:text-brand-orange transition-colors">Gallery</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="text-white/90 hover:text-brand-orange transition-colors">Allergy Info</a>
           <a href="wholesale.html" class="text-white/90 hover:text-brand-orange transition-colors">Wholesale</a>
@@ -1447,7 +1505,7 @@
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden border-b border-brand-orange/10 bg-[#42362a]/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
       <a href="#menu" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-ice-cream"></i></span><span>Menu</span></a>
-      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-clock"></i></span><span>Opening hours</span></a>
+      <a href="#locations" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-clock"></i></span><span>Opening Hours</span></a>
       <a href="#gallery" class="js-gallery-link mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-images"></i></span><span>Gallery</span></a>
       <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link block px-3 py-2 rounded-xl text-base font-medium text-white hover:bg-white/10 hover:text-brand-orange"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span><span>Allergy Info</span></a>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link btn-primary flex items-center justify-center px-3 py-2.5 rounded-full text-base font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span><span>Directions</span></a>
@@ -1781,7 +1839,7 @@
           <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Navigation</h4>
           <ul class="space-y-2 text-xs text-gray-400">
             <li><a href="#menu" class="hover:text-brand-orange-text transition-colors">Menu</a></li>
-            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Opening hours</a></li>
+            <li><a href="#locations" class="hover:text-brand-orange-text transition-colors">Opening Hours</a></li>
             <li><a href="#gallery" class="js-gallery-link hover:text-brand-orange-text transition-colors">Gallery</a></li>
             <li><a href="#" class="js-directions hover:text-brand-orange-text transition-colors">Directions</a></li>
             <li><a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="hover:text-brand-orange-text transition-colors">Allergy Info</a></li>
@@ -1791,10 +1849,10 @@
 
         <div>
           <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4 text-right">Contact & Follow</h4>
-          <div class="flex justify-end space-x-4 mb-4">
-            <a href="https://www.instagram.com/miogelatomore/" target="_blank" rel="noopener" aria-label="Instagram @miogelatomore" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.facebook.com/MiogelatoGelato" target="_blank" rel="noopener" aria-label="Facebook Miogelato" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more" class="social-link w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-brand-orange hover:text-white transition-all"><i class="fa-brands fa-tiktok"></i></a>
+          <div class="footer-social flex justify-end mb-4">
+            <a href="https://www.instagram.com/miogelatomore/" target="_blank" rel="noopener" aria-label="Instagram @miogelatomore" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/MiogelatoGelato" target="_blank" rel="noopener" aria-label="Facebook Miogelato" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
           </div>
           <p class="text-xs text-gray-400 text-right">info@miogelato.co.uk</p>
         </div>

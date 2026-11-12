@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     html { font-size: 18px; }
@@ -32,78 +32,149 @@
     .text-xs { font-size: .85rem; line-height: 1.35; }
     .text-sm { font-size: .95rem; line-height: 1.45; }
 
-    /* ===== Header, location bar and page background: same as index.html in its Morecambe state ===== */
-    :root { --hdr-h: 3.15rem; --banner-h: calc(2.2rem + 1px); --bg-image-opacity: 0.16; }
-    @media (min-width: 768px) { :root { --hdr-h: 3rem; } }
-    @media (min-width: 1024px) { :root { --hdr-h: 4.5rem; } }
-    body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      background: url('bg-texture.jpg') 62% 50% / cover no-repeat; filter: grayscale(1); opacity: var(--bg-image-opacity); }
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
-    .hdr-bar { background: #e2e2e4; border-bottom: 1px solid rgba(0,0,0,.12); }
-    .hdr-in { max-width: 80rem; margin: 0 auto; height: var(--hdr-h); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 clamp(.75rem, 2vw, 2rem); }
-    .hdr-logo { display: flex; align-items: center; flex-shrink: 0; padding: .2rem 0; }
-    .hdr-logo img { display: block; width: auto; height: clamp(1.6rem, .9rem + 2.6vw, 3rem); }
-    @media (max-width: 767px) { .hdr-logo img { height: calc(clamp(1.6rem, .9rem + 2.6vw, 3rem) * 1.35); } }
-    #main-nav { display: none; align-items: center; gap: 1.5rem; font-family: 'DM Sans', 'Zilla Slab', sans-serif; font-weight: 500; font-size: 1rem; }
-    #main-nav a { color: #3b312a; white-space: nowrap; }
-    #main-nav a:hover, #main-nav a:focus-visible, #main-nav a[aria-current="page"] { color: #b35f00; text-decoration: underline; text-underline-offset: 4px; }
-    .hdr-right { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
-    .dir-btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; padding: .35rem .85rem; border-radius: 9999px; background: #f39200; color: #3b312a;
-      font-size: .85rem; font-weight: 600; line-height: 1.2; white-space: nowrap; transition: background-color .3s ease; -webkit-tap-highlight-color: transparent; }
-    .dir-btn:hover { background: #d97f00; }
-    .dir-btn:focus-visible { outline: 2px solid #3b312a; outline-offset: 2px; }
+    /* Header and top bar match index.html's Morecambe styling. */
+    :root { --location-banner-height: calc(2.2rem + 1px); --header-height: 3.375rem; --bg-image-opacity: .16; }
+    @media (min-width: 768px) and (max-width: 1023px) { :root { --header-height: 3rem; } }
+    @media (max-width: 783px) { :root { --header-height: 2.66rem; } }
+    @media (max-width: 767px) { :root { --header-height: 2.3625rem; } }
+    body { padding-top: var(--location-banner-height); background: #f1f1f2; }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: url('bg-texture.jpg') 62% 50% / cover no-repeat; filter: grayscale(1); opacity: var(--bg-image-opacity);
+    }
+    .location-banner {
+      position: fixed; inset: 0 0 auto; z-index: 51; box-sizing: border-box;
+      height: var(--location-banner-height); display: flex; align-items: center;
+      padding: 0 calc(max(0px, (100% - 80rem) / 2) + clamp(.75rem, 2vw, 2rem));
+      background: #42362a; border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+    .location-banner-inner { display: flex; align-items: center; width: 100%; }
+    .bar-social { display: flex; align-items: center; gap: .75rem; }
+    .bar-social a {
+      display: inline-flex; align-items: center; justify-content: center; width: auto; height: auto;
+      background: transparent; color: #fff; font-size: 1.05rem; line-height: 1; transition: color .2s ease;
+    }
+    .bar-social a:hover, .bar-social a:focus-visible { color: #f39200; }
+    .site-header { position: fixed; top: var(--location-banner-height); left: 0; right: 0; z-index: 50; }
+    .site-header.glass-nav { background: #e2e2e4; border-bottom: 1px solid rgba(0,0,0,.12); }
+    .site-header .header-row { position: relative; display: flex; align-items: center; justify-content: space-between; height: var(--header-height); }
+    #brand-logo-container { flex-shrink: 0; padding: .2rem 0; }
+    #brand-logo-img { display: block; width: auto; height: calc(clamp(1.6rem, .9rem + 2.6vw, 3rem) * .8); object-fit: contain; }
+    #main-nav {
+      display: none; align-items: center; gap: 1.5rem; position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%); font-family: 'Montserrat', 'DM Sans', sans-serif; font-size: .74rem; font-weight: 500;
+    }
+    #main-nav a {
+      padding: .3rem .65rem; border-radius: 9999px; color: #42362a; white-space: nowrap;
+      text-transform: none; letter-spacing: .02em; transition: background-color .2s ease, color .2s ease;
+    }
+    #main-nav a:hover, #main-nav a:focus-visible { background: #fff; color: #b35f00; text-decoration: none; }
+    #main-nav a[aria-current="page"] { color: #b35f00; }
+    .header-actions { display: flex; align-items: center; gap: .75rem; }
+    .dir-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .45rem; flex: none;
+      padding: .35rem .85rem; border: 0; border-radius: 9999px; background: #42362a; color: #fff;
+      font-family: 'Montserrat', 'DM Sans', sans-serif; font-size: .7rem; font-weight: 600;
+      text-transform: none; letter-spacing: .02em; white-space: nowrap;
+      transition: background-color .3s ease; -webkit-tap-highlight-color: transparent;
+    }
+    .dir-btn:hover { background: #33291f; }
     .dir-btn i { font-size: .85rem; }
-    #mobile-menu a.mm-dir { display: none; background: #f39200; border-color: #f39200; }
-    #mobile-menu a.mm-dir:hover, #mobile-menu a.mm-dir:focus-visible { background: #d97f00; border-color: #d97f00; }
-    #mobile-menu a.mm-dir .mm-ico { background: rgba(255,255,255,.55); color: inherit; }
-    @media (max-width: 399px) { .dir-btn { display: none; } #mobile-menu a.mm-dir { display: flex; } }
-    #mobile-menu-btn { background: transparent; border: 0; color: #f39200; cursor: pointer; padding: .35rem .5rem; }
+    #mobile-menu-btn { display: block; padding: .35rem .5rem; border: 0; background: transparent; color: #f39200; cursor: pointer; }
     #mobile-menu-btn:hover { color: #d97f00; }
     #mobile-menu-btn i { font-size: 1.5rem; }
-    @media (min-width: 860px) { #main-nav { display: flex; } #mobile-menu-btn { display: none; } }
-    .loc-bar { height: var(--banner-h); box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #473629; border-bottom: 1px solid rgba(255,255,255,.18); }
-    .loc-pill { display: inline-flex; align-items: center; height: 1.72rem; padding: 0 1.4rem; border-radius: 9999px; background: #f39200; color: #3b312a; font-size: .78rem; font-weight: 600; line-height: 1; }
-    main.main-pad { padding-top: calc(var(--hdr-h) + var(--banner-h)); }
-    .scroll-mt-hdr { scroll-margin-top: calc(var(--hdr-h) + var(--banner-h) + .5rem); }
+    #mobile-menu {
+      --mm-surface: #fffdf8; --mm-border: rgba(66,54,42,.12); --mm-row: #fdf0d8; --mm-row-hover: #fae6bd;
+      --mm-row-border: rgba(243,146,0,.25); --mm-text: #42362a; --mm-accent: #b35f00;
+      position: absolute; top: calc(100% + .5rem); right: clamp(.75rem, 2vw, 2rem);
+      width: min(21rem, calc(100% - 1.5rem)); box-sizing: border-box; padding: .7rem;
+      background: var(--mm-surface); border: 1px solid var(--mm-border); border-radius: 1.5rem;
+      box-shadow: 0 14px 34px rgba(66,54,42,.2);
+    }
+    #mobile-menu[hidden] { display: none; }
+    #mobile-menu:not([hidden]) { display: flex; flex-direction: column; gap: .5rem; }
+    #mobile-menu a {
+      display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; border-radius: 1rem;
+      background: var(--mm-row); border: 1px solid var(--mm-row-border); color: var(--mm-text);
+      font-family: 'Montserrat', 'DM Sans', sans-serif; font-size: .85rem; font-weight: 500; line-height: 1.3;
+      text-transform: none; letter-spacing: .02em;
+    }
+    #mobile-menu a:hover, #mobile-menu a:focus-visible { background: var(--mm-row-hover); }
+    #mobile-menu .mm-ico {
+      flex: none; display: inline-flex; align-items: center; justify-content: center; width: 2.1rem; height: 2.1rem;
+      border-radius: .75rem; background: #fffdf8; color: var(--mm-accent); font-size: .95rem;
+    }
+    #mobile-menu a.js-directions.mobile-link { display: none; background: #42362a; border-color: #42362a; color: #fff; }
+    main.main-pad { padding-top: var(--header-height); }
+    .scroll-mt-hdr { scroll-margin-top: calc(var(--location-banner-height) + var(--header-height) + .5rem); }
     .intro-bg { background: linear-gradient(to bottom, rgba(0,0,0,.05), transparent); }
     .tint-bg { background-color: rgba(0,0,0,.04); }
-    /* burger menu: floating card, Morecambe colours */
-    #mobile-menu { position: absolute; top: calc(var(--hdr-h) + .5rem); right: clamp(.75rem, 2vw, 2rem); width: min(21rem, calc(100% - 1.5rem)); box-sizing: border-box;
-      display: flex; flex-direction: column; gap: .5rem; padding: .7rem; background: #fffdf8; border: 1px solid rgba(87,74,61,.12); border-radius: 1.5rem; box-shadow: 0 14px 34px rgba(59,49,42,.2); }
-    #mobile-menu[hidden] { display: none; }
-    #mobile-menu a { display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; border-radius: 1rem; background: #fdf0d8; border: 1px solid rgba(243,146,0,.25); color: #3b312a;
-      font-family: 'DM Sans', 'Zilla Slab', sans-serif; font-weight: 500; font-size: 1.05rem; line-height: 1.3; }
-    #mobile-menu a:hover, #mobile-menu a:focus-visible { background: #fae6bd; }
-    #mobile-menu .mm-ico { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 2.1rem; height: 2.1rem; border-radius: .75rem; background: #fffdf8; color: #b35f00; font-size: .95rem; }
+    footer.bg-brand-text { background-color: #42362a; }
+    .footer-social { gap: .75rem; align-items: center; }
+    html body footer .footer-social a.social-link {
+      display: inline-flex; align-items: center; justify-content: center; width: auto; height: auto;
+      margin: 0; border-radius: 0; background: transparent !important; color: #fff;
+      font-size: 1.05rem; line-height: 1; transition: color .2s ease;
+    }
+    html body footer .footer-social a.social-link:hover,
+    html body footer .footer-social a.social-link:focus-visible { color: #f39200; }
+    html body footer .footer-social a.social-link:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    body:not(.theme-lancaster) footer #footer-logo-container { background-color: #fff; }
+    @media (min-width: 860px) { #main-nav { display: flex; } #mobile-menu-btn { display: none; } }
+    @media (min-width: 860px) and (max-width: 1100px) {
+      #main-nav { gap: .4rem; font-size: .64rem; }
+      #main-nav a { padding: .2rem .35rem; }
+    }
+    @media (max-width: 859px) { #mobile-menu-btn { display: block; } }
+    @media (max-width: 399px) { .dir-btn { display: none; } #mobile-menu a.js-directions.mobile-link { display: flex; } }
   </style>
 </head>
-<body>
+<body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
-  <header class="site-header">
-    <div class="hdr-bar">
-      <div class="hdr-in">
-        <a href="index.html" class="hdr-logo" aria-label="miogelato home"><img src="miomore.png" alt="miogelato Morecambe"></a>
-        <nav id="main-nav" aria-label="Main">
+  <div class="location-banner">
+    <div class="location-banner-inner">
+      <div class="bar-social" aria-label="Social media">
+        <a href="https://www.instagram.com/miogelatomore/" target="_blank" rel="noopener" aria-label="Instagram @miogelatomore"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/MiogelatoGelato" target="_blank" rel="noopener" aria-label="Facebook Miogelato"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header glass-nav border-b border-brand-orange/15 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="header-row h-20 sm:h-24">
+        <a id="brand-logo-container" href="index.html" class="flex items-center group rounded-2xl transition-colors duration-300" aria-label="miogelato home">
+          <img id="brand-logo-img" src="miomore.png" alt="miogelato Morecambe" class="transition-transform duration-300 group-hover:scale-105">
+        </a>
+
+        <nav id="main-nav" aria-label="Main navigation">
           <a href="index.html#menu">Menu</a>
-          <a href="index.html#locations">Opening hours</a>
-          <a href="index.html#gallery">Gallery</a>
+          <a href="index.html#locations">Opening Hours</a>
+          <a href="index.html#gallery" class="js-gallery-link">Gallery</a>
           <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener">Allergy Info</a>
           <a href="wholesale.html" aria-current="page">Wholesale</a>
         </nav>
-        <div class="hdr-right">
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="dir-btn" aria-label="Find Us" title="Find Us"><i class="fa-solid fa-location-arrow" aria-hidden="true"></i><span>Find Us</span></a>
-          <button id="mobile-menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+
+        <div class="header-actions">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Find Us" title="Find Us" class="js-directions dir-btn">
+            <i class="fa-solid fa-location-arrow" aria-hidden="true"></i>
+            <span>Find Us</span>
+          </a>
+          <button id="mobile-menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>
-    <div class="loc-bar"><span class="loc-pill">Wholesale</span></div>
+
     <div id="mobile-menu" hidden>
-      <a href="index.html#menu"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-ice-cream"></i></span><span>Menu</span></a>
-      <a href="index.html#locations"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-clock"></i></span><span>Opening hours</span></a>
-      <a href="index.html#gallery"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-images"></i></span><span>Gallery</span></a>
-      <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span><span>Allergy Info</span></a>
-      <a href="wholesale.html" aria-current="page"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-truck"></i></span><span>Wholesale</span></a>
-      <a class="mm-dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span><span>Find Us</span></a>
+      <a href="index.html#menu" class="mobile-link"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-ice-cream"></i></span><span>Menu</span></a>
+      <a href="index.html#locations" class="mobile-link"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-clock"></i></span><span>Opening Hours</span></a>
+      <a href="index.html#gallery" class="js-gallery-link mobile-link"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-images"></i></span><span>Gallery</span></a>
+      <a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="mobile-link"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span><span>Allergy Info</span></a>
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions mobile-link"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span><span>Directions</span></a>
+      <a href="wholesale.html" aria-current="page" class="mobile-link"><span class="mm-ico" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></span><span>Wholesale</span></a>
     </div>
   </header>
 
@@ -291,28 +362,42 @@
   <footer class="bg-brand-text text-white py-12 border-t border-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+
         <div class="md:col-span-2 space-y-4">
-          <a href="index.html" class="inline-block bg-brand-cream rounded-2xl px-4 py-2">
-            <img src="miomore.png" alt="miogelato" class="block h-10 sm:h-14 w-auto">
+          <a id="footer-logo-container" href="index.html" class="inline-block bg-brand-cream rounded-2xl px-4 py-2 transition-colors duration-300">
+            <img id="footer-logo-img" src="miomore.png" alt="miogelato Morecambe" class="block h-10 sm:h-14 w-auto">
           </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             Award-winning gelato created in Morecambe, since 2016. Hand-made beside the seaside!
           </p>
         </div>
+
         <div>
-          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Our shops</h4>
-          <address class="not-italic text-xs text-gray-400 space-y-3 leading-relaxed">
-            <p>272 Marine Road Central<br>Morecambe LA4 5BX<br><a href="tel:+441524419606" class="hover:text-brand-orange-text">01524 419606</a></p>
-            <p>26 New Street<br>Lancaster LA1 1EG<br><a href="tel:+441524956682" class="hover:text-brand-orange-text">01524 956682</a></p>
-          </address>
+          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4">Navigation</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="index.html#menu" class="hover:text-brand-orange-text transition-colors">Menu</a></li>
+            <li><a href="index.html#locations" class="hover:text-brand-orange-text transition-colors">Opening Hours</a></li>
+            <li><a href="index.html#gallery" class="js-gallery-link hover:text-brand-orange-text transition-colors">Gallery</a></li>
+            <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" class="js-directions hover:text-brand-orange-text transition-colors">Directions</a></li>
+            <li><a href="https://allergens.miogelato.co.uk" target="_blank" rel="noopener" class="hover:text-brand-orange-text transition-colors">Allergy Info</a></li>
+            <li><a href="wholesale.html" class="hover:text-brand-orange-text transition-colors">Wholesale</a></li>
+          </ul>
         </div>
+
         <div>
-          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4 md:text-right">Contact</h4>
-          <p class="text-xs text-gray-400 md:text-right"><a href="mailto:info@miogelato.co.uk" class="hover:text-brand-orange-text">info@miogelato.co.uk</a></p>
+          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4 text-right">Contact &amp; Follow</h4>
+          <div class="footer-social flex justify-end mb-4">
+            <a href="https://www.instagram.com/miogelatomore/" target="_blank" rel="noopener" aria-label="Instagram @miogelatomore" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/MiogelatoGelato" target="_blank" rel="noopener" aria-label="Facebook Miogelato" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+          <p class="text-xs text-gray-400 text-right">info@miogelato.co.uk</p>
         </div>
+
       </div>
+
       <div class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
-        <p>&copy; 2026 Mio Gelato. All rights reserved.</p>
+        <p>© 2026 Mio Gelato. Award-winning gelato created in Morecambe, since 2016. All rights reserved.</p>
         <p class="mt-2 sm:mt-0">Official website: miogelato.co.uk</p>
       </div>
     </div>
