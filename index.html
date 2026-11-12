@@ -838,7 +838,7 @@
     html.nav-nodir header .dir-btn { display: none !important; }
     #mobile-menu a.js-directions.mobile-link { display: none !important; }
     html.nav-nodir #mobile-menu a.js-directions.mobile-link { display: inline-flex !important; }
-    html.nav-full #mobile-menu, html.nav-tight #mobile-menu, html.nav-tighter #mobile-menu { display: none !important; }
+    html.nav-full #mobile-menu, html.nav-tight #mobile-menu, html.nav-tighter #mobile-menu, html.nav-tiny #mobile-menu { display: none !important; }
 
     /* Roomier spacing for the full nav, tighter spacing (nav-tight) before the burger ever appears */
     header .max-w-7xl { padding-left: clamp(.75rem, 2vw, 2rem) !important; padding-right: clamp(.75rem, 2vw, 2rem) !important; }
@@ -896,17 +896,17 @@
   <style>
     /* Header Directions button uses the location's accent color. */
     html { --sw-size: 1.9rem; }
-    html.nav-tighter { --sw-size: 1.7rem; }
+    html.nav-tighter, html.nav-tiny { --sw-size: 1.7rem; }
     @media (max-width: 767px) { html { --sw-size: 1.7rem; } }
 
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn {
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) header a.dir-btn {
       display: inline-flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box;
       width: var(--sw-size); height: var(--sw-size); padding: 0 !important;
       border: 0 !important; border-radius: 50% !important; box-shadow: none !important; transform: none !important;
       background: #f39200 !important; color: #42362a !important; cursor: pointer;
       transition: background-color .3s ease, color .3s ease; -webkit-tap-highlight-color: transparent;
     }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn:hover { background: #d97f00 !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) header a.dir-btn:hover { background: #d97f00 !important; }
     body.theme-lancaster header a.dir-btn { background: #f49495 !important; color: #3d375e !important; }
     body.theme-lancaster header a.dir-btn:hover { background: #e27b7c !important; }
 
@@ -960,7 +960,7 @@
   <style>
     /* Header text only: DM Sans (clean, modern, easy to read small). Rest of the site stays Zilla Slab. */
     header #main-nav a, #mobile-menu a.mobile-link:not(.js-directions) { font-family: 'DM Sans', 'Zilla Slab', sans-serif !important; font-weight: 500 !important; letter-spacing: .005em; -webkit-font-smoothing: antialiased; }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header #main-nav { font-size: 1rem !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) header #main-nav { font-size: 1rem !important; }
     html.nav-tight header #main-nav { font-size: .92rem !important; }
     html.nav-tighter header #main-nav { font-size: .84rem !important; letter-spacing: 0; }
     html #mobile-menu a.mobile-link:not(.js-directions) { font-size: 1.05rem !important; }
@@ -968,7 +968,7 @@
   <style>
     /* Header alignment fixes */
     /* 1. Logo has no box now, so drop its side padding/border: logo edge lines up with the page content and mirrors the buttons on the right */
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header #brand-logo-container { padding: .2rem 0 !important; border-width: 0 !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) header #brand-logo-container { padding: .2rem 0 !important; border-width: 0 !important; }
     /* 2. On desktop the header edges match the page content edges (2rem), except in the tightest mode */
     @media (min-width: 1024px) {
       html:is(.nav-full, .nav-tight) header .max-w-7xl { padding-left: 2rem !important; padding-right: 2rem !important; }
@@ -1117,7 +1117,7 @@
       background: #ffffff !important;
       text-decoration: none !important;
     }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) header a.dir-btn {
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) header a.dir-btn {
       width: auto !important;
       height: auto !important;
       min-width: 0;
@@ -1332,12 +1332,12 @@
       font-weight: 500 !important;
       letter-spacing: .06em !important;
     }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body header #main-nav { font-size: .74rem !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body header #main-nav { font-size: .74rem !important; }
     html.nav-tight body header #main-nav { font-size: .7rem !important; }
     html.nav-tighter body header #main-nav { font-size: .64rem !important; letter-spacing: .04em !important; }
     html body header #mobile-menu a.mobile-link,
     html body header #mobile-menu a.js-directions.mobile-link { font-size: .85rem !important; font-weight: 500 !important; }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body header a.dir-btn { font-size: .7rem !important; font-weight: 600 !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body header a.dir-btn { font-size: .7rem !important; font-weight: 600 !important; }
   </style>
   <style>
     /* Toggle pill: no outline */
@@ -1354,8 +1354,15 @@
     body.theme-lancaster .bar-social a:hover, body.theme-lancaster .bar-social a:focus-visible { color: #f49495; }
 
     /* Find Us button: dark brown on Morecambe */
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn { background: #42362a !important; color: #ffffff !important; }
-    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn:hover { background: #33291f !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn { background: #42362a !important; color: #ffffff !important; }
+    html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn:hover { background: #33291f !important; }
+  </style>
+  <style>
+    /* nav-tiny: last step before the burger (740px and up). Smaller text, links sit between logo and button instead of being centred, so they can never overlap the logo */
+    html.nav-tiny header .max-w-7xl { padding-left: .6rem !important; padding-right: .6rem !important; }
+    html.nav-tiny body header #main-nav { font-size: .58rem !important; gap: .55rem !important; letter-spacing: .03em !important; position: static !important; transform: none !important; margin: 0 .6rem !important; }
+    html.nav-tiny header #brand-logo-img { height: 1.6rem !important; }
+    html.nav-tiny header #brand-logo-container { padding: .15rem 0 !important; }
   </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
@@ -2360,7 +2367,7 @@
     // Picks the header layout that fits the current width, so it never wraps or overlaps
     (function () {
       const root = document.documentElement;
-      const MODES = ['nav-full', 'nav-tight', 'nav-tighter', 'nav-compact', 'nav-nodir'];
+      const MODES = ['nav-full', 'nav-tight', 'nav-tighter', 'nav-tiny', 'nav-compact', 'nav-nodir'];
       let last = '', queued = false;
       function closeMenu() {
         document.getElementById('mobile-menu')?.classList.add('hidden');
@@ -2370,8 +2377,11 @@
         const vis = k => k && k.getClientRects().length;
         const w = k => vis(k) ? k.getBoundingClientRect().width : 0;
         const logo = row.children[0], nav = row.children[1], right = row.children[2];
+        const centred = vis(nav) && getComputedStyle(nav).position === 'absolute';
         const need = vis(nav)
-          ? 2 * (Math.max(w(logo), w(right)) + 12) + w(nav)   // nav is centred, so both sides reserve the wider side
+          ? (centred
+              ? 2 * (Math.max(w(logo), w(right)) + 16) + w(nav)   // nav is centred, so both sides reserve the wider side
+              : w(logo) + w(right) + w(nav) + 40)                  // nav-tiny: nav sits between logo and button
           : w(logo) + w(right) + 12;
         return need <= row.clientWidth;
       }
@@ -2381,8 +2391,12 @@
         if (header) root.style.setProperty('--location-banner-top', `${header.getBoundingClientRect().height}px`);
         const row = document.querySelector('header .h-20');
         if (!row) return;
-        let chosen = MODES[MODES.length - 1];
-        for (const mode of MODES) {
+        // Burger menu only below 740px: at 740px and up the full links always stay (shrinking to nav-tighter if needed)
+        const BURGER_BELOW = 740;
+        const wide = window.innerWidth >= BURGER_BELOW;
+        const candidates = wide ? MODES.slice(0, 4) : MODES.slice(4);
+        let chosen = wide ? 'nav-tiny' : MODES[MODES.length - 1];
+        for (const mode of candidates) {
           root.classList.remove(...MODES);
           root.classList.add(mode);
           if (fits(row)) { chosen = mode; break; }
@@ -2391,7 +2405,7 @@
         root.classList.add(chosen);
         if (chosen !== last) {
           last = chosen;
-          if (chosen === 'nav-full' || chosen === 'nav-tight' || chosen === 'nav-tighter') closeMenu();
+          if (chosen === 'nav-full' || chosen === 'nav-tight' || chosen === 'nav-tighter' || chosen === 'nav-tiny') closeMenu();
         }
       }
       function queue() { if (!queued) { queued = true; requestAnimationFrame(fitHeader); } }
