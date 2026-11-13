@@ -842,14 +842,14 @@
 
     /* Roomier spacing for the full nav, tighter spacing (nav-tight) before the burger ever appears */
     header .max-w-7xl { padding-left: clamp(.75rem, 2vw, 2rem) !important; padding-right: clamp(.75rem, 2vw, 2rem) !important; }
-    header #main-nav { gap: 1.5rem !important; font-size: .95rem !important; }
+    header #main-nav { gap: 1.25rem !important; font-size: .95rem !important; }
     header #main-nav > * { margin: 0 !important; }
-    html.nav-tight header #main-nav { gap: 1rem !important; font-size: .85rem !important; }
+    html.nav-tight header #main-nav { gap: .85rem !important; font-size: .85rem !important; }
     html.nav-tight header .dir-btn { padding: .25rem .6rem !important; }
 
     /* nav-tighter: last step before the burger. Same look and layout, everything just a touch smaller (fits down to ~1000px) */
     html.nav-tighter header .max-w-7xl { padding-left: .6rem !important; padding-right: .6rem !important; }
-    html.nav-tighter header #main-nav { gap: .7rem !important; font-size: .78rem !important; }
+    html.nav-tighter header #main-nav { gap: .6rem !important; font-size: .78rem !important; }
     html.nav-tighter header .dir-btn { padding: .2rem .5rem !important; font-size: .78rem !important; }
     html.nav-tighter header .dir-btn i { font-size: .75rem !important; margin-right: .25rem !important; }
     html.nav-tighter header #brand-logo-container { padding: .15rem .3rem !important; }
@@ -938,28 +938,29 @@
 
     /* Header 25% slimmer (page content and anchor offsets moved up to match) */
     @media (min-width: 1024px) {
-      header .h-20 { height: 4.5rem !important; }
-      main { padding-top: 4.5rem !important; }
-      .hero-section { padding-top: 6rem !important; }
-      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 5.5rem !important; }
+      header .h-20 { height: 3.825rem !important; }
+      main { padding-top: 3.825rem !important; }
+      .hero-section { padding-top: 5.325rem !important; }
+      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 4.825rem !important; }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
-      header .h-20, header .sm\:h-24 { height: 3rem !important; }
-      main { padding-top: 3rem !important; }
-      .hero-section { padding-top: 3.75rem !important; }
-      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 4.25rem !important; }
+      header .h-20, header .sm\:h-24 { height: 2.55rem !important; }
+      main { padding-top: 2.55rem !important; }
+      .hero-section { padding-top: 3.3rem !important; }
+      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 3.8rem !important; }
     }
     @media (max-width: 767px) {
-      header .h-20, header .sm\:h-24 { height: 3.15rem !important; }
+      header .h-20, header .sm\:h-24 { height: 2.68rem !important; }
       header #brand-logo-img { height: calc(clamp(1.6rem, .9rem + 2.6vw, 3rem) * 1.35) !important; }
-      main { padding-top: 3.15rem !important; }
-      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 3.65rem !important; }
+      main { padding-top: 2.68rem !important; }
+      .scroll-mt-32, .scroll-mt-28 { scroll-margin-top: 3.18rem !important; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Header text only: DM Sans (clean, modern, easy to read small). Rest of the site stays Zilla Slab. */
-    header #main-nav a, #mobile-menu a.mobile-link:not(.js-directions) { font-family: 'DM Sans', 'Zilla Slab', sans-serif !important; font-weight: 500 !important; letter-spacing: .005em; -webkit-font-smoothing: antialiased; }
+    header #main-nav a { font-family: 'DM Sans', 'Zilla Slab', sans-serif !important; font-weight: 600 !important; letter-spacing: .005em; -webkit-font-smoothing: antialiased; }
+    #mobile-menu a.mobile-link:not(.js-directions) { font-family: 'DM Sans', 'Zilla Slab', sans-serif !important; font-weight: 500 !important; letter-spacing: .005em; -webkit-font-smoothing: antialiased; }
     html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) header #main-nav { font-size: 1rem !important; }
     html.nav-tight header #main-nav { font-size: .92rem !important; }
     html.nav-tighter header #main-nav { font-size: .84rem !important; letter-spacing: 0; }
@@ -1360,7 +1361,7 @@
   <style>
     /* nav-tiny: last step before the burger (740px and up). Smaller text, links sit between logo and button instead of being centred, so they can never overlap the logo */
     html.nav-tiny header .max-w-7xl { padding-left: .6rem !important; padding-right: .6rem !important; }
-    html.nav-tiny body header #main-nav { font-size: .58rem !important; gap: .55rem !important; letter-spacing: .03em !important; position: static !important; transform: none !important; margin: 0 .6rem !important; }
+    html.nav-tiny body header #main-nav { font-size: .58rem !important; gap: .47rem !important; letter-spacing: .03em !important; position: static !important; transform: none !important; margin: 0 .6rem !important; }
     html.nav-tiny header #brand-logo-img { height: 1.6rem !important; }
     html.nav-tiny header #brand-logo-container { padding: .15rem 0 !important; }
   </style>
@@ -1510,6 +1511,44 @@
       #menu { padding-top: 1.75rem !important; }
     }
   </style>
+  <style>
+    /* ===== Header refinements (both Morecambe and Lancaster) =====
+       - Header bar ~15% shorter (page padding + logo sized to match)
+       - Nav font weight 500 -> 600
+       - Tighter spacing between nav / burger-menu items */
+    @media (min-width: 1024px) {
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .h-20 { height: 2.87rem !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) main { padding-top: 2.87rem !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header #brand-logo-img { max-height: 2.3rem !important; }
+    }
+    @media (min-width: 784px) and (max-width: 1023px) {
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .h-20,
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .sm\:h-24 { height: 2.55rem !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) main { padding-top: 2.55rem !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header #brand-logo-img { max-height: 2rem !important; }
+    }
+    @media (max-width: 783px) {
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .h-20,
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header .sm\:h-24 { height: 41px !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) main { padding-top: 41px !important; }
+      html body:is(.theme-lancaster, :not(.theme-lancaster)) header #brand-logo-img { height: 24px !important; }
+    }
+
+    /* Nav font weight: slightly heavier (Montserrat 600 is already loaded) */
+    html body header #main-nav a,
+    html body header #mobile-menu a.mobile-link:not(.js-directions) { font-weight: 600 !important; }
+
+    /* Tighter spacing between desktop nav items (gap + link padding) */
+    html body header #main-nav { gap: .9rem !important; }
+    html.nav-tight body header #main-nav { gap: .6rem !important; }
+    html.nav-tighter body header #main-nav { gap: .4rem !important; }
+    html.nav-tiny body header #main-nav { gap: .35rem !important; }
+    html body:is(.theme-lancaster, :not(.theme-lancaster)) header #main-nav a { padding: .3rem .5rem !important; }
+
+    /* Tighter spacing in the burger menu */
+    html body header #mobile-menu:not(.hidden) { gap: .3rem; }
+    html body #mobile-menu a.mobile-link { padding-top: .4rem !important; padding-bottom: .4rem !important; }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -1576,9 +1615,9 @@
 
         <!-- Right Side Action -->
         <div class="flex items-center space-x-3">
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Find Us" title="Find Us" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Mio%20Gelato%2C%20272%20Marine%20Road%20Central%2C%20Morecambe%2C%20LA4%205BX" target="_blank" rel="noopener" aria-label="Visit Us" title="Visit Us" class="js-directions dir-btn btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-medium text-brand-text bg-brand-orange hover:bg-brand-orange-dark shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
             <i class="fa-solid fa-location-arrow" aria-hidden="true"></i>
-            <span>Find Us</span>
+            <span>Visit Us</span>
           </a>
 
           <!-- Mobile menu toggle button -->
