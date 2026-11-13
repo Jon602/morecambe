@@ -1354,6 +1354,27 @@
     body.theme-lancaster .bar-social a { color: #ffffff; }
     body.theme-lancaster .bar-social a:hover, body.theme-lancaster .bar-social a:focus-visible { color: #f49495; }
 
+    /* Top-bar phone number (right side): switches with the selected shop */
+    .bar-phone {
+      grid-column: 3; justify-self: end;
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: #ffffff; line-height: 1;
+      text-decoration: none; white-space: nowrap;
+      transition: color .2s ease;
+    }
+    .bar-phone span { font-family: 'Montserrat', 'DM Sans', sans-serif; font-size: .72rem; font-weight: 500; letter-spacing: .04em; font-variant-numeric: lining-nums tabular-nums; }
+    .bar-phone i { font-size: .85rem; }
+    .bar-phone:hover, .bar-phone:focus-visible { color: #f39200; }
+    body.theme-lancaster .bar-phone:hover, body.theme-lancaster .bar-phone:focus-visible { color: #f49495; }
+    .bar-phone:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    /* Small phones: no room for the digits, so show a tap-to-call icon only */
+    @media (max-width: 480px) {
+      .location-banner-inner { grid-template-columns: auto 1fr auto; }
+      #loc-toggle.loc-switch { justify-self: center; }
+      .bar-phone span { display: none; }
+      .bar-phone i { font-size: 1.05rem; }
+    }
+
     /* Find Us button: dark brown on Morecambe */
     html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn { background: #42362a !important; color: #ffffff !important; }
     html:is(.nav-full, .nav-tight, .nav-tighter, .nav-tiny, .nav-compact, .nav-nodir) body:not(.theme-lancaster) header a.dir-btn:hover { background: #33291f !important; }
@@ -1549,6 +1570,52 @@
     html body header #mobile-menu:not(.hidden) { gap: .3rem; }
     html body #mobile-menu a.mobile-link { padding-top: .4rem !important; padding-bottom: .4rem !important; }
   </style>
+  <style>
+    /* ===== Review tweaks: location selector clarity, header/top-bar alignment, header separation ===== */
+
+    /* 2. Location selector: pin icons, clearer active/inactive contrast, hover feedback */
+    #loc-toggle.loc-switch { width: 12.4rem; font-size: .8rem; transition: background-color .2s ease; }
+    #loc-toggle.loc-switch:hover { background: rgba(255,255,255,.26); }
+    #loc-toggle.loc-switch span { display: flex; align-items: center; justify-content: center; gap: .3rem; font-weight: 500; }
+    #loc-toggle.loc-switch span i { font-size: .72em; }
+    #loc-toggle.loc-switch::before { box-shadow: 0 1px 5px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.4); }
+    /* the selected shop reads bolder, the other one is quieter */
+    body:not(.theme-lancaster) #loc-toggle.loc-switch span:first-child,
+    body.theme-lancaster #loc-toggle.loc-switch span:last-child { font-weight: 700; }
+    body:not(.theme-lancaster) #loc-toggle.loc-switch span:last-child i,
+    body.theme-lancaster #loc-toggle.loc-switch span:first-child i { opacity: .6; }
+    body:not(.theme-lancaster) #loc-toggle.loc-switch span:last-child,
+    body.theme-lancaster #loc-toggle.loc-switch span:first-child { color: #ffffff !important; }
+    @media (max-width: 360px) {
+      #loc-toggle.loc-switch { width: 10.6rem; }
+      #loc-toggle.loc-switch span { gap: .2rem; }
+    }
+
+    /* 3. Top bar lines up with the header: same max width and same side padding as the header container */
+    .location-banner { padding: 0 calc(max(0px, (100% - 80rem) / 2) + 1rem); }
+    @media (min-width: 640px)  { .location-banner { padding: 0 calc(max(0px, (100% - 80rem) / 2) + 1.5rem); } }
+    @media (min-width: 1024px) { .location-banner { padding: 0 calc(max(0px, (100% - 80rem) / 2) + 2rem); } }
+    /* Morecambe logo has no box, so drop its inner padding and let it start on the same line as the social icons */
+    body:not(.theme-lancaster) header #brand-logo-container { padding-left: 0 !important; padding-right: 0 !important; }
+    body:not(.theme-lancaster) header #brand-logo-img { padding-left: 0 !important; padding-right: 0 !important; }
+
+    /* Visit Us button: clearer hover and keyboard focus */
+    html body header a.dir-btn { transition: background-color .2s ease, box-shadow .2s ease; }
+    html body header a.dir-btn:hover { box-shadow: 0 2px 8px rgba(0,0,0,.28) !important; }
+    html body header a.dir-btn:focus-visible { outline: 2px solid #b35f00; outline-offset: 2px; }
+    html body.theme-lancaster header a.dir-btn:focus-visible { outline-color: #54488a; }
+
+    /* 4. Header separation from the hero: soft shadow always, stronger once the page scrolls */
+    header.glass-nav {
+      box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 6px 14px -8px rgba(0,0,0,.22) !important;
+      transition: box-shadow .3s ease, background-color .4s ease, border-color .4s ease;
+    }
+    header.glass-nav.is-scrolled {
+      box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 10px 24px -10px rgba(0,0,0,.4) !important;
+    }
+    body.theme-lancaster header.glass-nav { box-shadow: 0 1px 0 rgba(84,72,138,.14), 0 6px 14px -8px rgba(84,72,138,.28) !important; }
+    body.theme-lancaster header.glass-nav.is-scrolled { box-shadow: 0 1px 0 rgba(84,72,138,.2), 0 10px 24px -10px rgba(84,72,138,.45) !important; }
+  </style>
 </head>
 <body class="antialiased selection:bg-brand-orange/30 selection:text-brand-brown-dark">
 
@@ -1588,9 +1655,10 @@
         <a href="https://www.tiktok.com/@miogelato_more" target="_blank" rel="noopener" aria-label="TikTok @miogelato_more"><i class="fa-brands fa-tiktok"></i></a>
       </div>
       <button id="loc-toggle" type="button" role="switch" aria-checked="false" onclick="toggleShop()" aria-label="Showing Morecambe. Switch to Lancaster" title="Switch to Lancaster" class="loc-switch">
-        <span>Morecambe</span>
-        <span>Lancaster</span>
+        <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Morecambe</span>
+        <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Lancaster</span>
       </button>
+      <a id="bar-phone" class="bar-phone" href="tel:01524419606" aria-label="Call Morecambe on 01524 419606"><i class="fa-solid fa-phone"></i><span id="bar-phone-num">01524 419606</span></a>
     </div>
   </div>
 
@@ -2372,8 +2440,23 @@
     }
 
     // Updates the location switch button (accessible name) and the directions links
+    const PHONES = {
+      morecambe: { display: '01524 419606', tel: '01524419606', name: 'Morecambe' },
+      lancaster: { display: '01524 956682', tel: '01524956682', name: 'Lancaster' }
+    };
+    function updatePhone(loc) {
+      const p = PHONES[loc] || PHONES.morecambe;
+      const a = document.getElementById('bar-phone');
+      const n = document.getElementById('bar-phone-num');
+      if (a) {
+        a.href = 'tel:' + p.tel;
+        a.setAttribute('aria-label', `Call ${p.name} on ${p.display}`);
+      }
+      if (n) n.textContent = p.display;
+    }
     function updateToggle(loc) {
       updateDirections(loc);
+      updatePhone(loc);
       const btn = document.getElementById('loc-toggle');
       const isL = loc === 'lancaster';
       const label = `Showing ${isL ? 'Lancaster' : 'Morecambe'}. Switch to ${isL ? 'Morecambe' : 'Lancaster'}`;
@@ -2605,6 +2688,16 @@
         }
       });
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue);
+    })();
+  </script>
+  <script>
+    // Adds .is-scrolled to the header once the page has moved, so it separates from the content underneath
+    (function () {
+      const header = document.querySelector('header');
+      if (!header) return;
+      const update = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+      window.addEventListener('scroll', update, { passive: true });
+      update();
     })();
   </script>
 </body>
